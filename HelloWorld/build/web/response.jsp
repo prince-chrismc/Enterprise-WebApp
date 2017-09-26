@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : 26-Sep-2017, 5:53:38 PM
+    Document   : response
+    Created on : 26-Sep-2017, 6:58:17 PM
     Author     : cmcarthur
 --%>
 
@@ -12,10 +12,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <form name="Name Input Form" action="response.jsp">
-            <input type="text" name="name" value="" />
-            <input type="submit" value="OK" />
-        </form>
+        <jsp:useBean id="mybean" scope="session" class="Hello.NameHandler" />
+        <jsp:setProperty name="mybean" property="name" />
+        <h1>Hello, <jsp:getProperty name="mybean" property="name" />!</h1>
     </body>
 </html>
