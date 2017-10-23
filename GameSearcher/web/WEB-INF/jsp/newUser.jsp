@@ -1,18 +1,18 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
+<%-- 
+    Document   : newUser
+    Created on : 23-Oct-2017, 1:42:33 PM
+    Author     : cmcarthur
+--%>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Welcome to Spring Web MVC project</title>
-        
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <title>Register New User</title>
     </head>
-
     <body>
-        <div class="container-fluid">
+               <div class="container-fluid">
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
               <div class="navbar-header">
@@ -41,23 +41,42 @@
     <div class="container-fluid text-center">    
   <div class="row content">
     <div class="col-sm-2 sidenav">
-      <p><a href="newUser.html">Link</a></p>
+      <p><a href="#">Link</a></p>
       <p><a href="#">Link</a></p>
       <p><a href="#">Link</a></p>
     </div>
     <div class="col-sm-8 text-left"> 
-        <h2>Hello! This is the default welcome page for a Spring Web MVC project.</h2>
-        <p><i>To display a different welcome page for this project, modify</i>
-            <tt>index.jsp</tt> <i>, or create your own welcome page then change
-                the redirection in</i> <tt>redirect.jsp</tt> <i>to point to the new
-                welcome page and also update the welcome-file setting in</i>
-            <tt>web.xml</tt>.</p>
-    </div>
+        <h1>Hello New User!</h1>
+        
+        <form:form method = "POST" action = "/HelloWeb/addUser">
+         <table>
+            <tr>
+               <td><form:label path = "m_FirstName">Name</form:label></td>
+               <td><form:input path = "m_FirstName" /></td>
+            </tr>
+            <tr>
+               <td><form:label path = "m_LastName">Age</form:label></td>
+               <td><form:input path = "m_LastName" /></td>
+            </tr>
+            <tr>
+               <td><form:label path = "m_Email">id</form:label></td>
+               <td><form:input path = "m_Email" /></td>
+            </tr>
+            <tr>
+               <td colspan = "2">
+                  <input type = "submit" value = "Submit"/>
+               </td>
+            </tr>
+         </table>  
+      </form:form>
+        
+        
+        </div>
   </div>
     </div>
         <footer class="container-fluid text-center">
   <p>Footer Text</p>
 </footer>
-    </div>
+               </div>
     </body>
 </html>
