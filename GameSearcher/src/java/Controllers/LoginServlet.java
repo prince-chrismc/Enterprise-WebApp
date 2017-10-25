@@ -28,13 +28,13 @@ public class LoginServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException
     {
-        String userName=request.getParameter("userName");
-        String password=request.getParameter("password");
+        int userID = Integer.parseInt(request.getParameter("userName"));
+        String password = request.getParameter("password");
 
         LoginService loginService = new LoginService();
-        if(loginService.isValidUser(userName, password))
+        if(loginService.isValidUser(userID, password))
         {
-            User user=loginService.getUser();
+            User user = loginService.getUser();
             request.setAttribute("user", user);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/login_success.jsp");
             requestDispatcher.forward(request, response);
