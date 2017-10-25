@@ -13,10 +13,10 @@ public class Game {
     private String game_id;
     private String name;
     private String description;
-    private String console;
+    private Console console;
     private String num_players;
-    private String coop;
-    private String genre;
+    private boolean coop;
+    private Genre[] genres;
     private String release_date;
     private String developer;
     private String publisher;
@@ -73,13 +73,13 @@ public class Game {
      * @return the console
      */
     public String getConsole() {
-        return console;
+        return console.getConsole();
     }
 
     /**
      * @param console the console to set
      */
-    public void setConsole(String console) {
+    public void setConsole(Console console) {
         this.console = console;
     }
 
@@ -100,29 +100,29 @@ public class Game {
     /**
      * @return the coop
      */
-    public String getCoop() {
+    public boolean getCoop() {
         return coop;
     }
 
     /**
      * @param coop the coop to set
      */
-    public void setCoop(String coop) {
+    public void setCoop(boolean coop) {
         this.coop = coop;
     }
 
     /**
      * @return the genre
      */
-    public String getGenre() {
-        return genre;
+    public Genre[] getGenre() {
+        return genres;
     }
 
     /**
-     * @param genre the genre to set
+     * @param genres the genres to set
      */
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setGenre(Genre[] genres) {
+        this.genres = genres;
     }
 
     /**
