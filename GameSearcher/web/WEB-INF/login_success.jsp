@@ -16,7 +16,7 @@
         <%
         User user=(User)request.getAttribute("user");
         %>
-        <h1>Hello <%=user.getUserName()%></h1>
+        <h1>Hello <%=user.getUser_id()%></h1>
         <h2>You have successfully logged in</h2>
     </body>
 </html>

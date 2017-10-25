@@ -16,12 +16,12 @@ public class LoginService {
 
     public LoginService(){
         user = new User();
-        user.setUserName("admin");
+        user.setUser_id("admin");
         user.setPassword("admin");
     }
 
     public boolean isValidUser(String userName, String password){
-        if(userName.equals(user.getUserName()) && password.equals(user.getPassword())){
+        if(userName.equals(user.getUser_id()) && password.equals(user.getPassword())){
             return true;
         }
         return false;
