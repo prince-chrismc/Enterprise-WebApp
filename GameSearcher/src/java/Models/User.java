@@ -10,7 +10,7 @@ package Models;
  * @author cmcarthur
  */
 public class User {
-    private String user_id;
+    private int user_id;
     private String password;
     private String first_name;
     private String last_name;
@@ -23,7 +23,7 @@ public class User {
     private String zip;
     private String country;
     
-    private String credit_card_type;
+    private CreditCardType credit_card_type;
     private String credit_card_number;
     private String credit_card_cvv;
     private String credit_card_expiry;
@@ -33,14 +33,14 @@ public class User {
     /**
      * @return the user_id
      */
-    public String getUser_id() {
+    public int getUser_id() {
         return user_id;
     }
 
     /**
      * @param user_id the user_id to set
      */
-    public void setUser_id(String user_id) {
+    public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
 
@@ -188,13 +188,13 @@ public class User {
      * @return the credit_card_type
      */
     public String getCredit_card_type() {
-        return credit_card_type;
+        return credit_card_type.getType();
     }
 
     /**
      * @param credit_card_type the credit_card_type to set
      */
-    public void setCredit_card_type(String credit_card_type) {
+    public void setCredit_card_type(CreditCardType credit_card_type) {
         this.credit_card_type = credit_card_type;
     }
 
