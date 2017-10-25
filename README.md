@@ -19,5 +19,5 @@ Christopher McArthur | `40004257`
 This is a using Netbeans JavaEE running an Apache Tomcat 8.0.27 web server
 
 ## Attributions
-- [SpringMVC](https://www.tutorialspoint.com/spring/spring_web_mvc_framework.htm)
+- [Java MVC Web App](http://forum.codecall.net/topic/72183-mvc-application-in-java/)
 - [Website Template](https://www.w3schools.com/bootstrap/bootstrap_templates.asp)
