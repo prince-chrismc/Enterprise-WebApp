@@ -28,11 +28,11 @@ public class LoginServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException
     {
-        int userID = Integer.parseInt(request.getParameter("userName"));
+        String email = request.getParameter("email");
         String password = request.getParameter("password");
 
         LoginService loginService = new LoginService();
-        if(loginService.isValidUser(userID, password))
+        if(loginService.isValidUser(email, password))
         {
             User user = loginService.getUser();
             request.setAttribute("user", user);

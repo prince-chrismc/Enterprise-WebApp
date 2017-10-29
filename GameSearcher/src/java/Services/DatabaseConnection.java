@@ -15,10 +15,10 @@ import java.sql.SQLException;
  * @inspiration https://stackoverflow.com/a/10916633/8480874
  */
 public class DatabaseConnection {
-    private static final String urlstring = "jdbc:mysql://localhost:3306/prototypeeop";    
+    private static final String urlstring = "jdbc:mysql://localhost:3306/gamesearcher";    
     private static final String driverName = "com.mysql.jdbc.Driver";   
     private static final String username = "root";   
-    private static final String password = "triala";
+    private static final String password = "Acertuba";
     
     private static Connection con;
 

@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Login Page</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     </head>
     <body>
@@ -17,7 +17,7 @@
         <h1>Please login...</h1>
         <form action="login" method="post">
             <table>
-                <tr><td>User Name</td><td><input type="text" name="userName"/></td></tr>
+                <tr><td>User Name</td><td><input type="text" name="email"/></td></tr>
                 <tr><td>Password</td><td><input type="password" name="password"/></td></tr>
                 <tr><td></td><td><input type="submit" value="Login"/></td></tr>
             </table>

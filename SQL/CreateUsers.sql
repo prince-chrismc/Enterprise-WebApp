@@ -1,8 +1,10 @@
-CREATE TABLE USERS(
+DROP TABLE gamesearcher.USERS;
+
+CREATE TABLE gamesearcher.USERS(
 	userID int unsigned not null unique auto_increment,
 	userPassword varchar(255) not null,
 	userFirstName varchar(255) not null,
-    userLaststName varchar(255) not null,
+    userLastName varchar(255) not null,
     userEmail varchar(255),
 	userAddress1 varchar(255),
 	userAddress2 varchar(255),
