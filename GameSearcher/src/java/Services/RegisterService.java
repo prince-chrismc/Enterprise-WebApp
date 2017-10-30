@@ -16,26 +16,21 @@ import java.sql.Statement;
  * @author cmcarthur
  */
 public class RegisterService {
-    private User user;
+    private LoginService login;
     
     public RegisterService(String email, String password, String first,String last) {
+        login = new LoginService();
         try
         {
             Connection conn = DatabaseConnection.getConnection();
             Statement statement = conn.createStatement();
             
-            statement.execute("INSERT INTO gamesearcher.users(userPassword, userFirstName, userLastName, userEmail) VALUES" +
-            " ('" + password + "', '" + first + "', '" + last + "', '" + email +"');", Statement. RETURN_GENERATED_KEYS);
-            ResultSet results = statement.getGeneratedKeys();
+            statement.executeUpdate("INSERT INTO gamesearcher.users(userPassword, userFirstName, userLastName, userEmail) VALUES" +
+            " ('" + password + "', '" + first + "', '" + last + "', '" + email +"');");
             
-            if(results.first())
+            if(login.isValidUser(email, password))
             {
-                user = new User();
-                user.setUser_id(results.getInt("userID"));
-                user.setPassword(results.getString("userPassword"));
-                user.setFirst_name(results.getString("userFirstName"));
-                user.setLast_name(results.getString("userLastName"));            
-                user.setEmail(results.getString("userEmail"));
+                
             }
         }
         catch(SQLException e) {
@@ -47,7 +42,7 @@ public class RegisterService {
     }
     
     public User getUser(){
-        return user;
+        return login.getUser();
     }
     
 }
