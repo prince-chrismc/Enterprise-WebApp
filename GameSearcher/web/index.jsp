@@ -14,13 +14,24 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <h1>Please login...</h1>
-        <form action="login" method="post">
-            <table>
-                <tr><td>User Name</td><td><input type="text" name="email"/></td></tr>
-                <tr><td>Password</td><td><input type="password" name="password"/></td></tr>
-                <tr><td></td><td><input type="submit" value="Login"/></td></tr>
-            </table>
-        </form>
+        <div class="row">
+            <h1>Please login...</h1>
+            <form action="login" method="post">
+                <table>
+                    <tr><td>User Name</td><td><input type="text" name="email"/></td></tr>
+                    <tr><td>Password</td><td><input type="password" name="password"/></td></tr>
+                    <tr><td></td><td><input type="submit" value="Login"/></td></tr>
+                </table>
+            </form>
+        </div>
+        <div class="row">
+            <h1>... Or Sign up</h1>
+            <form action="register" method="post">
+                <table>
+                    <tr><td><input type="hidden" name="action" value="redirect"/></td></tr>
+                    <tr><td></td><td><input type="submit" value="Register"/></td></tr>
+                </table>
+            </form>
+        </div>
     </body>
 </html>
