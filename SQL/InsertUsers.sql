@@ -1,4 +1,4 @@
-INSERT INTO `gamesearcher`.`users`(`userPassword`, `userFirstName`, `userLastName`, `userEmail`) VALUES
+INSERT INTO gamesearcher.users(userPassword, userFirstName, userLastName, userEmail) VALUES
 ('root', 'admin', 'root', 'admin@example.com');
 
 /*
