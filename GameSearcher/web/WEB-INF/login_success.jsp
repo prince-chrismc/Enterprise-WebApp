@@ -11,12 +11,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login Success</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     </head>
     <body>
         <%
         User user = (User)request.getAttribute("user");
         %>
-        <h1>Hello <%= String.valueOf(user.getUser_id()) %></h1>
+        <h1>Hello <%= user.getFirst_name()%></h1>
         <h2>You have successfully logged in</h2>
     </body>
 </html>
