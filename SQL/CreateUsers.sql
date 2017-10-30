@@ -5,7 +5,7 @@ CREATE TABLE gamesearcher.USERS(
 	userPassword varchar(255) not null,
 	userFirstName varchar(255) not null,
     userLastName varchar(255) not null,
-    userEmail varchar(255),
+    userEmail varchar(255) not null,
 	userAddress1 varchar(255),
 	userAddress2 varchar(255),
 	userCity varchar(255),
