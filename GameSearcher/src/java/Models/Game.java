@@ -5,19 +5,21 @@
  */
 package Models;
 
+import java.util.Date;
+
 /**
  *
  * @author cmcarthur
  */
 public class Game {
-    private String game_id;
+    private int game_id;
     private String name;
     private String description;
-    private Console console;
-    private String num_players;
+    private Console[] consoles;
+    private int num_players;
     private boolean coop;
     private Genre[] genres;
-    private String release_date;
+    private Data release_date;
     private String developer;
     private String publisher;
     private String front_box_art;
