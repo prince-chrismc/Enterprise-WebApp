@@ -23,7 +23,7 @@ name | desc | consoles | num of players | coop | genres | release date | develop
 [NHL 08](http://thegamesdb.net/game/16036/) | overview | PS2; PS3; PC; XBOX360; | 2 | true | Sports; | 09/11/2007 | Electronic Arts | Electronic Arts | [link](http://thegamesdb.net/banners/boxart/original/front/16035-1.jpg) | | | [link](http://thegamesdb.net/banners/_gameviewcache/publishers/0-EA_logo.png) | 0.00 | 0.00
 [Prince of Persia: The Sands of Time](http://thegamesdb.net/game/4805/) | [overview](#prince-of-persia) | PS2; XBOX; gbadvance; GameCube; PC; | 1 | false | Platform; | 11/21/2003 | Ubisoft | Ubisoft | [link](http://thegamesdb.net/banners/boxart/original/front/4805-1.jpg) | [link](http://thegamesdb.net/banners/boxart/original/back/4805-1.jpg) | [link](http://thegamesdb.net/banners/clearlogo/4805.png) | [link](http://thegamesdb.net/banners/_gameviewcache/publishers/72-folder.png) | 0.00 | 0.00
 [Prince of Persia: The Two Thrones](http://thegamesdb.net/game/4803/) | [overview](#prince-of-persia-2) | PS2; XBOX; GameCube; PC; | 1 | false | Action; Adventure; | 12/01/2005 | Ubisoft | Ubisoft | [link](http://thegamesdb.net/banners/boxart/original/front/4803-1.jpg) | [link](http://thegamesdb.net/banners/boxart/original/back/4803-1.jpg) | | | 0.00 | 0.00
-
+[Ratchet & Clank](http://thegamesdb.net/game/7797/) | [overview](#Ratchet-and-Clank) | PS2; PS4; | 1 | false | Action; Adventure; | Insomniac Games | Sony | [link](http://thegamesdb.net/banners/boxart/original/front/7797-1.jpg) | [link](http://thegamesdb.net/banners/boxart/original/back/7797-1.jpg) | [link](http://thegamesdb.net/banners/clearlogo/7797.png) | [link](http://thegamesdb.net/banners/_gameviewcache/publishers/0-insomniacgames.jpeg) | 0.00 | 0.00
 
 #### Jak 3
 Jak 3 is set in the New World, its time frame placing it around 300 years after the events of the first game. Jak 3 largely focuses on the Wasteland, a large desert only briefly referred to in the previous entry in the series as being completely uninhabited and inhospitable.
@@ -88,3 +88,10 @@ Prince of Persia: The Sands of Time is a 3D platformer which focuses on acrobati
 
 #### Prince of Persia 2
 Prince of Persia: The Two Thrones follows the second ending of Prince of Persia: Warrior Within, in which the Prince kills the Dahaka, essentially saving Kaileena. The game opens with the Prince and Kaileena about to sail into Babylon's port. Kaileena offers narration of the events passed and the story following, similar to the Prince's role as both protagonist and narrator in The Sands of Time.
+
+#### Ratchet and Clank
+Ratchet & Clank is a platform/adventure game in a similar vein to the 3D versions of the Rayman, Sonic, Mario, or other games. It involves the two protagonists Ratchet, a furry alien creature, and Clank, a nerdy little robot, going on a quest to find Captain Qwark and ultimately to help save the galaxy.
+
+Ratchet & Clank includes many of the best features of previous similar games, but makes itself unique in a number of ways. Firstly each of the game's levels are huge sweeping vistas with extremely detailed buildings which are visible at all times (i.e. there is no distance fog). This means that a building on the horizon is not just a "backdrop"; in all likelihood Ratchet will be exploring it in a few moments time. Secondly, the game includes a number of sub-games, such as a space fight sequence and a number of turret shoot-outs which are akin to Missile Command in the first person.
+
+The game has over twenty levels (planets) and includes as many real-time cut-scenes which tell the story. Also of note is that the story is non-linear, requiring the player to return to previous levels to complete objectives and to choose between multiple paths forward. There is also a respectable array of weapons, gadgets, and accessories to find or buy as the game progresses, which offer some unique gameplay features.
