@@ -19,7 +19,7 @@ public class Game {
     private int num_players;
     private boolean coop;
     private Genre[] genres;
-    private Data release_date;
+    private Date release_date;
     private String developer;
     private String publisher;
     private String front_box_art;
