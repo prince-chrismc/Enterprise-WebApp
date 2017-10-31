@@ -1,4 +1,4 @@
-/*DROP TABLE gamesearcher.USERS;*/
+DROP TABLE gamesearcher.GAMES;
 
 CREATE TABLE gamesearcher.GAMES(
 	gameID int unsigned not null unique auto_increment,
@@ -8,6 +8,9 @@ CREATE TABLE gamesearcher.GAMES(
     gamePlayers int default 0,
     gameCoop bool default false,
     gameGenres varchar(255),
+    gameReleaseDate date,
+    gameDeveloper varchar(255),
+    gamePublisher varchar(255),
     gameFrontArtUrl varchar(255),
     gameBackArtUrl varchar(255),
     gameLogoArtUrl varchar(255),
