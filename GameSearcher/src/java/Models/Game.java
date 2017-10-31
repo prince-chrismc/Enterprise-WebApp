@@ -29,118 +29,7 @@ public class Game {
     private String price;
     private String discount;
 
-    /**
-     * @return the game_id
-     */
-    public String getGame_id() {
-        return game_id;
-    }
-
-    /**
-     * @param game_id the game_id to set
-     */
-    public void setGame_id(String game_id) {
-        this.game_id = game_id;
-    }
-
-    /**
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @param name the name to set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * @return the description
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * @param description the description to set
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    /**
-     * @return the console
-     */
-    public String getConsole() {
-        return console.getConsole();
-    }
-
-    /**
-     * @param console the console to set
-     */
-    public void setConsole(Console console) {
-        this.console = console;
-    }
-
-    /**
-     * @return the num_players
-     */
-    public String getNum_players() {
-        return num_players;
-    }
-
-    /**
-     * @param num_players the num_players to set
-     */
-    public void setNum_players(String num_players) {
-        this.num_players = num_players;
-    }
-
-    /**
-     * @return the coop
-     */
-    public boolean getCoop() {
-        return coop;
-    }
-
-    /**
-     * @param coop the coop to set
-     */
-    public void setCoop(boolean coop) {
-        this.coop = coop;
-    }
-
-    /**
-     * @return the genre
-     */
-    public Genre[] getGenre() {
-        return genres;
-    }
-
-    /**
-     * @param genres the genres to set
-     */
-    public void setGenre(Genre[] genres) {
-        this.genres = genres;
-    }
-
-    /**
-     * @return the release_date
-     */
-    public String getRelease_date() {
-        return release_date;
-    }
-
-    /**
-     * @param release_date the release_date to set
-     */
-    public void setRelease_date(String release_date) {
-        this.release_date = release_date;
-    }
-
+    
     /**
      * @return the developer
      */
@@ -251,5 +140,117 @@ public class Game {
      */
     public void setDiscount(String discount) {
         this.discount = discount;
+    }
+
+    /**
+     * @return the game_id
+     */
+    public int getGame_id() {
+        return game_id;
+    }
+
+    /**
+     * @param game_id the game_id to set
+     */
+    public void setGame_id(int game_id) {
+        this.game_id = game_id;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * @return the consoles
+     */
+    public Console[] getConsoles() {
+        return consoles;
+    }
+
+    /**
+     * @param consoles the consoles to set
+     */
+    public void setConsoles(Console[] consoles) {
+        this.consoles = consoles;
+    }
+
+    /**
+     * @return the num_players
+     */
+    public int getNum_players() {
+        return num_players;
+    }
+
+    /**
+     * @param num_players the num_players to set
+     */
+    public void setNum_players(int num_players) {
+        this.num_players = num_players;
+    }
+
+    /**
+     * @return the coop
+     */
+    public boolean isCoop() {
+        return coop;
+    }
+
+    /**
+     * @param coop the coop to set
+     */
+    public void setCoop(boolean coop) {
+        this.coop = coop;
+    }
+
+    /**
+     * @return the genres
+     */
+    public Genre[] getGenres() {
+        return genres;
+    }
+
+    /**
+     * @param genres the genres to set
+     */
+    public void setGenres(Genre[] genres) {
+        this.genres = genres;
+    }
+
+    /**
+     * @return the release_date
+     */
+    public Date getRelease_date() {
+        return release_date;
+    }
+
+    /**
+     * @param release_date the release_date to set
+     */
+    public void setRelease_date(Date release_date) {
+        this.release_date = release_date;
     }
 }
