@@ -29,6 +29,10 @@ public class Game {
     private String price;
     private String discount;
 
+    public Game() {
+        consoles = new Console[0];
+        genres = new Genre[0];
+    }
     
     /**
      * @return the developer
