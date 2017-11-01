@@ -23,7 +23,7 @@ public class SearchService {
         
         games = new Vector<Game>();
         
-        try {
+        /*try {
             Connection conn = DatabaseConnection.getConnection();
             Statement statement = conn.createStatement();
             
@@ -33,17 +33,19 @@ public class SearchService {
                 Game game = new Game();
                 
                 
-                
                 games.add(game);
-            }
+            }*/
             
+            Game test = new Game();
+            test.setName("test game");
+            games.add(test);
             
-        } catch (SQLException e) {
+        /*} catch (SQLException e) {
             System.out.println("SQL Error: " + e.getMessage());
         }
         catch(Exception e) {
             System.out.println("Error: " + e.getMessage());
-        }
+        }*/
     }
     
     public Vector<Game> getGames() {
