@@ -20,9 +20,9 @@
         %>
         <div class="container">
             <h1>Your Results are...</h1>
-            <table>
-                <tr><td>0</td><td><%= games.get(0).getName()%></td></tr>
-            </table>
+            <div class="col-xs-12">
+                <div class="row"><div class="col-xs-2">0</div><div class="col-xs-2"><%= games.get(0).getName()%></div></div>
+            </div>
         </div>
     </body>
 </html>
