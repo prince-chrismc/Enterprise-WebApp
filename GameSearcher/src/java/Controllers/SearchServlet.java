@@ -37,13 +37,19 @@ public class SearchServlet extends HttpServlet
         
         String name = request.getParameter("name");
         
-        /*SearchService searcher = new SearchService(name);
-        
+        SearchService searcher = new SearchService(name);
         Vector<Game> games = searcher.getGames();
         
-        request.setAttribute("games", games);*/
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/results.jsp");
-        requestDispatcher.forward(request, response);
+        if(games.size() > 0)
+        {
+            request.setAttribute("games", games);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/results.jsp");
+            requestDispatcher.forward(request, response);
+        }
+        else
+        {
+            response.sendRedirect("");
+        }
     }
 
     /**
