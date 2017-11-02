@@ -2,10 +2,10 @@ DROP TABLE gamesearcher.GAMES;
 
 CREATE TABLE gamesearcher.GAMES(
 	gameID int unsigned not null unique auto_increment,
-    gameName varchar(255) not null,
-    gameDesc varchar(255) default '',
+    gameName varchar(255) not null unique,
+    gameDesc varchar(1023) default '',
     gameConsoles varchar(255) not null,
-    gamePlayers int default 0,
+    gamePlayers int default 1,
     gameCoop bool default false,
     gameGenres varchar(255),
     gameReleaseDate date,
