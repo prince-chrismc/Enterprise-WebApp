@@ -23,13 +23,15 @@ public class LoginService {
     }
 
     public boolean isValidUser(String email, String password) {
-        if(doesUserExistInDB(email, password) != null){
-            return true;
+        if(doesUserExistInDB(email) != null) {
+            if(user.getPassword().equals(password)) {
+                return true;
+            }
         }
         return false;
     }
     
-    User doesUserExistInDB(String email, String password) {
+    User doesUserExistInDB(String email) {
         try
         {
             Connection conn = DatabaseConnection.getConnection();
@@ -41,7 +43,7 @@ public class LoginService {
             
             user = new User();
             user.setUser_id(results.getInt("userID"));
-            user.setPassword(password);
+            user.setPassword(results.getString("userPassword"));
             user.setFirst_name(results.getString("userFirstName"));
             user.setLast_name(results.getString("userLastName"));            
             user.setEmail(email);
