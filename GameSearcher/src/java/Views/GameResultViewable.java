@@ -11,10 +11,10 @@ import Models.Game;
  *
  * @author cmcarthur
  */
-public class GameViewable  {
+public class GameResultViewable  {
     private Game game;
     
-    public GameViewable(Game game) {
+    public GameResultViewable(Game game) {
         this.game = game;
     }
     

@@ -6,19 +6,19 @@
 package Services;
 
 import Models.Game;
-import Views.GameViewable;
-import java.util.Vector;
+import Views.GameResultViewable;
+import java.util.ArrayList;
 
 /**
  *
  * @author cmcarthur
  */
 public class ResultsFormatting {
-    static public Vector<GameViewable> CreateViewableGames(Vector<Game> games) {
-        Vector<GameViewable> gameViews = new Vector<GameViewable>();
+    static public ArrayList<GameResultViewable> CreateViewableGames(ArrayList<Game> games) {
+        ArrayList<GameResultViewable> gameViews = new ArrayList<GameResultViewable>();
         
         for (int index = 0; index < games.size(); index += 1) {
-            gameViews.add(new GameViewable(games.get(index)));
+            gameViews.add(new GameResultViewable(games.get(index)));
         }
         
         return gameViews;

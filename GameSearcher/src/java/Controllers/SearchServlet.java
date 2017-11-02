@@ -8,7 +8,7 @@ package Controllers;
 import Models.Game;
 import Services.SearchService;
 import java.io.IOException;
-import java.util.Vector;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,7 +38,7 @@ public class SearchServlet extends HttpServlet
         String name = request.getParameter("name");
         
         SearchService searcher = new SearchService(name);
-        Vector<Game> games = searcher.getGames();
+        ArrayList<Game> games = searcher.getGames();
         
         if(games.size() > 0)
         {
