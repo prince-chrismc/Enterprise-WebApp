@@ -18,7 +18,7 @@
         <%
         ArrayList<Game> games = (ArrayList<Game>)request.getAttribute("games");
         String pretty_html = "";
-        for(Game game : games) {
+        for(Game game : games) { // https://knowm.org/iterating-through-a-collection-in-java/
             pretty_html += "<div class='row'><div class='col-xs-2'>" + game.getGame_id() + "</div><div class='col-xs-2'>" + game.getName() + "</div></div>";
         }
         %>
