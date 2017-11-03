@@ -5,8 +5,7 @@
  */
 package Controllers;
 
-import Models.Game;
-import Services.SearchService;
+import Services.SearchByNameService;
 import Views.GameResultViewable;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,7 +37,7 @@ public class SearchServlet extends HttpServlet
         
         String name = request.getParameter("name");
         
-        SearchService searcher = new SearchService(name);
+        SearchByNameService searcher = new SearchByNameService(name);
         ArrayList<GameResultViewable> games = searcher.getViewableResults();
         
         if(games.size() > 0)

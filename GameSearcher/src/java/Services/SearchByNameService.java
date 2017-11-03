@@ -17,10 +17,10 @@ import java.util.ArrayList;
  *
  * @author cmcarthur
  */
-public class SearchService {
+public class SearchByNameService {
     ArrayList<Game> games; // https://stackoverflow.com/a/2986307/8480874 for dynamic size
     
-    public SearchService(String name_criteria) {
+    public SearchByNameService(String name_criteria) {
         
         games = new ArrayList<Game>();
         
@@ -38,8 +38,6 @@ public class SearchService {
                 
                 DatabaseConsoleConverter console_converter = new DatabaseConsoleConverter(results.getString("gameConsoles"));
                 game.setConsoles(console_converter.getConsoles());
-                
-                
                 
                 games.add(game);
             }
