@@ -11,14 +11,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Vector;
 
 /**
  *
  * @author cmcarthur
  */
 public class SearchService {
-    ArrayList<Game> games; // https://stackoverflow.com/a/2986307/8480874
+    ArrayList<Game> games; // https://stackoverflow.com/a/2986307/8480874 for dynamic size
     
     public SearchService(String name_criteria) {
         
@@ -35,6 +34,9 @@ public class SearchService {
                 
                 game.setGame_id(results.getInt("gameID"));
                 game.setName(results.getString("gameName"));
+                
+                DatabaseConsoleConverter console_converter = new DatabaseConsoleConverter(results.getString("gameConsoles"));
+                game.setConsoles(console_converter.getConsoles());
                 
                 
                 

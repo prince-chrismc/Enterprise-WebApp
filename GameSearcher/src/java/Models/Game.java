@@ -5,6 +5,7 @@
  */
 package Models;
 
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -193,6 +194,13 @@ public class Game {
      */
     public Console[] getConsoles() {
         return consoles;
+    }
+    
+    /**
+     * @return the consoles as string
+     */
+    public String getConsolesAsString() {
+        return Arrays.toString(consoles);
     }
 
     /**

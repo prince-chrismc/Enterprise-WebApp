@@ -13,11 +13,14 @@ public enum Console {
     PS1("Playstation"),
     PS2("Playstation2"),
     PS3("Playstation3"),
-    XBOX("X Box"),
-    XBOX360("X Box 360");
+    PS4("Playstation4"),
+    XBOX("XBox"),
+    XBOX360("XBox360"),
+    XBOX1("XBox1"),
+    PC("PC");
     
     private final String console;
-    
+        
     Console(String console) {
         this.console = console;
     }
