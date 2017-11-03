@@ -29,27 +29,22 @@ public class DatabaseConsoleConverter {
             this.console = entry;
         }
         
+        @Override
+        public String toString() {
+            return console;
+        }
+        
         public static DatabaseConsoleEntries getValueFromString(String entry) {
-            if(entry.equalsIgnoreCase(PS1.console)) return PS1; 
-            if(entry.equalsIgnoreCase(PS2.console)) return PS2;
-            if(entry.equalsIgnoreCase(PS3.console)) return PS3;
-            if(entry.equalsIgnoreCase(PS4.console)) return PS4;
-            
-            if(entry.equalsIgnoreCase(XBOX.console)) return XBOX;
-            if(entry.equalsIgnoreCase(XBOX360.console)) return XBOX360;
-            if(entry.equalsIgnoreCase(XBOX1.console)) return XBOX1;
-            
-            if(entry.equalsIgnoreCase(PC.console)) return PC;
-            
+            for(DatabaseConsoleEntries console : DatabaseConsoleEntries.values()) {
+                if(entry.equalsIgnoreCase(console.toString())) return console;
+            }
             return PS2; // default
         }
     }
     
-    private ArrayList<DatabaseConsoleEntries> DatabaseEntries;
     private Console[] consoles;
     
     public DatabaseConsoleConverter(String data) {
-        DatabaseEntries = new ArrayList<DatabaseConsoleEntries>();
         consoles = parseDatabaseConsoleEntry(data);
     }
     
@@ -73,6 +68,8 @@ public class DatabaseConsoleConverter {
     }
     
     private Console[] parseDatabaseConsoleEntry(String data) {
+        ArrayList<DatabaseConsoleEntries> DatabaseEntries = new ArrayList<DatabaseConsoleEntries>();
+        
         for (String retval: data.split(";")) { // https://www.tutorialspoint.com/java/java_string_split.htm
             DatabaseEntries.add(DatabaseConsoleEntries.getValueFromString(retval));
         }
