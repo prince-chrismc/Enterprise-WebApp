@@ -59,18 +59,18 @@ public class DatabaseConsoleConverter {
     
     
     private static Console convert(DatabaseConsoleEntries entry) {
-        if(entry == DatabaseConsoleEntries.PS1) return Console.PS1;
-        if(entry == DatabaseConsoleEntries.PS2) return Console.PS2;
-        if(entry == DatabaseConsoleEntries.PS3) return Console.PS3;
-        if(entry == DatabaseConsoleEntries.PS4) return Console.PS4;
-
-        if(entry == DatabaseConsoleEntries.XBOX) return Console.XBOX;
-        if(entry == DatabaseConsoleEntries.XBOX360) return Console.XBOX360;
-        if(entry == DatabaseConsoleEntries.XBOX1) return Console.XBOX1;
-
-        if(entry == DatabaseConsoleEntries.PC) return Console.PC;
-
-        return Console.PS2; // Default
+        switch(entry)
+        {
+            case PS1: return Console.PS1;
+            case PS2: return Console.PS2;
+            case PS3: return Console.PS3;
+            case PS4: return Console.PS4;
+            case XBOX: return Console.XBOX;
+            case XBOX360: return Console.XBOX360;
+            case XBOX1: return Console.XBOX1;
+            case PC: return Console.PC;
+            default: return Console.PS2;
+        }
     }
     
     private Console[] parseDatabaseConsoleEntry(String data) {
