@@ -74,11 +74,11 @@ public class DatabaseConsoleConverter {
     }
     
     private Console[] parseDatabaseConsoleEntry(String data) {
-        for (String retval: data.split(";")) {
+        for (String retval: data.split(";")) { // https://www.tutorialspoint.com/java/java_string_split.htm
             DatabaseEntries.add(DatabaseConsoleEntries.getValueFromString(retval));
         }
         
-        consoles = new Console[DatabaseEntries.size()];
+        consoles = new Console[DatabaseEntries.size()]; // http://viralpatel.net/blogs/convert-arraylist-to-arrays-in-java/
         int index_counter = 0;
         
         for(DatabaseConsoleEntries entry : DatabaseEntries) {
