@@ -48,6 +48,10 @@ public class LoginService {
             user.setLast_name(results.getString("userLastName"));            
             user.setEmail(email);
             
+            
+            statement.close();
+            results.close();
+            
             return user;
         }
         catch(SQLException e) {

@@ -44,6 +44,9 @@ public class SearchService {
                 games.add(game);
             }
             
+            statement.close();
+            results.close();
+            
         } catch (SQLException e) {
             System.out.println("SQL Error: " + e.getMessage());
         }

@@ -32,6 +32,8 @@ public class RegisterService {
             {
                 
             }
+            
+            statement.close();
         }
         catch(SQLException e) {
             System.out.println("SQL Error: " + e.getMessage()); // https://docs.oracle.com/javase/7/docs/api/java/sql/Statement.html#executeQuery(java.lang.String)

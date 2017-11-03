@@ -57,7 +57,6 @@ public class DatabaseConsoleConverter {
         return consoles;
     }
     
-    
     private static Console convert(DatabaseConsoleEntries entry) {
         switch(entry)
         {
