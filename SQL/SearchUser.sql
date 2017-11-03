@@ -1,0 +1,1 @@
+SELECT * FROM gamesearcher.users WHERE users.userEmail = 'admin@example.com';
