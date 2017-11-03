@@ -19,6 +19,7 @@ public class GameResultViewable  {
     }
     
     public String toHTML() {
-        return "";
+        return "<div class='row'><div class='col-xs-2'>" + game.getGame_id() + "</div><div class='col-xs-2'>" + game.getName() + 
+                                      "</div><div class='col-xs-2'>" + game.getConsolesAsString() + "</div></div>";
     }
 }

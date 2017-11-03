@@ -6,6 +6,7 @@
 package Services;
 
 import Models.Game;
+import Views.GameResultViewable;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -43,10 +44,6 @@ public class SearchService {
                 games.add(game);
             }
             
-            /*Game test = new Game();
-            test.setName("test game");
-            games.add(test);*/
-            
         } catch (SQLException e) {
             System.out.println("SQL Error: " + e.getMessage());
         }
@@ -57,5 +54,8 @@ public class SearchService {
     
     public ArrayList<Game> getGames() {
         return games;
+    }
+    public ArrayList<GameResultViewable> getViewableResults() {
+        return ResultsFormatting.CreateViewableGameResults(games);
     }
 }

@@ -4,8 +4,8 @@
     Author     : cmcarthur
 --%>
 
+<%@page import="Views.GameResultViewable"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Models.Game"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,17 +16,16 @@
     </head>
     <body>
         <%
-        ArrayList<Game> games = (ArrayList<Game>)request.getAttribute("games");
-        String pretty_html = "";
-        for(Game game : games) { // https://knowm.org/iterating-through-a-collection-in-java/
-            pretty_html += "<div class='row'><div class='col-xs-2'>" + game.getGame_id() + "</div><div class='col-xs-2'>" + game.getName() + 
-                                      "</div><div class='col-xs-2'>" + game.getConsolesAsString() + "</div></div>";
+        ArrayList<GameResultViewable> games = (ArrayList<GameResultViewable>)request.getAttribute("games");
+        String results_table = "";
+        for(GameResultViewable game : games) { // https://knowm.org/iterating-through-a-collection-in-java/
+            results_table += game.toHTML();
         }
         %>
         <div class="container">
             <h1>Your Results are...</h1>
             <div class="col-xs-12">
-                <%= pretty_html%>
+                <%= results_table%>
             </div>
         </div>
     </body>
