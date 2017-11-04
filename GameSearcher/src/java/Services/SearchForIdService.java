@@ -6,6 +6,7 @@
 package Services;
 
 import Models.Game;
+import Views.GameDetailsViewable;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -62,5 +63,9 @@ public class SearchForIdService {
     
     public Game getGame() {
         return game;
+    }
+    
+    public GameDetailsViewable getViewableResults() {
+        return new GameDetailsViewable(game);
     }
 }
