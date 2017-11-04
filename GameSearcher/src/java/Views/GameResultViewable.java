@@ -19,8 +19,8 @@ public class GameResultViewable implements WebViewable {
     }
     
     public String toHTML() {
-        return "<div class='row'><div class='col-xs-2'>" + game.getGame_id() + "</div><div class='col-xs-2'>" + game.getName() + 
-               "</div><div class='col-xs-2'>" + game.getConsolesArrayAsString() + "</div><div class='col-xs-2'><a href='game?id=" + game.getGame_id() + 
-               "'>Details</a></div></div>";
+        return "<tr'><td>" + game.getGame_id() + "</td><td>" + game.getName() + 
+               "</td><td>" + game.getConsolesArrayAsString() + "</td><td><a href='game?id=" + game.getGame_id() + 
+               "'>Details</a></td></tr>";
     }
 }
