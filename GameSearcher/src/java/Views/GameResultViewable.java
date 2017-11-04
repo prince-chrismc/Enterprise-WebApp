@@ -11,7 +11,7 @@ import Models.Game;
  *
  * @author cmcarthur
  */
-public class GameResultViewable  {
+public class GameResultViewable implements WebViewable {
     private final Game game;
     
     public GameResultViewable(Game game) {
