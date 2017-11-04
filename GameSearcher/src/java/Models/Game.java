@@ -199,7 +199,7 @@ public class Game {
     /**
      * @return the consoles as string
      */
-    public String getConsolesAsString() {
+    public String getConsolesArrayAsString() {
         return Arrays.toString(consoles);
     }
 
