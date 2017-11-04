@@ -34,12 +34,7 @@ public class GameDetailsViewable implements WebViewable {
                "<p> Release Date: " + getDate() + "</p>" +
                "<p> Developer: " + getDev() + "</p>" +
                "<p> Publisher: " + getPub() + "</p>" +
-               "<p> Price: " + getPrice() + "</p>" +
-"                </div>" +
-"                </div>" +
-"            </div>" +
-"            " +
-"        </div>";
+               "<p> Price: " + getPrice() + "</p></div></div></div></div>";
     }
     
     private String getDescription() {
