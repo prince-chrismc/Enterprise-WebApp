@@ -5,6 +5,8 @@
  */
 package Controllers;
 
+import Models.SearchCriteria;
+import Services.SearchByCriteriaService;
 import Services.SearchByNameService;
 import Views.GameResultViewable;
 import java.io.IOException;
@@ -35,9 +37,10 @@ public class SearchServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String name = request.getParameter("name");
+        SearchCriteria criteria = SearchCriteria.convert(Integer.parseInt(request.getParameter("criteria")));
+        String criteria_val = request.getParameter("criteria_val");
         
-        SearchByNameService searcher = new SearchByNameService(name);
+        SearchByCriteriaService searcher = new SearchByCriteriaService(criteria, criteria_val);
         ArrayList<GameResultViewable> games = searcher.getViewableResults();
         
         if(games.size() > 0)
