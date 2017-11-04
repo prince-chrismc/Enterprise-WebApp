@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * @author cmcarthur
  */
 public class SearchByNameService {
-    ArrayList<Game> games; // https://stackoverflow.com/a/2986307/8480874 for dynamic size
+    private ArrayList<Game> games; // https://stackoverflow.com/a/2986307/8480874 for dynamic size
     
     public SearchByNameService(String name_criteria) {
         
@@ -56,6 +56,7 @@ public class SearchByNameService {
     public ArrayList<Game> getGames() {
         return games;
     }
+    
     public ArrayList<GameResultViewable> getViewableResults() {
         return ResultsFormatting.CreateViewableGameResults(games);
     }
