@@ -6,7 +6,7 @@
 package Models;
 
 import java.util.Arrays;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
@@ -27,8 +27,8 @@ public class Game {
     private String back_box_art;
     private String logo;
     private String developer_logo;
-    private String price;
-    private String discount;
+    private double price;
+    private double discount;
 
     public Game() {
         consoles = new Console[0];
@@ -122,28 +122,28 @@ public class Game {
     /**
      * @return the price
      */
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 
     /**
      * @param price the price to set
      */
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
     /**
      * @return the discount
      */
-    public String getDiscount() {
+    public double getDiscount() {
         return discount;
     }
 
     /**
      * @param discount the discount to set
      */
-    public void setDiscount(String discount) {
+    public void setDiscount(double discount) {
         this.discount = discount;
     }
 
