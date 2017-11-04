@@ -10,8 +10,15 @@ package Models;
  * @author cmcarthur
  */
 public enum Genre {
+    UNKNOWN("?"), // in case of error
     RACING("Racing"),
-    SHOOTER("Shooter");
+    SHOOTER("Shooter"),
+    SPORTS("Sports"),
+    ACTION("Action"),
+    PLATFORM("Platform"),
+    ADVENTURE("Adventure"),
+    MUSIC("Music"),
+    STRATEGY("Strategy");
     
     private final String genre;
     
@@ -19,7 +26,8 @@ public enum Genre {
         this.genre = genre;
     }
     
-    public String getGenre() {
+    @Override
+    public String toString() {
         return this.genre;
     }
     
