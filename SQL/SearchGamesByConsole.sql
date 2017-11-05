@@ -1,0 +1,1 @@
+SELECT * FROM gamesearcher.games WHERE gameConsoles LIKE '%PS1%';

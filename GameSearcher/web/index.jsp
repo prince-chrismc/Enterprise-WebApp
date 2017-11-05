@@ -63,6 +63,12 @@
                             </div>
                         </form>
                     </div>
+                    
+                    <h2>Check the games on sale...</h2>
+                    <form action="search" method="post">
+                        <input type="hidden" name="criteria" value="<%= SearchCriteria.DISCOUNT.getValueAsString() %>"/>
+                        <input type="submit" value="Browse" class="btn  btn-block"/>
+                    </form>
                 </div>
                 
                 <div class="col-xs-offset-2 col-xs-4">
