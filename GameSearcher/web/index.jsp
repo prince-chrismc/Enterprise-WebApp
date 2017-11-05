@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Login Page</title>
+        <title>Home Page</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="col-xs-6">
                     <h2>Search for a game...</h2>
-                    <div class="form-group">
+                    <div class="row">
                         <form action="search" method="post" class="form-horizontal">
                             <input type="hidden" name="criteria" value="<%= SearchCriteria.NAME.getValueAsString() %>"/>
                             <div class="col-xs-2">
@@ -45,8 +45,8 @@
                             </div>
                         </form>
                     </div>
-                            
-                    <div class="form-group">
+                    <div class="row" style="padding: 1em"></div>
+                    <div class="row">
                         <form action="search" method="post" class="form-horizontal">
                             <input type="hidden" name="criteria" value="<%= SearchCriteria.CONSOLE.getValueAsString() %>"/>
                             <div class="col-xs-2">
