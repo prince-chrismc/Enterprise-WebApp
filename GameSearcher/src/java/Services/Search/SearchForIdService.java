@@ -3,9 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Services;
+package Services.Search;
 
 import Models.Game;
+import Services.DatabaseConnection;
+import Services.DatabaseConsoleConverter;
+import Services.DatabaseGenreConverter;
 import Views.GameDetailsViewable;
 import java.sql.Connection;
 import java.sql.ResultSet;

@@ -15,7 +15,8 @@ public enum SearchCriteria {
     ID(2),
     CONSOLE(3),
     GENRE(4),
-    YEAR(5);
+    YEAR(5),
+    DISCOUNT(6);
     
     private final int val;
     

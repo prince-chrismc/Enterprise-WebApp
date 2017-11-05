@@ -6,7 +6,7 @@
 package Controllers;
 
 import Models.SearchCriteria;
-import Services.SearchByCriteriaService;
+import Services.Search.SearchByCriteriaService;
 import Views.GameResultViewable;
 import java.io.IOException;
 import java.util.ArrayList;

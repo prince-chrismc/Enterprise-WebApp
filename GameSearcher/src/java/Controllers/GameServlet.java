@@ -6,7 +6,7 @@
 package Controllers;
 
 import Models.Game;
-import Services.SearchForIdService;
+import Services.Search.SearchForIdService;
 import Views.GameDetailsViewable;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;

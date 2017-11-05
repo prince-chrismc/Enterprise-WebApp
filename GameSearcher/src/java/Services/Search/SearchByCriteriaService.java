@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Services;
+package Services.Search;
 
 import Models.Game;
 import Models.SearchCriteria;
+import Services.ResultsFormatting;
 import Views.GameResultViewable;
 import java.util.ArrayList;
 
