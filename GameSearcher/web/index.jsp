@@ -4,6 +4,8 @@
     Author     : cmcarthur
 --%>
 
+<%@page import="Models.SearchCriteria"%>
+<%@page import="Views.ConsoleOptionsViewable"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -29,17 +31,38 @@
             <div class="row">
                 <div class="col-xs-6">
                     <h2>Search for a game...</h2>
-                    <form action="search" method="post" class="form-horizontal">
-                        <div class="col-xs-2">
-                            <label class="control-label">Name</label>
-                        </div>
-                        <div class="col-xs-8">
-                            <input type="text" name="name" class="form-control"/>
-                        </div>
-                        <div class="col-xs-2">
-                            <input type="submit" value="Search" class="btn"/>
-                        </div>
-                    </form>
+                    <div class="form-group">
+                        <form action="search" method="post" class="form-horizontal">
+                            <input type="hidden" name="criteria" value="<%= SearchCriteria.NAME.getValueAsString() %>"/>
+                            <div class="col-xs-2">
+                                <label class="control-label">Name</label>
+                            </div>
+                            <div class="col-xs-8">
+                                <input type="text" name="criteria_val" class="form-control"/>
+                            </div>
+                            <div class="col-xs-2">
+                                <input type="submit" value="Search" class="btn"/>
+                            </div>
+                        </form>
+                    </div>
+                            
+                    <div class="form-group">
+                        <form action="search" method="post" class="form-horizontal">
+                            <input type="hidden" name="criteria" value="<%= SearchCriteria.CONSOLE.getValueAsString() %>"/>
+                            <div class="col-xs-2">
+                                <label class="control-label">Console</label>
+                            </div>
+                            <div class="col-xs-8">
+                                <select name="criteria_val" class="form-control">
+                                    <% ConsoleOptionsViewable console_options = new ConsoleOptionsViewable(); %>
+                                    <%= console_options.toHTML() %>
+                                </select>
+                            </div>
+                            <div class="col-xs-2">
+                                <input type="submit" value="Search" class="btn"/>
+                            </div>
+                        </form>
+                    </div>
                 </div>
                 
                 <div class="col-xs-offset-2 col-xs-4">

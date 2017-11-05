@@ -21,8 +21,13 @@ public class SearchByCriteriaService {
         if(null == criteria) criteria = SearchCriteria.INVALID;
         switch(criteria) {
             case NAME: 
-                SearchByNameService searcher = new SearchByNameService(criteria_val);
-                games = searcher.getGames();
+                SearchByNameService by_name = new SearchByNameService(criteria_val);
+                games = by_name.getGames();
+                break;
+                
+            case CONSOLE:
+                SearchByConsoleService by_console = new SearchByConsoleService(criteria_val);
+                games = by_console.getGames();
                 break;
                 
             default: games = new ArrayList<Game>();

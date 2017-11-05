@@ -5,6 +5,7 @@
  */
 package Services;
 
+import Models.Console;
 import Models.Game;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,18 +17,22 @@ import java.util.ArrayList;
  *
  * @author cmcarthur
  */
-public class SearchByNameService {
-    private ArrayList<Game> games; // https://stackoverflow.com/a/2986307/8480874 for dynamic size
+public class SearchByConsoleService {
+    private ArrayList<Game> games;
     
-    public SearchByNameService(String name_criteria) {
-        
+    public SearchByConsoleService(String console_criteria) {
         games = new ArrayList<Game>();
         
         try {
             Connection conn = DatabaseConnection.getConnection();
             Statement statement = conn.createStatement();
             
-            ResultSet results = statement.executeQuery("SELECT * FROM gamesearcher.games WHERE gameName LIKE '%" + name_criteria + "%';"); // https://stackoverflow.com/a/4122201/8480874
+            String console_entry = "INVALID";
+            for (Console console : Console.values()) {
+                if(console.getConsole().equals(console_criteria)) console_entry = DatabaseConsoleConverter.getDatabaseEntry(console);
+            }
+            
+            ResultSet results = statement.executeQuery("SELECT * FROM gamesearcher.games WHERE gameConsoles LIKE '%" + console_entry + "%';"); // https://stackoverflow.com/a/4122201/8480874
             
             while(results.next()) {
                 Game game = new Game();
@@ -55,4 +60,5 @@ public class SearchByNameService {
     public ArrayList<Game> getGames() {
         return games;
     }
+    
 }

@@ -10,13 +10,12 @@ package Models;
  * @author cmcarthur
  */
 public enum Console {
-    PS1("Playstation"),
-    PS2("Playstation2"),
-    PS3("Playstation3"),
-    PS4("Playstation4"),
+    PS1("PlayStation"),
+    PS2("PlayStation 2"),
+    PS3("PlayStation 3"),
+    PS4("PlayStation 4"),
     XBOX("XBox"),
-    XBOX360("XBox360"),
-    XBOX1("XBox1"),
+    XBOX360("XBox 360"),
     PC("PC");
     
     private final String console;
