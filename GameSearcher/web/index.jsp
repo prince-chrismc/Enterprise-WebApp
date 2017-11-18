@@ -19,17 +19,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <%
-            String user_email = null;
-            Cookie[] cookies = request.getCookies();
-            if(cookies != null){
-                for(Cookie cookie : cookies){
-                        if(cookie.getName().equals("gamesearcher_user")) user_email = cookie.getValue();
-                }
-            }
-        %>
         <div class="container">
-            <%= user_email %>
             <div class="row">
                 <div class="col-xs-12">
                     <h1>Hello World!</h1>
@@ -111,7 +101,7 @@
                     </form>
                 </div>
                 
-                <div class="col-xs-offset-2 col-xs-4">
+                <div id="no_user" class="col-xs-offset-2 col-xs-4">
                     <div id="login_box"class="row">
                         <h2>Please login...</h2>
                         <form id="login" action="login" method="post" class="form-horizontal">
@@ -138,8 +128,58 @@
                         </form>
                     </div>
                 </div>
+                        
+                <div id="active_user" class="col-xs-offset-2 col-xs-4">
+                    <div class="row">
+                        <h2>logout...</h2>
+                        <form id="logout" action="index.jsp" method="post" class="form-horizontal">
+                            <input type="submit" value="Logout" class="btn btn-block"/>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
+        <script type="text/javascript">
+            function getCookie(cname) {
+                var name = cname + "=";
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var ca = decodedCookie.split(';');
+                for(var i = 0; i <ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return null;
+            }
+            
+            var delete_cookie = function(name) {
+                document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            };
+            
+            $(document).ready(function(){
+                var email = getCookie('gamesearcher_user');
+                if(null == email)
+                {
+                    $('#no_user').show();
+                    $('#active_user').hide();
+                }
+                else
+                {
+                    $('#no_user').hide();
+                    $('#active_user').show();                
+                }
+            });
+
+            $('form#logout').submit(function() {
+                delete_cookie('gamesearcher_user');
+                return true;
+            });
+            
+        </script>
         <script type="text/javascript">
             $('form#login').submit(function() {
                 if(jQuery.trim($("#email").val()) == '') {

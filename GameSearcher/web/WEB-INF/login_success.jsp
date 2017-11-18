@@ -22,21 +22,12 @@
         <%
         User user = (User)request.getAttribute("user");
         LoginTypeViewable status = new LoginTypeViewable((LoginType)request.getAttribute("type"));
-        
-        String user_email = null;
-        Cookie[] cookies = request.getCookies();
-        if(cookies != null){
-            for(Cookie cookie : cookies){
-                    if(cookie.getName().equals("gamesearcher_user")) user_email = cookie.getValue();
-            }
-        }
         %>
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
                     <h1>Hello <%= user.getFirst_name()%></h1>
                     <%= status.toHTML() %>
-                    <%= user_email %>
                     <hr>
                 </div>
             </div>

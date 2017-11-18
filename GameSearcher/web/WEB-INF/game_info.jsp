@@ -19,17 +19,8 @@
     <body>
         <%
             GameDetailsViewable game = (GameDetailsViewable)request.getAttribute("game");
-        
-            String user_email = null;
-            Cookie[] cookies = request.getCookies();
-            if(cookies != null){
-                for(Cookie cookie : cookies){
-                        if(cookie.getName().equals("gamesearcher_user")) user_email = cookie.getValue();
-                }
-            }
         %>
         <div class="container">
-            <%= user_email %>
             <%= game.toHTML() %>
             <div class="col-xs-offset-10 col-xs-2">
                 <form action="index.jsp" method="GET">
