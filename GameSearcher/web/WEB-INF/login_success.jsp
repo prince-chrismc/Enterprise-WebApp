@@ -23,7 +23,25 @@
         User user = (User)request.getAttribute("user");
         LoginTypeViewable status = new LoginTypeViewable((LoginType)request.getAttribute("type"));
         %>
-        <h1>Hello <%= user.getFirst_name()%></h1>
-        <h2><%= status.toHTML() %></h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1>Hello <%= user.getFirst_name()%></h1>
+                    <%= status.toHTML() %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                    <form action="index.jsp" method="GET">
+                        <input type="submit" value="Home" class="btn btn-block"/>
+                    </form>
+                </div>
+                <div class="col-xs-2">
+                    <form action="User" method="post">
+                        <input type="submit" value="Your Info" class="btn btn-block"/>
+                    </form>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

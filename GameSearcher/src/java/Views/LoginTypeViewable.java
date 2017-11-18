@@ -22,10 +22,10 @@ public class LoginTypeViewable implements WebViewable{
     public String toHTML() {
         switch(type)
         {
-            case LOGIN: return "You have successfully logged in!";
-            case REGISTER: return "You have successfully registered in!";
+            case LOGIN: return "<h2>You have successfully logged in!</h2>";
+            case REGISTER: return "<h2>You have successfully registered in!</h2>";
             case ERROR: 
-            default: return "Oh no! There was an error.";
+            default: return "<h2>Oh no! There was an error.</h2>";
         }
     }
 }
