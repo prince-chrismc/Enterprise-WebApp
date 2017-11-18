@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import Models.User;
 import Services.LoginService;
+import javax.servlet.http.Cookie;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet 
@@ -38,6 +39,9 @@ public class LoginServlet extends HttpServlet
             User user = loginService.getUser();
             request.setAttribute("user", user);
             request.setAttribute("type", LoginType.LOGIN);
+            Cookie cookie = new Cookie("gamesearcher_user", user.getEmail());
+            cookie.setMaxAge(60 * 30);
+            response.addCookie(cookie);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/login_success.jsp");
             requestDispatcher.forward(request, response);
         }
