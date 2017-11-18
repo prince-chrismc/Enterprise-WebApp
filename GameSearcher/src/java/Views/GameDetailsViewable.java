@@ -83,6 +83,9 @@ public class GameDetailsViewable implements WebViewable {
     }
 
     private String getPrice() {
-        return "$" + String.valueOf(game.getPrice() - game.getDiscount());
+        if(game.getDiscount() == 0)
+            return "$" + String.valueOf(game.getPrice());
+        else
+            return "$" + String.valueOf(game.getPrice() - game.getDiscount()) + " <i>SAVINGS: $" + String.valueOf(game.getDiscount()) + "</i>";
     }
 }
