@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import Models.User;
 import Services.LoginService;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet 
@@ -28,7 +29,7 @@ public class LoginServlet extends HttpServlet
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException
-    {
+    {       
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
@@ -38,6 +39,9 @@ public class LoginServlet extends HttpServlet
             User user = loginService.getUser();
             request.setAttribute("user", user);
             request.setAttribute("type", LoginType.LOGIN);
+            HttpSession session = request.getSession();
+            session.setAttribute("id", user.getUser_id());
+            session.setMaxInactiveInterval(30*60);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/login_success.jsp");
             requestDispatcher.forward(request, response);
         }

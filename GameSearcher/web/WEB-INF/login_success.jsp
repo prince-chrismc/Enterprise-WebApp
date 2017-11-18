@@ -24,10 +24,17 @@
         LoginTypeViewable status = new LoginTypeViewable((LoginType)request.getAttribute("type"));
         %>
         <div class="container">
+            <%
+                String user_msg = "";
+                if(session.getAttribute("id") == null) user_msg = "<h2>no user info</h2>";
+                if((int)session.getAttribute("id") != user.getUser_id()) user_msg = "<h2>user mismatch</h2>";
+                else user_msg = "<h2>good</h2>";
+            %>
             <div class="row">
                 <div class="col-xs-12">
                     <h1>Hello <%= user.getFirst_name()%></h1>
                     <%= status.toHTML() %>
+                    <%= user_msg %>
                     <hr>
                 </div>
             </div>
