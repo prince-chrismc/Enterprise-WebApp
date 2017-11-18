@@ -61,14 +61,15 @@ public class UserGateway {
             Connection conn = DatabaseConnection.getConnection();
             Statement statement = conn.createStatement();
             
-            statement.executeUpdate("INSERT INTO gamesearcher.users(userPassword, userFirstName, userLastName, userEmail) VALUES" +
+            int retval = statement.executeUpdate("INSERT INTO gamesearcher.users(userPassword, userFirstName, userLastName, userEmail) VALUES" +
             " ('" + user.getPassword() + "', '" + user.getFirst_name() + "', '" + user.getLast_name() + "', '" + user.getEmail() +"');");
             
-            if(FindUserByEmail(user.getEmail()) != null)
-            {
-                return true;
-            }
-            
+            if(retval == 1) { // if only 1 raw was affected
+                if(FindUserByEmail(user.getEmail()) != null) { // make sure its really there and valid
+                    return true;
+                }
+            }            
+                       
             statement.close();
         }
         catch(SQLException e) {
