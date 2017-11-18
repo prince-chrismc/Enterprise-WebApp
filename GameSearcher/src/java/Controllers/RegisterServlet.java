@@ -5,6 +5,7 @@
  */
 package Controllers;
 
+import Models.LoginType;
 import Models.User;
 import Services.RegisterService;
 import java.io.IOException;
@@ -55,6 +56,7 @@ public class RegisterServlet extends HttpServlet {
             if(user != null)
             {
                 request.setAttribute("user", user);
+                request.setAttribute("type", LoginType.REGISTER);
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/login_success.jsp");
                 requestDispatcher.forward(request, response);
             }

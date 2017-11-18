@@ -4,6 +4,8 @@
     Author     : cmcarthur
 --%>
 
+<%@page import="Views.LoginTypeViewable"%>
+<%@page import="Models.LoginType"%>
 <%@page import="Models.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,8 +21,9 @@
     <body>
         <%
         User user = (User)request.getAttribute("user");
+        LoginTypeViewable status = new LoginTypeViewable((LoginType)request.getAttribute("type"));
         %>
         <h1>Hello <%= user.getFirst_name()%></h1>
-        <h2>You have successfully logged in</h2>
+        <h2><%= status.toHTML() %></h2>
     </body>
 </html>

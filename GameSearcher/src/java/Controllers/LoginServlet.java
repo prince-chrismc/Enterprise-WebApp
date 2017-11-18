@@ -10,6 +10,7 @@
 package Controllers;
 
 
+import Models.LoginType;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -36,6 +37,7 @@ public class LoginServlet extends HttpServlet
         {
             User user = loginService.getUser();
             request.setAttribute("user", user);
+            request.setAttribute("type", LoginType.LOGIN);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/login_success.jsp");
             requestDispatcher.forward(request, response);
         }
