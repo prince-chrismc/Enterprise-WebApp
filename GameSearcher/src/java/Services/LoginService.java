@@ -15,12 +15,11 @@ import Models.User;
 public class LoginService {
     private User user;
 
-    public LoginService(){
-        
+    public LoginService(String email){
+        user = UserGateway.FindUserByEmail(email);        
     }
 
-    public boolean isValidUser(String email, String password) {
-        user = UserGateway.FindUserByEmail(email);
+    public boolean isValidUser(String password) {
         if(user != null) {
             if(user.getPassword().equals(password)) {
                 return true;

@@ -33,8 +33,8 @@ public class LoginServlet extends HttpServlet
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        LoginService loginService = new LoginService();
-        if(loginService.isValidUser(email, password))
+        LoginService loginService = new LoginService(email);
+        if(loginService.isValidUser(password))
         {
             User user = loginService.getUser();
             request.setAttribute("user", user);
