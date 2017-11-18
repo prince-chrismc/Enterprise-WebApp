@@ -19,8 +19,17 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
+        <%
+            String user_email = null;
+            Cookie[] cookies = request.getCookies();
+            if(cookies != null){
+                for(Cookie cookie : cookies){
+                        if(cookie.getName().equals("gamesearcher_user")) user_email = cookie.getValue();
+                }
+            }
+        %>
         <div class="container">
-            
+            <%= user_email %>
             <div class="row">
                 <div class="col-xs-12">
                     <h1>Hello World!</h1>

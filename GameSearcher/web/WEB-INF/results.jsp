@@ -24,8 +24,16 @@
         for(GameResultViewable game : games) { // https://knowm.org/iterating-through-a-collection-in-java/
             results_table += game.toHTML();
         }
+        String user_email = null;
+        Cookie[] cookies = request.getCookies();
+        if(cookies != null){
+            for(Cookie cookie : cookies){
+                    if(cookie.getName().equals("gamesearcher_user")) user_email = cookie.getValue();
+            }
+        }
         %>
         <div class="container">
+            <%= user_email %>
             <div class="row">
                 <div class="col-xs-8">
                     <h1>Your Results are...</h1>
