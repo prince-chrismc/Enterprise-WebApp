@@ -103,19 +103,19 @@
                 </div>
                 
                 <div class="col-xs-offset-2 col-xs-4">
-                    <div class="row">
+                    <div id="login_box"class="row">
                         <h2>Please login...</h2>
-                        <form action="login" method="post" class="form-horizontal">
+                        <form id="login" action="login" method="post" class="form-horizontal">
                             <div class="form-group">
                                 <label class="col-xs-2 control-label">Email</label>
                                 <div class="col-xs-10">
-                                    <input type="text" name="email" class="form-control"/>
+                                    <input id="email" type="text" name="email" class="form-control"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-xs-2 control-label">Password</label>
                                 <div class="col-xs-10">
-                                    <input type="password" name="password" class="form-control"/>
+                                    <input id="pw" type="password" name="password" class="form-control"/>
                                 </div>
                             </div>
                             <input type="submit" value="Login" class="btn btn-block"/>
@@ -131,5 +131,31 @@
                 </div>
             </div>
         </div>
+        <script type="text/javascript">
+            $('form#login').submit(function() {
+                if(jQuery.trim($("#email").val()) == '') {
+                    $("#login_box").prepend("<div class='alert alert-danger alert-dismissable fade in'>" + 
+                            "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
+                            "<strong>Error!</strong> There was no email provided.</div>");
+                    return false;            
+                }
+                
+                var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+                if(!emailReg.test(jQuery.trim($("#email").val()))) {
+                    $("#login_box").prepend("<div class='alert alert-danger alert-dismissable fade in'>" + 
+                            "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
+                            "<strong>Error!</strong> Your so called email does not match the support email format.</div>");
+                    return false;
+                }
+                
+                if(jQuery.trim($("#pw").val()) == '') {
+                    $("#login_box").prepend("<div class='alert alert-danger alert-dismissable fade in'>" + 
+                            "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
+                            "<strong>Error!</strong> There was no password provided.</div>");
+                    return false;            
+                }
+                return true;
+            });
+        </script>
     </body>
 </html>
