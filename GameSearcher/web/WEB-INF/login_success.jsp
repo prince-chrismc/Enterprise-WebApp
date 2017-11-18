@@ -28,6 +28,7 @@
                 <div class="col-xs-12">
                     <h1>Hello <%= user.getFirst_name()%></h1>
                     <%= status.toHTML() %>
+                    <hr>
                 </div>
             </div>
             <div class="row">

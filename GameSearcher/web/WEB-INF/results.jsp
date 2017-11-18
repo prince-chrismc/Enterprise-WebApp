@@ -32,7 +32,7 @@
                 </div>
                 <div class="col-xs-offset-2 col-xs-2">
                     <form action="index.jsp" method="GET">
-                        <input type="submit" class="btn" value="Back" style="margin: 2em 1em;"/>
+                        <input type="submit" class="btn" value="Back" style="margin: 2em 1em 1em 1em;"/>
                     </form>
                 </div>
             </div>

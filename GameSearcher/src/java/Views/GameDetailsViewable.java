@@ -22,8 +22,9 @@ public class GameDetailsViewable implements WebViewable {
         this.game = game;
     }
     
+    @Override
     public String toHTML() {
-        return "<div class='row'><div class='col-xs-12'><h1>" + game.getName() + "</h1>" +
+        return "<div class='row'><div class='col-xs-12'><h1>" + game.getName() + "</h1><hr>" +
                "</div></div><div class='row'><div class='col-xs-6'><img src='" + game.getFront_box_art() + 
                "' style='width: 100%;'></div><div class='col-xs-6'><div class='row'><div class='col-xs-12'>" +
                "<p>" + getDescription() + "</p><hr></div></div><div class='row'><div class='col-xs-6'>" +

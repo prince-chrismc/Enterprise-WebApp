@@ -17,38 +17,52 @@
     </head>
     <body>
         <div class="container">
-            <h1>Fill in your information below!</h1>
+            <div class="row">
+                <div class="col-xs-8">
+                    <h1>Fill in your information below!</h1>
+                </div>
+                <div class="col-xs-offset-2 col-xs-2">
+                    <form action="index.jsp" method="GET">
+                        <input type="submit" class="btn" value="Back" style="margin: 2em 1em;"/>
+                    </form>
+                </div>
+            </div>
+            
             <hr>
-            <form id="signup" action="register" method="post" class="form-horizontal">
-                <input type="hidden" name="action" value="register"/>
-                <div class="form-group">
-                    <label class="col-xs-2 control-label">Email</label>
-                    <div class="col-xs-10">
-                        <input id="email" type="text" name="email" class="form-control"/>
-                    </div>
+            <div class="row">
+                <div class="col-xs-8">
+                    <form id="signup" action="register" method="post" class="form-horizontal">
+                        <input type="hidden" name="action" value="register"/>
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label">Email</label>
+                            <div class="col-xs-10">
+                                <input id="email" type="text" name="email" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label">Password</label>
+                            <div class="col-xs-10">
+                                <input id="pw" type="password" name="password" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label">First Name</label>
+                            <div class="col-xs-10">
+                                <input id="first" type="text" name="first" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label">Last Name</label>
+                            <div class="col-xs-10">
+                                <input id="last" type="text" name="last" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="col-xs-offset-2 col-xs-10">
+                            <div class="row"><input type="submit" value="Register" class="btn  btn-block"/></div>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label class="col-xs-2 control-label">Password</label>
-                    <div class="col-xs-10">
-                        <input id="pw" type="password" name="password" class="form-control"/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-xs-2 control-label">First Name</label>
-                    <div class="col-xs-10">
-                        <input id="first" type="text" name="first" class="form-control"/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-xs-2 control-label">Last Name</label>
-                    <div class="col-xs-10">
-                        <input id="last" type="text" name="last" class="form-control"/>
-                    </div>
-                </div>
-                <div class="col-xs-offset-2 col-xs-10">
-                    <div class="row"><input type="submit" value="Register" class="btn  btn-block"/></div>
-                </div>
-            </form>
+            </div>
         </div>
         <script type="text/javascript">
             $('form#signup').submit(function() {
