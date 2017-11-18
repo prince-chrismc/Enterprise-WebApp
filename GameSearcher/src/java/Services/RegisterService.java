@@ -5,6 +5,7 @@
  */
 package Services;
 
+import Gateway.UserGateway;
 import Models.User;
 
 /**
@@ -22,6 +23,9 @@ public class RegisterService {
         user.setFirst_name(first);
         user.setLast_name(last);
         user.setEmail(email);
+        
+        if(!new UserGateway(user).Insert()); // if insert fails
+            user = null;                     // unset
     }
 
     public User getUser() {

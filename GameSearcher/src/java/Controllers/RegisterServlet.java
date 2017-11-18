@@ -51,7 +51,6 @@ public class RegisterServlet extends HttpServlet {
             String last = request.getParameter("last");
             
             RegisterService regit = new RegisterService(email, password, first, last);
-            
             User user = regit.getUser();
             
             if(user != null)
@@ -67,6 +66,10 @@ public class RegisterServlet extends HttpServlet {
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/sign_up.jsp");
                 requestDispatcher.forward(request, response);
             }
+        }
+        else
+        {
+            response.sendRedirect("");
         }
     }
 
