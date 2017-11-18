@@ -39,7 +39,7 @@
                                 <label class="control-label">Name</label>
                             </div>
                             <div class="col-xs-8">
-                                <input type="text" name="criteria_val" class="form-control"/>
+                                <input type="text" name="criteria_val" class="form-control" placeholder="Jak"/>
                             </div>
                             <div class="col-xs-2">
                                 <input type="submit" value="Search" class="btn"/>
@@ -74,6 +74,20 @@
                                     <% GenreOptionsViewable genre_options = new GenreOptionsViewable(); %>
                                     <%= genre_options.toHTML() %>
                                 </select>
+                            </div>
+                            <div class="col-xs-2">
+                                <input type="submit" value="Search" class="btn"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="row" style="margin: 1em 0em;">
+                        <form action="search" method="post" class="form-horizontal">
+                            <input type="hidden" name="criteria" value="<%= SearchCriteria.YEAR.getValueAsString() %>"/>
+                            <div class="col-xs-2">
+                                <label class="control-label">Year</label>
+                            </div>
+                            <div class="col-xs-8">
+                                <input type="number" name="criteria_val" class="form-control" min="1996" max="2008" value="2002"/>
                             </div>
                             <div class="col-xs-2">
                                 <input type="submit" value="Search" class="btn"/>

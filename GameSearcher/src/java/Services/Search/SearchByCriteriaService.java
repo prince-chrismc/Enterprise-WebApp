@@ -39,6 +39,10 @@ public class SearchByCriteriaService {
                 SearchByGenreService by_genre = new SearchByGenreService(criteria_val);
                 games = by_genre.getGames();
                 break;
+            case YEAR:
+                SearchByYearService by_year = new SearchByYearService(Integer.parseInt(criteria_val));
+                games = by_year.getGames();
+                break;
             default: games = new ArrayList<Game>();
         }
     }
