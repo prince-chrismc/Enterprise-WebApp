@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="res/js/CookieHandler.js"></script>
     </head>
     <body>
         <div class="container">
@@ -140,26 +141,6 @@
             </div>
         </div>
         <script type="text/javascript">
-            function getCookie(cname) {
-                var name = cname + "=";
-                var decodedCookie = decodeURIComponent(document.cookie);
-                var ca = decodedCookie.split(';');
-                for(var i = 0; i <ca.length; i++) {
-                    var c = ca[i];
-                    while (c.charAt(0) == ' ') {
-                        c = c.substring(1);
-                    }
-                    if (c.indexOf(name) == 0) {
-                        return c.substring(name.length, c.length);
-                    }
-                }
-                return null;
-            }
-            
-            var delete_cookie = function(name) {
-                document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-            };
-            
             $(document).ready(function(){
                 var email = getCookie('gamesearcher_user');
                 if(null == email)
