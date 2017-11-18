@@ -5,11 +5,8 @@
  */
 package Services;
 
+import Gateway.UserGateway;
 import Models.User;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  *
@@ -23,44 +20,13 @@ public class LoginService {
     }
 
     public boolean isValidUser(String email, String password) {
-        if(doesUserExistInDB(email) != null) {
+        user = UserGateway.FindUserByEmail(email);
+        if(user != null) {
             if(user.getPassword().equals(password)) {
                 return true;
             }
         }
         return false;
-    }
-    
-    User doesUserExistInDB(String email) {
-        try
-        {
-            Connection conn = DatabaseConnection.getConnection();
-            Statement statement = conn.createStatement();
-            
-            ResultSet results = statement.executeQuery("SELECT * FROM gamesearcher.users WHERE users.userEmail = '" + email + "';"); // https://docs.oracle.com/javase/7/docs/api/java/sql/ResultSet.html
-            
-            if(!results.first()) return null; // This means the user DNE
-            
-            user = new User();
-            user.setUser_id(results.getInt("userID"));
-            user.setPassword(results.getString("userPassword"));
-            user.setFirst_name(results.getString("userFirstName"));
-            user.setLast_name(results.getString("userLastName"));            
-            user.setEmail(email);
-            
-            
-            statement.close();
-            results.close();
-            
-            return user;
-        }
-        catch(SQLException e) {
-            System.out.println("SQL Error: " + e.getMessage()); // https://docs.oracle.com/javase/7/docs/api/java/sql/Statement.html#executeQuery(java.lang.String)
-        }
-        catch(Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-        return null;
     }
 
     public User getUser(){

@@ -6,44 +6,26 @@
 package Services;
 
 import Models.User;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  *
  * @author cmcarthur
  */
 public class RegisterService {
-    private LoginService login;
-    
-    public RegisterService(String email, String password, String first,String last) {
-        login = new LoginService();
-        try
-        {
-            Connection conn = DatabaseConnection.getConnection();
-            Statement statement = conn.createStatement();
-            
-            statement.executeUpdate("INSERT INTO gamesearcher.users(userPassword, userFirstName, userLastName, userEmail) VALUES" +
-            " ('" + password + "', '" + first + "', '" + last + "', '" + email +"');");
-            
-            if(login.isValidUser(email, password))
-            {
-                
-            }
-            
-            statement.close();
-        }
-        catch(SQLException e) {
-            System.out.println("SQL Error: " + e.getMessage()); // https://docs.oracle.com/javase/7/docs/api/java/sql/Statement.html#executeQuery(java.lang.String)
-        }
-        catch(Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
+
+    private User user;
+
+    public RegisterService(String email, String password, String first, String last) {
+        user = new User();
+
+        user.setPassword(password);
+        user.setFirst_name(first);
+        user.setLast_name(last);
+        user.setEmail(email);
     }
-    
-    public User getUser(){
-        return login.getUser();
+
+    public User getUser() {
+        return user;
     }
-    
+
 }
