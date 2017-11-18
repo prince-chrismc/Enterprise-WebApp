@@ -32,7 +32,7 @@ public class DatabaseGenreConverter {
 
     private Genre getValueFromString(String entry) {
         for(Genre genre : Genre.values()) {
-            if(entry.equalsIgnoreCase(genre.toString())) return genre;
+            if(entry.equalsIgnoreCase(genre.getGenre())) return genre;
         }            
         return Genre.UNKNOWN; // default
     }

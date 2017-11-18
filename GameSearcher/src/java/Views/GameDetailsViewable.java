@@ -56,7 +56,7 @@ public class GameDetailsViewable implements WebViewable {
     private String getGenres() {
         String output = "";
         for(Genre genre : game.getGenres()) {
-            output += genre.toString() + ", ";
+            output += genre.getGenre() + ", ";
         }
         if(output.endsWith(", ")) {
             output = output.substring(0, output.lastIndexOf(", "));
