@@ -35,7 +35,10 @@ public class SearchByCriteriaService {
                 SearchByDiscountService by_discount = new SearchByDiscountService();
                 games = by_discount.getGames();
                 break;
-                
+            case GENRE:
+                SearchByGenreService by_genre = new SearchByGenreService(criteria_val);
+                games = by_genre.getGames();
+                break;
             default: games = new ArrayList<Game>();
         }
     }

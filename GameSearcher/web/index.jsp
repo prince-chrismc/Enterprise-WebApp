@@ -4,6 +4,7 @@
     Author     : cmcarthur
 --%>
 
+<%@page import="Views.GenreOptionsViewable"%>
 <%@page import="Models.SearchCriteria"%>
 <%@page import="Views.ConsoleOptionsViewable"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -31,7 +32,7 @@
             <div class="row">
                 <div class="col-xs-6">
                     <h2>Search for a game...</h2>
-                    <div class="row">
+                    <div class="row" style="margin: 1em 0em;">
                         <form action="search" method="post" class="form-horizontal">
                             <input type="hidden" name="criteria" value="<%= SearchCriteria.NAME.getValueAsString() %>"/>
                             <div class="col-xs-2">
@@ -45,8 +46,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="row" style="padding: 1em"></div>
-                    <div class="row">
+                    <div class="row" style="margin: 1em 0em;">
                         <form action="search" method="post" class="form-horizontal">
                             <input type="hidden" name="criteria" value="<%= SearchCriteria.CONSOLE.getValueAsString() %>"/>
                             <div class="col-xs-2">
@@ -56,6 +56,23 @@
                                 <select name="criteria_val" class="form-control">
                                     <% ConsoleOptionsViewable console_options = new ConsoleOptionsViewable(); %>
                                     <%= console_options.toHTML() %>
+                                </select>
+                            </div>
+                            <div class="col-xs-2">
+                                <input type="submit" value="Search" class="btn"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="row" style="margin: 1em 0em;">
+                        <form action="search" method="post" class="form-horizontal">
+                            <input type="hidden" name="criteria" value="<%= SearchCriteria.GENRE.getValueAsString() %>"/>
+                            <div class="col-xs-2">
+                                <label class="control-label">Genre</label>
+                            </div>
+                            <div class="col-xs-8">
+                                <select name="criteria_val" class="form-control">
+                                    <% GenreOptionsViewable genre_options = new GenreOptionsViewable(); %>
+                                    <%= genre_options.toHTML() %>
                                 </select>
                             </div>
                             <div class="col-xs-2">
