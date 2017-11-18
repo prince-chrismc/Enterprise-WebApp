@@ -23,7 +23,7 @@ public class LoginTypeViewable implements WebViewable{
         switch(type)
         {
             case LOGIN: return "<h2>You have successfully logged in!</h2>";
-            case REGISTER: return "<h2>You have successfully registered in!</h2>";
+            case REGISTER: return "<h2>You have successfully registered!</h2>";
             case ERROR: 
             default: return "<h2>Oh no! There was an error.</h2>";
         }

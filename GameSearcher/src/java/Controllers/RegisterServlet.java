@@ -7,6 +7,7 @@ package Controllers;
 
 import Models.LoginType;
 import Models.User;
+import Services.CookieHandler;
 import Services.RegisterService;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -57,6 +58,7 @@ public class RegisterServlet extends HttpServlet {
             {
                 request.setAttribute("user", user);
                 request.setAttribute("type", LoginType.REGISTER);
+                CookieHandler.SetNewCookie(response, user.getEmail());
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/login_success.jsp");
                 requestDispatcher.forward(request, response);
             }
