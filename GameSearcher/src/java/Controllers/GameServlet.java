@@ -5,8 +5,7 @@
  */
 package Controllers;
 
-import Models.Game;
-import Services.Search.SearchForIdService;
+import Gateway.GameGateway;
 import Views.GameDetailsViewable;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -29,7 +28,7 @@ public class GameServlet extends HttpServlet {
         
         int id = Integer.parseInt(request.getParameter("id"));
         
-        SearchForIdService searcher = new SearchForIdService(id);
+        GameGateway searcher = new GameGateway(id);
         GameDetailsViewable game = searcher.getViewableResults();
         
         if(game != null) {

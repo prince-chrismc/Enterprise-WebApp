@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Services.Search;
+package Gateway;
 
 import Models.Game;
 import Services.DatabaseConnection;
@@ -19,10 +19,10 @@ import java.sql.Statement;
  *
  * @author cmcarthur
  */
-public class SearchForIdService {
+public class GameGateway {
     private Game game;
     
-    public SearchForIdService(int id_criteria) {
+    public GameGateway(int id_criteria) {
                
         try {
             Connection conn = DatabaseConnection.getConnection();
