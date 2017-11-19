@@ -58,7 +58,11 @@
                                 <input id="last" type="text" name="last" class="form-control"/>
                             </div>
                         </div>
-
+                        
+                        <div class="col-xs-offset-2 col-xs-10">
+                            <div class="row"><input type="submit" value="Register" class="btn  btn-block"/></div>
+                        </div>
+                        
                         <h2>Additional Information...</h2>
                         <div class="form-group">
                             <label class="col-xs-2 control-label">Address Line 1</label>
@@ -96,11 +100,40 @@
                                 <input type="text" name="country" class="form-control"/>
                             </div>
                         </div>
+                        <h2>Card Information...</h2>
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label">Card Type</label>
+                            <div class="col-xs-10">
+                                <select name="type" class="form-control">
+                                    <option>VISA</option>
+                                    <option>MASTERCARD</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label">Card Number</label>
+                            <div class="col-xs-10">
+                                <input type="number" name="number" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label">CVV</label>
+                            <div class="col-xs-10">
+                                <input type="number" name="cvv" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label">Expiration</label>
+                            <div class="col-xs-10">
+                                <input type="date" name="exp" min="2017-18-02" class="form-control"/>
+                            </div>
+                        </div>
                         
                         <div class="col-xs-offset-2 col-xs-10">
                             <div class="row"><input type="submit" value="Register" class="btn  btn-block"/></div>
                         </div>
                     </form>
+                    <br><br>
                 </div>
             </div>
         </div>
