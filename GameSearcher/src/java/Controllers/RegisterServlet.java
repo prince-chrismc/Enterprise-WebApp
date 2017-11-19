@@ -49,8 +49,14 @@ public class RegisterServlet extends HttpServlet {
             String password = request.getParameter("password");
             String first = request.getParameter("first");
             String last = request.getParameter("last");
+            String addr1 = request.getParameter("addr1");
+            String addr2 = request.getParameter("addr2");
+            String city = request.getParameter("city");
+            String state = request.getParameter("state");
+            String zip = request.getParameter("zip");
+            String country = request.getParameter("country");
             
-            RegisterService regit = new RegisterService(email, password, first, last);
+            RegisterService regit = new RegisterService(email, password, first, last, addr1, addr2, city, state, zip, country);
             User user = regit.getUser();
             
             if(user != null)

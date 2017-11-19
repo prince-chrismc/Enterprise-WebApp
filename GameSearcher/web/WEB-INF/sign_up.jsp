@@ -32,6 +32,7 @@
             <div class="row">
                 <div class="col-xs-8">
                     <form id="signup" action="register" method="post" class="form-horizontal">
+                        <h1>Basic Information...</h1>
                         <input type="hidden" name="action" value="register"/>
                         <div class="form-group">
                             <label class="col-xs-2 control-label">Email</label>
@@ -57,6 +58,45 @@
                                 <input id="last" type="text" name="last" class="form-control"/>
                             </div>
                         </div>
+
+                        <h2>Additional Information...</h2>
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label">Address Line 1</label>
+                            <div class="col-xs-10">
+                                <input type="text" name="addr1" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label">Address Line 2</label>
+                            <div class="col-xs-10">
+                                <input type="text" name="addr2" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label">City</label>
+                            <div class="col-xs-10">
+                                <input type="text" name="city" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label">State</label>
+                            <div class="col-xs-10">
+                                <input type="text" name="state" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label">Zipcode</label>
+                            <div class="col-xs-10">
+                                <input type="text" name="zip" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label">Country</label>
+                            <div class="col-xs-10">
+                                <input type="text" name="country" class="form-control"/>
+                            </div>
+                        </div>
+                        
                         <div class="col-xs-offset-2 col-xs-10">
                             <div class="row"><input type="submit" value="Register" class="btn  btn-block"/></div>
                         </div>

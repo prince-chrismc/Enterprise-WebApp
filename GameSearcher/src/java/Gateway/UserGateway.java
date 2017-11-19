@@ -55,7 +55,7 @@ public class UserGateway {
         this.user = user;
     }
     
-    public boolean Insert() {
+    public boolean InsertBasic() {
         try
         {
             Connection conn = DatabaseConnection.getConnection();
@@ -80,4 +80,36 @@ public class UserGateway {
         }
         return false;
     }
+    
+    public boolean InsertComplete() {
+        try
+        {
+            Connection conn = DatabaseConnection.getConnection();
+            Statement statement = conn.createStatement();
+            
+            int retval = statement.executeUpdate("INSERT INTO gamesearcher.users(userPassword,userFirstName,userLastName,userEmail,userAddress1,userAddress2,userCity,userState,userZip,userCountry,userCreditCardType,userCreditCardNumber,userCreditCardCVV,userCreditCardExpiry)VALUES"
+                +"('" + user.getPassword() + "', '" + user.getFirst_name() + "', '" + user.getLast_name() + "', '" + user.getEmail() + "', '" + 
+                user.getAddress1()  + "', '" + user.getAddress2() + "', '" + user.getCity() + "', '" + user.getState() + "', '" +  user.getZip() + "', '" + user.getCountry() + "', '" + 
+                user.getCredit_card_type() + "', '" + user.getCredit_card_number() + "', '" + user.getCredit_card_cvv() + "', '" + user.getCredit_card_expiry() +"');");
+            
+            if(retval == 1) { // if only 1 raw was affected
+                if(FindUserByEmail(user.getEmail()) != null) { // make sure its really there and valid
+                    return true;
+                }
+            }            
+                       
+            statement.close();
+        }
+        catch(SQLException e) {
+            System.out.println("SQL Error: " + e.getMessage()); // https://docs.oracle.com/javase/7/docs/api/java/sql/Statement.html#executeQuery(java.lang.String)
+        }
+        catch(Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        return false;
+    }
 }
+
+
+
+
