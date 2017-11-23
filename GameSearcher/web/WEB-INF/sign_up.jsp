@@ -106,7 +106,7 @@
                             <div class="col-xs-10">
                                 <select name="type" class="form-control">
                                     <option>VISA</option>
-                                    <option>MASTERCARD</option>
+                                    <!--<option>MASTERCARD</option>-->
                                 </select>
                             </div>
                         </div>
