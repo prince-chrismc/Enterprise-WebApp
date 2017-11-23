@@ -28,8 +28,7 @@ public class GameServlet extends HttpServlet {
         
         int id = Integer.parseInt(request.getParameter("id"));
         
-        GameGateway searcher = new GameGateway(id);
-        GameDetailsViewable game = searcher.getViewableResults();
+        GameDetailsViewable game = GameGateway.FindGameViewByID(id);
         
         if(game != null) {
             request.setAttribute("game", game);

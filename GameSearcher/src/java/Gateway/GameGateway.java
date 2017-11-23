@@ -22,7 +22,11 @@ import java.sql.Statement;
 public class GameGateway {
     private Game game;
     
-    public GameGateway(int id_criteria) {
+    static public GameDetailsViewable FindGameViewByID(int id_criteria) {
+        return new GameDetailsViewable(FindGameByID(id_criteria));
+    }
+    
+    static public Game FindGameByID(int id_criteria) {
                
         try {
             Connection conn = DatabaseConnection.getConnection();
@@ -30,6 +34,7 @@ public class GameGateway {
             
             ResultSet results = statement.executeQuery("SELECT * FROM gamesearcher.games WHERE gameID = " + id_criteria + ";");
             
+            Game game = null;
             if(results.first()) {
                 game = new Game();
                 
@@ -56,12 +61,15 @@ public class GameGateway {
             statement.close();
             results.close();
             
+            return game;
+            
         } catch (SQLException e) {
             System.out.println("SQL Error: " + e.getMessage());
         }
         catch(Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
+        return null;
     }
     
     public Game getGame() {

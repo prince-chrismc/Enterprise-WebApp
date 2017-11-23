@@ -19,7 +19,7 @@ public class GameDetailsViewable implements WebViewable {
     private final Game game;
     
     public GameDetailsViewable(Game game) {
-        this.game = game;
+        this.game = (game != null) ? game : new Game();
     }
     
     @Override

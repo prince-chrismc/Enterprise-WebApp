@@ -6,7 +6,6 @@
 package Gateway;
 
 import Models.User;
-import Services.CookieHandler;
 import Services.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.ResultSet;
