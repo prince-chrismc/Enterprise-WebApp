@@ -4,6 +4,8 @@
     Author     : cmcarthur
 --%>
 
+<%@page import="Views.AddToCartButton"%>
+<%@page import="Services.CookieHandler"%>
 <%@page import="Views.GameDetailsViewable"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,9 +21,11 @@
     <body>
         <%
             GameDetailsViewable game = (GameDetailsViewable)request.getAttribute("game");
+            AddToCartButton possible_button = new AddToCartButton(CookieHandler.GetUserEmail(request), Integer.parseInt(request.getParameter("id")));
         %>
         <div class="container">
             <%= game.toHTML() %>
+            <%= possible_button.toHTML() %>
             <div class="col-xs-offset-10 col-xs-2">
                 <form action="index.jsp" method="GET">
                     <input type="submit" class="btn" value="Home" style="margin: 2em 1em;"/>
