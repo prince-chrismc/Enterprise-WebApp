@@ -34,7 +34,9 @@ public class CheckoutService {
         
         MailMachine mailer = MailMachine.getInstance();
         mailer.sendMessage("prince.chrismc@gmail.com", "testing singleton", "this is the singleton test =)");
-        return new CheckoutResult(cart.getEntries(), 0.0);
+        CheckoutResult result = new CheckoutResult(cart.getEntries(), 0.0);
+        cart.clearCart();
+        return result;
     }
     
     private boolean doesUserHaveValidCreditcard() {

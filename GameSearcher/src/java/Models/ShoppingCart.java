@@ -61,7 +61,6 @@ public class ShoppingCart {
         while(it.hasNext()) {
             Map.Entry pair = (Map.Entry)it.next();
             temp.add(((CartEntryGateway)pair.getValue()).getEntry());
-            it.remove();
         }
         return temp;
     }
