@@ -5,6 +5,7 @@
  */
 package Views;
 
+import Models.CartAction;
 import Models.CartEntry;
 import Models.ShoppingCart;
 import java.text.DecimalFormat;
@@ -49,6 +50,7 @@ public class ShoppingCartView implements WebViewable {
                         "<h2><b>Total: $" + String.valueOf(formatter.format(sum_price - sum_discount + taxes + snh)) +"</b></h2></div>" +
                         "<div class='row' style='margin: 0.5em -15px;'><form action='index.jsp' method='post'><input type='submit' value='Continue Shopping' class='btn btn-block'/></form></div>" +
                         "<div class='row' style='margin: 0.5em -15px;'><form action='' method='post'><input type='submit' value='Checkout' class='btn btn-block'/></form></div>" +
+                        "<div class='row' style='margin: 0.5em -15px;'><form action='cart' method='post'><input type='hidden' name='user_email' value='" + cart.getUser_email() + "'/><input type='hidden' name='action' value='" + CartAction.CLEAR + "'/><input type='submit' value='Clear Cart' class='btn btn-block btn-warning'/></form></div>" +
                         "</div></div>";    
         
         return output;
