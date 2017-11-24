@@ -13,5 +13,6 @@ public enum CartAction {
     VIEW,
     ADD,
     REMOVE,
-    CLEAR;    
+    CLEAR,
+    CHECKOUT;    
 }
