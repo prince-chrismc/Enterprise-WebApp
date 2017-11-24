@@ -1,34 +1,9 @@
 INSERT INTO gamesearcher.users(userPassword, userFirstName, userLastName, userEmail) VALUES
 ('root', 'admin', 'root', 'admin@example.com');
 
-/*
-INSERT INTO `gamesearcher`.`users`
-(`userPassword`,
-`userFirstName`,
-`userLaststName`,
-`userEmail`,
-`userAddress1`,
-`userAddress2`,
-`userCity`,
-`userState`,
-`userZip`,
-`userCountry`,
-`userCreditCardType`,
-`userCreditCardNumber`,
-`userCreditCardCVV`,
-`userCreditCardExpiry`,
-`userLastLogin`)
+INSERT INTO gamesearcher.users
+(`userPassword`,`userFirstName`,`userLastName`,`userEmail`,
+`userCreditCardNumber`,`userCreditCardCVV`,`userCreditCardExpiry`)
 VALUES
-('root', 'admin', 'root', 'admin@example.com',
-<{userAddress1: }>,
-<{userAddress2: }>,
-<{userCity: }>,
-<{userState: }>,
-<{userZip: }>,
-<{userCountry: }>,
-<{userCreditCardType: }>,
-<{userCreditCardNumber: }>,
-<{userCreditCardCVV: }>,
-<{userCreditCardExpiry: }>,
-<{userLastLogin: }>);
-*/
+('rich', 'john', 'smith', 'john@example.com',
+'01234567890', '555', '10/25');
