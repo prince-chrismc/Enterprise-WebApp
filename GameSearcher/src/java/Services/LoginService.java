@@ -16,7 +16,7 @@ public class LoginService {
     private User user;
 
     public LoginService(String email){
-        user = UserGateway.FindUserByEmail(email);        
+        user = UserGateway.FindUserBasicInfoByEmail(email);        
     }
 
     public boolean isValidUser(String password) {

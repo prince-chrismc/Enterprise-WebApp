@@ -5,6 +5,7 @@
  */
 package Gateway;
 
+import Models.CreditCardType;
 import Models.User;
 import Services.DatabaseConnection;
 import java.sql.Connection;
@@ -17,7 +18,7 @@ import java.sql.Statement;
  * @author cmcarthur
  */
 public class UserGateway {
-    public static User FindUserByEmail(String email) {
+    public static User FindUserBasicInfoByEmail(String email) {
         User user = null;
         try {
             Connection conn = DatabaseConnection.getConnection();
@@ -33,7 +34,47 @@ public class UserGateway {
                 user.setFirst_name(results.getString("userFirstName"));
                 user.setLast_name(results.getString("userLastName"));
                 user.setEmail(email);
+            }
 
+            statement.close();
+            results.close();
+
+        } catch (SQLException e) {
+            System.out.println("SQL Error: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        return user;
+    }
+    
+    public static User FindUserCompleteByEmail(String email) {
+        User user = null;
+        try {
+            Connection conn = DatabaseConnection.getConnection();
+            Statement statement = conn.createStatement();
+
+            ResultSet results = statement.executeQuery("SELECT * FROM gamesearcher.users WHERE users.userEmail LIKE '" + email + "';");
+
+            if (results.first()) {
+                user = new User();
+
+                user.setUser_id(results.getInt("userID"));
+                user.setPassword(results.getString("userPassword"));
+                user.setFirst_name(results.getString("userFirstName"));
+                user.setLast_name(results.getString("userLastName"));
+                user.setEmail(email);
+                
+                user.setAddress1(results.getString("userAddress1"));
+                user.setAddress2(results.getString("userAddress2"));
+                user.setCity(results.getString("userCity"));
+                user.setState(results.getString("userState"));
+                user.setZip(results.getString("userZip"));
+                user.setCountry(results.getString("userCountry"));
+                
+                user.setCredit_card_type(CreditCardType.VISA);
+                user.setCredit_card_number(results.getString("userCreditCardNumber"));
+                user.setCredit_card_cvv(results.getString("userCreditCardCVV"));
+                user.setCredit_card_expiry(results.getString("userCreditCardExpiry"));
             }
 
             statement.close();
@@ -64,7 +105,7 @@ public class UserGateway {
             " ('" + user.getPassword() + "', '" + user.getFirst_name() + "', '" + user.getLast_name() + "', '" + user.getEmail() +"');");
             
             if(retval == 1) { // if only 1 raw was affected
-                if(FindUserByEmail(user.getEmail()) != null) { // make sure its really there and valid
+                if(FindUserBasicInfoByEmail(user.getEmail()) != null) { // make sure its really there and valid
                     return true;
                 }
             }            
@@ -92,7 +133,7 @@ public class UserGateway {
                 user.getCredit_card_type() + "', '" + user.getCredit_card_number() + "', '" + user.getCredit_card_cvv() + "', '" + user.getCredit_card_expiry() +"');");
             
             if(retval == 1) { // if only 1 raw was affected
-                if(FindUserByEmail(user.getEmail()) != null) { // make sure its really there and valid
+                if(FindUserBasicInfoByEmail(user.getEmail()) != null) { // make sure its really there and valid
                     return true;
                 }
             }            
