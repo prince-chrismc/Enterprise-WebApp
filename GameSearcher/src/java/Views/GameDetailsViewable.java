@@ -9,6 +9,8 @@ import Models.Console;
 import Models.Game;
 import Models.Genre;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 
 /**
@@ -84,9 +86,10 @@ public class GameDetailsViewable implements WebViewable {
     }
 
     private String getPrice() {
+        NumberFormat formatter = new DecimalFormat("#0.00");
         if(game.getDiscount() == 0)
-            return "$" + String.valueOf(game.getPrice());
+            return "$" + String.valueOf(formatter.format(game.getPrice()));
         else
-            return "$" + String.valueOf(game.getPrice() - game.getDiscount()) + " <i>SAVINGS: $" + String.valueOf(game.getDiscount()) + "</i>";
+            return "$" + String.valueOf(formatter.format(game.getPrice() - game.getDiscount())) + " <i>SAVINGS: $" + String.valueOf(formatter.format(game.getDiscount())) + "</i>";
     }
 }

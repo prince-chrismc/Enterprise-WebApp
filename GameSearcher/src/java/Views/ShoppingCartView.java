@@ -7,6 +7,8 @@ package Views;
 
 import Models.CartEntry;
 import Models.ShoppingCart;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 /**
  *
@@ -21,26 +23,33 @@ public class ShoppingCartView implements WebViewable {
     
     @Override
     public String toHTML() {
+        NumberFormat formatter = new DecimalFormat("#0.00");
+        
         String output = "<div class='row'>" +
-"                <div class='col-xs-8'>";
+                "<div class='col-xs-8'>";
         
+        double sum_price = 0.0;
+        double sum_discount = 0.0;
+        double num = 0.0;
         for(CartEntry item : cart.getEntries()) {
-            output += (new CartItemViewable(item)).toHTML();
+            CartItemViewable item_view = new CartItemViewable(item);
+            output += item_view.toHTML();
+            sum_price += item_view.getPrice();
+            sum_discount += item_view.getDiscount();
+            num += 1.0;
         }
-        
-      output += "</div>" +
-"                <div class='col-xs-4'>\n" +
-"                    <div class='row'>\n" +
-"                        <h3>Total: </h3>\n" +
-"                        \n" +
-"                        \n" +
-"                    </div>\n" +
-"                    \n" +
-"                    \n" +
-"                </div>\n" +
-"            </div>";
-        
-        
+        double taxes = 0.18*(sum_price - sum_discount);
+        double snh = 1.57*num;
+        output += "</div><div class='col-xs-4'><div class='row'>" +
+                        "<h3><b>Cost: $" + String.valueOf(formatter.format(sum_price)) +"</b></h3>" +
+                        "<h4>  Savings: $" + String.valueOf(formatter.format(sum_discount)) +"</h4>" +
+                        "<h4>  Taxes: $" + String.valueOf(formatter.format(taxes)) +"</h4>" +
+                        "<h4>  S & H: $" + String.valueOf(formatter.format(snh)) +"</h4>" +
+                        "<hr>" +
+                        "<h2><b>Total: $" + String.valueOf(formatter.format(sum_price - sum_discount + taxes + snh)) +"</b></h2></div>" +
+                        "<div class='row' style='margin: 0.5em -15px;'><form action='index.jsp' method='post'><input type='submit' value='Continue Shopping' class='btn btn-block'/></form></div>" +
+                        "<div class='row' style='margin: 0.5em -15px;'><form action='' method='post'><input type='submit' value='Checkout' class='btn btn-block'/></form></div>" +
+                        "</div></div>";    
         
         return output;
     }
