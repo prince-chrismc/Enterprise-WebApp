@@ -22,6 +22,9 @@ public class CheckoutService {
     }
     
     public CheckoutResult performCheckout() {
+        
+        if(!doesUserHaveValidCreditcard()) return new CheckoutResult("Invalid credit card information");
+        
         MailMachine mailer = MailMachine.getInstance();
         mailer.sendMessage("prince.chrismc@gmail.com", "testing singleton", "this is the singleton test =)");
         return new CheckoutResult(cart.getEntries(), 0.0);

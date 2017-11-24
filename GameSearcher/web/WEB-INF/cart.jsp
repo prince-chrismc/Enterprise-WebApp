@@ -19,8 +19,7 @@
     <body>
         <%
             ShoppingCartView cart_view = (ShoppingCartView)request.getAttribute("cart");
-        %>
-        
+        %>        
         <div class="container">
             <div class="row">
                 <div class="col-xs-8">
@@ -34,5 +33,6 @@
             </div>
             <hr>
             <%= cart_view.toHTML() %>
+        </div>
     </body>
 </html>

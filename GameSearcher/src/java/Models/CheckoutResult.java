@@ -46,4 +46,17 @@ public class CheckoutResult {
     public boolean isSuccess() {
         return result == Outcome.SUCCESS;
     }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public Date getEta() {
+        return eta;
+    }
+
+    public double getFinal_price() {
+        return final_price;
+    }
+    
 }

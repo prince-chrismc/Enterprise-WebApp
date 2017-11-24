@@ -8,6 +8,7 @@ package Controllers;
 import Models.CartAction;
 import Models.ShoppingCart;
 import Services.CheckoutService;
+import Views.CheckoutView;
 import Views.ShoppingCartView;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -57,7 +58,7 @@ public class CartServlet extends HttpServlet {
                 break;
             case CHECKOUT:
                 CheckoutService checkout = new CheckoutService(cart);
-                request.setAttribute("checkout", checkout.performCheckout());
+                request.setAttribute("checkout", new CheckoutView(checkout.performCheckout()));
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/checkout.jsp");
                 requestDispatcher.forward(request, response);
                 return;

@@ -4,6 +4,7 @@
     Author     : cmcarthur
 --%>
 
+<%@page import="Views.CheckoutView"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,6 +17,11 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <h1>You have received email confirmation about your order</h1>
+        <%
+            CheckoutView checkout_view = (CheckoutView)request.getAttribute("checkout");
+        %>
+        <div class="container">
+            <%= checkout_view.toHTML() %>
+        </div>
     </body>
 </html>
