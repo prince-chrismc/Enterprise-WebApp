@@ -102,6 +102,31 @@ public class CartEntryGateway {
         return false;
     }
     
+    public boolean Delete() {
+        if(Fetch()) { // make sure it exists
+            try {
+                Connection conn = DatabaseConnection.getConnection();
+                Statement statement = conn.createStatement();
+
+                int retval = statement.executeUpdate("DELETE FROM gamesearcher.carts WHERE carts.userEmail = '" + entry.getUse_email() + 
+                        "' AND carts.gameID = " + entry.getGame_id() +";");
+
+                if(retval == 1) { // if only 1 row was affected
+                    return true;
+                }
+
+                statement.close();
+            
+            } catch (SQLException e) {
+            System.out.println("SQL Error: " + e.getMessage());
+            }
+            catch(Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+        }
+        return false;
+    }
+    
     /// @return true if it exists
     private boolean Fetch() {
         try {

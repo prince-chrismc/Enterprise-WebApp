@@ -6,6 +6,7 @@
 package Views;
 
 import Gateway.GameGateway;
+import Models.CartAction;
 import Models.CartEntry;
 import Models.Game;
 import java.text.DateFormat;
@@ -36,7 +37,7 @@ public class CartItemViewable implements WebViewable {
                 + "<p> Developer: " + game.getDeveloper() + "</p>"
                 + "<p> Released: " + getDate() + " for " + game.getConsolesArrayAsString() + "</p>"
                 + "<p> Quantity: " + String.valueOf(entry.getQty()) + " Price (sum): $" + String.valueOf(formatter.format(getPrice() - getDiscount())) + "</p>"
-                + "<div>" + getMinusButton() + getPlusButton() + "</div></div></div>";
+                + "<div>" + getMinusButton() + getPlusButton() + getRemoveButton() + "</div></div></div>";
     }
     
     private String getDate() {
@@ -52,6 +53,7 @@ public class CartItemViewable implements WebViewable {
                 + "<button type='submit' class='btn btn-default btn-sm" + ((entry.getQty() <= 1) ? " disabled" : "") + "' style='width: 30px;'>-</button>"
                 + "<input type='hidden' name='user_email' value='" + entry.getUse_email() + "'/>"
                 + "<input type='hidden' name='game_id' value='" + String.valueOf(entry.getGame_id()) + "'/>"
+                + "<input type='hidden' name='action' value='" + CartAction.ADD + "'/>"
                 + "<input type='hidden' name='qty' value='-1'/>"
                 + "</form>";
     }
@@ -61,7 +63,17 @@ public class CartItemViewable implements WebViewable {
                 + "<button type='submit' class='btn btn-default btn-sm' style='width: 30px;'>+</button>"
                 + "<input type='hidden' name='user_email' value='" + entry.getUse_email() + "'/>"
                 + "<input type='hidden' name='game_id' value='" + String.valueOf(entry.getGame_id()) + "'/>"
+                + "<input type='hidden' name='action' value='" + CartAction.ADD + "'/>"
                 + "<input type='hidden' name='qty' value='1'/>"
+                + "</form>";
+    }
+    
+    private String getRemoveButton() {
+        return "<form action='cart' method='POST' style='display: inline'>"
+                + "<button type='submit' class='btn btn-default btn-sm'>remove</button>"
+                + "<input type='hidden' name='user_email' value='" + entry.getUse_email() + "'/>"
+                + "<input type='hidden' name='game_id' value='" + String.valueOf(entry.getGame_id()) + "'/>"
+                + "<input type='hidden' name='action' value='" + CartAction.REMOVE + "'/>"
                 + "</form>";
     }
     

@@ -5,6 +5,7 @@
  */
 package Controllers;
 
+import Models.CartAction;
 import Models.ShoppingCart;
 import Views.ShoppingCartView;
 import java.io.IOException;
@@ -36,8 +37,24 @@ public class CartServlet extends HttpServlet {
         
         ShoppingCart cart = new ShoppingCart(request.getParameter("user_email"));
         
-        if(cart.addToCart(Integer.parseInt(request.getParameter("game_id")), Integer.parseInt(request.getParameter("qty")))) {
-            
+        CartAction action = CartAction.valueOf(request.getParameter("action")); // https://stackoverflow.com/a/7056979/8480874
+        boolean retval = false;
+        
+        switch(action)
+        {
+            case ADD:
+                retval = cart.addToCart(Integer.parseInt(request.getParameter("game_id")), Integer.parseInt(request.getParameter("qty")));
+                break;
+            case REMOVE:
+                retval = cart.removeFromCart(Integer.parseInt(request.getParameter("game_id")));
+                break;
+            case CLEAR:
+                retval = cart.clearCart();
+                break;
+            default: break;
+        }
+        
+        if(retval) {
             request.setAttribute("cart", new ShoppingCartView(cart));
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/cart.jsp");
             requestDispatcher.forward(request, response);

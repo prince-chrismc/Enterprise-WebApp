@@ -5,6 +5,8 @@
  */
 package Views;
 
+import Models.CartAction;
+
 /**
  *
  * @author cmcarthur
@@ -25,6 +27,7 @@ public class AddToCartButton implements WebViewable{
             return "<div class='col-xs-offset-6 col-xs-6' style='margin-top: -10%;'><hr><form action='cart' method='POST'>"
                     + "<input type='hidden' name='user_email' value='" + user_email + "'/>"
                     + "<input type='hidden' name='game_id' value='" + game_id + "'/>"
+                    + "<input type='hidden' name='action' value='" + CartAction.ADD + "'/>"
                     + "<div class='form-group'><label class='col-xs-2 control-label'>Quantity</label>"
                     + "<div class='col-xs-10'><input type='number' name='qty' min='1' max='99' value='1' class='form-control'  style='margin-bottom: 1em;'/>"
                     + "</div></div><input type='submit' class='btn btn-block' value='Add To Cart' style='margin-top: 1em;'/></form></div>";

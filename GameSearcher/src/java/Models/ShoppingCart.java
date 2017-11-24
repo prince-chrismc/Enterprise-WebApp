@@ -29,7 +29,7 @@ public class ShoppingCart {
     }
     
     public boolean addToCart(int game_id, int qty) {
-        boolean retval;
+        boolean retval = false;
         if(entries.containsKey(game_id)) {
             retval =((CartEntryGateway)entries.get(game_id)).Update(qty);
         }
@@ -39,7 +39,22 @@ public class ShoppingCart {
         }
         return retval;
     }
-
+    
+    public boolean removeFromCart(int game_id) {
+        return ((CartEntryGateway)entries.remove(game_id)).Delete();
+    }
+    
+    public boolean clearCart() {
+        boolean retval = true;
+        Iterator it = entries.entrySet().iterator();
+        while(it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            retval &= ((CartEntryGateway)pair.getValue()).Delete();
+            it.remove();
+        }
+        return retval;
+    }
+    
     public ArrayList<CartEntry> getEntries() {
         ArrayList<CartEntry> temp = new ArrayList<>();
         Iterator it = entries.entrySet().iterator();          // https://stackoverflow.com/a/1066603/8480874

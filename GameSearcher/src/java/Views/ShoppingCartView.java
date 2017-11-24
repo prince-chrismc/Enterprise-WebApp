@@ -53,9 +53,5 @@ public class ShoppingCartView implements WebViewable {
         
         return output;
     }
-
-    private Object CartItemViewable(CartEntry item) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }
