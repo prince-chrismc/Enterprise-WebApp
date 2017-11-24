@@ -4,6 +4,8 @@
     Author     : cmcarthur
 --%>
 
+<%@page import="Services.CookieHandler"%>
+<%@page import="Models.CartAction"%>
 <%@page import="Views.GenreOptionsViewable"%>
 <%@page import="Models.SearchCriteria"%>
 <%@page import="Views.ConsoleOptionsViewable"%>
@@ -132,9 +134,17 @@
                         
                 <div id="active_user" class="col-xs-offset-2 col-xs-4">
                     <div class="row">
-                        <h2>logout...</h2>
+                        <h2>Logout...</h2>
                         <form id="logout" action="index.jsp" method="post" class="form-horizontal">
                             <input type="submit" value="Logout" class="btn btn-block"/>
+                        </form>
+                    </div>
+                    <div class="row">
+                        <h2>View Cart...</h2>
+                        <form action="cart" method="post" class="form-horizontal">
+                            <input type='hidden' name='user_email' value="<%= CookieHandler.GetUserEmail(request) %> "/>
+                            <input type="hidden" name="action" value="<%= CartAction.VIEW %>"/>
+                            <input type="submit" value="Checkout" class="btn btn-block"/>
                         </form>
                     </div>
                 </div>

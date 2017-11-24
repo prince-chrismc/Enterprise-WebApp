@@ -51,6 +51,9 @@ public class CartServlet extends HttpServlet {
             case CLEAR:
                 retval = cart.clearCart();
                 break;
+            case VIEW:
+                retval = true;
+                break;
             default: break;
         }
         

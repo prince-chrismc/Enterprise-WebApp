@@ -10,6 +10,7 @@ package Models;
  * @author cmcarthur
  */
 public enum CartAction {
+    VIEW,
     ADD,
     REMOVE,
     CLEAR;    
