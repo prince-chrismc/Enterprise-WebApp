@@ -18,6 +18,7 @@ public class GameResultViewable implements WebViewable {
         this.game = game;
     }
     
+    @Override
     public String toHTML() {
         return "<tr'><td>" + game.getGame_id() + "</td><td>" + game.getName() + 
                "</td><td>" + game.getConsolesArrayAsString() + "</td><td><a href='game?id=" + game.getGame_id() + 

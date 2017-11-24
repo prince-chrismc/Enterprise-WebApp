@@ -6,6 +6,7 @@
 package Controllers;
 
 import Models.ShoppingCart;
+import Views.ShoppingCartView;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -36,6 +37,8 @@ public class CartServlet extends HttpServlet {
         ShoppingCart cart = new ShoppingCart(request.getParameter("user_email"));
         
         if(cart.addToCart(Integer.parseInt(request.getParameter("game_id")), Integer.parseInt(request.getParameter("qty")))) {
+            
+            request.setAttribute("cart", new ShoppingCartView(cart));
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/cart.jsp");
             requestDispatcher.forward(request, response);
         }

@@ -129,4 +129,10 @@ public class CartEntryGateway {
         }
         return false;
     }
+
+    public CartEntry getEntry() {
+        Fetch();
+        return entry;
+    }
+    
 }

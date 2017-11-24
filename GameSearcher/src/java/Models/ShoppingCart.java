@@ -6,7 +6,10 @@
 package Models;
 
 import Gateway.CartEntryGateway;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  *
@@ -37,8 +40,15 @@ public class ShoppingCart {
         return retval;
     }
 
-    public HashMap getEntries() {
-        return entries;
+    public ArrayList<CartEntry> getEntries() {
+        ArrayList<CartEntry> temp = new ArrayList<>();
+        Iterator it = entries.entrySet().iterator();          // https://stackoverflow.com/a/1066603/8480874
+        while(it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            temp.add(((CartEntryGateway)pair.getValue()).getEntry());
+            it.remove();
+        }
+        return temp;
     }
 
     public String getUser_email() {
