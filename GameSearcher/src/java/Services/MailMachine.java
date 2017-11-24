@@ -19,14 +19,14 @@ import javax.mail.internet.MimeMessage;
  * @author cmcarthur
  */
 public class MailMachine {
-
+    private static final MailMachine mailer = new MailMachine();
+    
     private final String username = "soen387test2@gmail.com";
     private final String password = "testing1";
     private Properties props;
     private Session session;
-
-    public MailMachine() {
-
+    
+    private MailMachine() {
         props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
@@ -41,16 +41,15 @@ public class MailMachine {
         });
     }
 
-    public void sendMessage() {
+    public void sendMessage(String user_email, String subject, String msg) {
         try {
 
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
             message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse("prince.chrismc@gmail.com"));
-            message.setSubject("Testing Subject");
-            message.setText("Dear Mail Crawler,"
-                    + "\n\n No spam to my email, please!");
+                    InternetAddress.parse(user_email));
+            message.setSubject(subject);
+            message.setText(msg);
 
             Transport.send(message);
 
@@ -59,5 +58,9 @@ public class MailMachine {
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }
+    }
+    
+    public static MailMachine getInstance() { 
+        return mailer; 
     }
 }

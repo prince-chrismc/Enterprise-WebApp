@@ -20,8 +20,8 @@ public class CheckoutService {
     }
     
     public CheckoutResult performCheckout() {
-        MailMachine mailer = new MailMachine();
-        mailer.sendMessage();
+        MailMachine mailer = MailMachine.getInstance();
+        mailer.sendMessage("prince.chrismc@gmail.com", "testing singleton", "this is the singleton test =)");
         return new CheckoutResult(cart.getEntries(), 0.0);
     }
 }
