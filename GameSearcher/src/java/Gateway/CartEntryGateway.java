@@ -19,21 +19,20 @@ import java.util.ArrayList;
  */
 public class CartEntryGateway {
     public static ArrayList<CartEntry> FindEntriesToUser(String user_email) {
+        ArrayList<CartEntry> cart = new ArrayList<>();
         try {
             Connection conn = DatabaseConnection.getConnection();
             Statement statement = conn.createStatement();
 
             ResultSet results = statement.executeQuery("SELECT * FROM gamesearcher.carts WHERE carts.userEmail = '" + user_email + "';");
             
-            ArrayList<CartEntry> cart = new ArrayList<>();
+            
             while(results.next()) {
                 cart.add(new CartEntry(results.getString("userEmail"), results.getInt("gameID"), results.getInt("qty")));
             }
             
             statement.close();
-            results.close();
-            
-            return cart;
+            results.close();            
             
         } catch (SQLException e) {
             System.out.println("SQL Error: " + e.getMessage());
@@ -41,7 +40,7 @@ public class CartEntryGateway {
         catch(Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
-        return null;
+        return cart;
     }
     
     // Beginning of non-static section
@@ -58,7 +57,7 @@ public class CartEntryGateway {
             Connection conn = DatabaseConnection.getConnection();
             Statement statement = conn.createStatement();
 
-            int retval = statement.executeUpdate("INSERT INTO gamesearcher.carts(userEmail,gameID,qty)VALUES('" + entry.getUse_email() + "," + entry.getGame_id() + "," + entry.getQty() + ");");
+            int retval = statement.executeUpdate("INSERT INTO gamesearcher.carts(userEmail,gameID,qty)VALUES('" + entry.getUse_email() + "'," + entry.getGame_id() + "," + entry.getQty() + ");");
             
             if(retval == 1) { // if only 1 row was affected
                 return Fetch(); // make sure it exists

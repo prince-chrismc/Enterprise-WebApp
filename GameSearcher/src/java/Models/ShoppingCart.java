@@ -6,22 +6,23 @@
 package Models;
 
 import Gateway.CartEntryGateway;
-import java.util.AbstractMap;
+import java.util.HashMap;
 
 /**
  *
  * @author cmcarthur
  */
 public class ShoppingCart {
-    private AbstractMap entries; // <int, CartEntryGateway>
+    private final HashMap entries; // <int, CartEntryGateway>
     private final String user_email;
     
     public ShoppingCart(String user_email) {
         this.user_email = user_email;
+        entries = new HashMap();
         
-        CartEntryGateway.FindEntriesToUser(user_email).forEach((entry) -> {
+        for(CartEntry entry : CartEntryGateway.FindEntriesToUser(user_email)) {
             entries.put(entry.getGame_id(), new CartEntryGateway(entry));
-        });
+        }
     }
     
     public boolean addToCart(int game_id, int qty) {
@@ -36,7 +37,7 @@ public class ShoppingCart {
         return retval;
     }
 
-    public AbstractMap getEntries() {
+    public HashMap getEntries() {
         return entries;
     }
 
