@@ -5,7 +5,9 @@
  */
 package Services;
 
+import Gateway.OrderGateway;
 import Gateway.UserGateway;
+import Models.CartEntry;
 import Models.CheckoutResult;
 import Models.ShoppingCart;
 import Models.User;
@@ -24,6 +26,11 @@ public class CheckoutService {
     public CheckoutResult performCheckout() {
         
         if(!doesUserHaveValidCreditcard()) return new CheckoutResult("Invalid credit card information");
+        
+        for(CartEntry entry : cart.getEntries()) {
+            OrderGateway new_order = new OrderGateway(entry);
+            new_order.Insert();
+        }
         
         MailMachine mailer = MailMachine.getInstance();
         mailer.sendMessage("prince.chrismc@gmail.com", "testing singleton", "this is the singleton test =)");
