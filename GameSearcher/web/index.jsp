@@ -142,7 +142,7 @@
                     <div class="row">
                         <h2>View Cart...</h2>
                         <form action="cart" method="post" class="form-horizontal">
-                            <input type='hidden' name='user_email' value="<%= CookieHandler.GetUserEmail(request) %> "/>
+                            <input type='hidden' name='user_email' value="<%= CookieHandler.GetUserEmail(request) %>"/>
                             <input type="hidden" name="action" value="<%= CartAction.VIEW %>"/>
                             <input type="submit" value="Checkout" class="btn btn-block"/>
                         </form>
