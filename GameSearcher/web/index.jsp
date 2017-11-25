@@ -4,6 +4,7 @@
     Author     : cmcarthur
 --%>
 
+<%@page import="Models.RegistrationAction"%>
 <%@page import="Services.CookieHandler"%>
 <%@page import="Models.CartAction"%>
 <%@page import="Views.GenreOptionsViewable"%>
@@ -36,7 +37,7 @@
                     <h2>Search for a game...</h2>
                     <div class="row" style="margin: 1em 0em;">
                         <form action="search" method="post" class="form-horizontal">
-                            <input type="hidden" name="criteria" value="<%= SearchCriteria.NAME.getValueAsString() %>"/>
+                            <input type="hidden" name="criteria" value="<%= SearchCriteria.NAME %>"/>
                             <div class="col-xs-2">
                                 <label class="control-label">Name</label>
                             </div>
@@ -50,7 +51,7 @@
                     </div>
                     <div class="row" style="margin: 1em 0em;">
                         <form action="search" method="post" class="form-horizontal">
-                            <input type="hidden" name="criteria" value="<%= SearchCriteria.CONSOLE.getValueAsString() %>"/>
+                            <input type="hidden" name="criteria" value="<%= SearchCriteria.CONSOLE %>"/>
                             <div class="col-xs-2">
                                 <label class="control-label">Console</label>
                             </div>
@@ -67,7 +68,7 @@
                     </div>
                     <div class="row" style="margin: 1em 0em;">
                         <form action="search" method="post" class="form-horizontal">
-                            <input type="hidden" name="criteria" value="<%= SearchCriteria.GENRE.getValueAsString() %>"/>
+                            <input type="hidden" name="criteria" value="<%= SearchCriteria.GENRE %>"/>
                             <div class="col-xs-2">
                                 <label class="control-label">Genre</label>
                             </div>
@@ -84,7 +85,7 @@
                     </div>
                     <div class="row" style="margin: 1em 0em;">
                         <form action="search" method="post" class="form-horizontal">
-                            <input type="hidden" name="criteria" value="<%= SearchCriteria.YEAR.getValueAsString() %>"/>
+                            <input type="hidden" name="criteria" value="<%= SearchCriteria.YEAR %>"/>
                             <div class="col-xs-2">
                                 <label class="control-label">Year</label>
                             </div>
@@ -99,7 +100,7 @@
                     
                     <h2>Check the games on sale...</h2>
                     <form action="search" method="post">
-                        <input type="hidden" name="criteria" value="<%= SearchCriteria.DISCOUNT.getValueAsString() %>"/>
+                        <input type="hidden" name="criteria" value="<%= SearchCriteria.DISCOUNT %>"/>
                         <input type="submit" value="Browse" class="btn  btn-block"/>
                     </form>
                 </div>
@@ -126,7 +127,7 @@
                     <div class="row">                
                         <h2>...Or sign up</h2>
                         <form action="register" method="post">
-                            <input type="hidden" name="action" value="redirect"/>
+                            <input type="hidden" name="action" value="<%= RegistrationAction.REDIRECT %>"/>
                             <input type="submit" value="Register" class="btn  btn-block"/>
                         </form>
                     </div>

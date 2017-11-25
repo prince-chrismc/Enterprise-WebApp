@@ -188,7 +188,7 @@ public class User {
      * @return the credit_card_type
      */
     public String getCredit_card_type() {
-        return credit_card_type.getType();
+        return credit_card_type.toString();
     }
 
     /**

@@ -36,7 +36,7 @@ public class SearchServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        SearchCriteria criteria = SearchCriteria.convert(Integer.parseInt(request.getParameter("criteria")));
+        SearchCriteria criteria = SearchCriteria.valueOf(request.getParameter("criteria"));
         String criteria_val = request.getParameter("criteria_val");
         
         SearchByCriteriaService searcher = new SearchByCriteriaService(criteria, criteria_val);

@@ -4,6 +4,7 @@
     Author     : cmcarthur
 --%>
 
+<%@page import="Models.CreditCardType"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -105,7 +106,7 @@
                             <label class="col-xs-2 control-label">Card Type</label>
                             <div class="col-xs-10">
                                 <select name="type" class="form-control">
-                                    <option>VISA</option>
+                                    <option><%=CreditCardType.VISA%></option>
                                     <!--<option>MASTERCARD</option>-->
                                 </select>
                             </div>

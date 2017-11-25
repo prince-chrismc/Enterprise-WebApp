@@ -9,12 +9,8 @@ package Models;
  *
  * @author cmcarthur
  */
-public enum SearchCriteria {
-    INVALID,
-    NAME,
-    ID,
-    CONSOLE,
-    GENRE,
-    YEAR,
-    DISCOUNT;
+public enum RegistrationAction {
+    REDIRECT,
+    REGISTAR,
+    UPDATE;
 }

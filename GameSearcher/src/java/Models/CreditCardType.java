@@ -10,19 +10,9 @@ package Models;
  * @author cmcarthur
  */
 public enum CreditCardType {
-    VISA("VISA"),
-    MASTERCARD("MASTERCARD");
-    
-    private final String credit_card;
-    
-    CreditCardType(String type) {
-        this.credit_card = type;
-    }
-    
-    public String getType() {
-        return this.credit_card;
-    }
-    
+    VISA,
+    MASTERCARD;
+
     /* Iteration Eample
         for (CreditCardType type : CreditCardType.values()) {
             System.out.println(type);
