@@ -33,7 +33,8 @@ public class CheckoutService {
         }
         
         MailMachine mailer = MailMachine.getInstance();
-        mailer.sendMessage("prince.chrismc@gmail.com", "testing singleton", "this is the singleton test =)");
+        mailer.sendMessage(cart.getUser_email(), "Your purchase receipt", "this is the singleton test =)");
+        
         CheckoutResult result = new CheckoutResult(cart.getEntries(), 0.0);
         cart.clearCart();
         return result;
