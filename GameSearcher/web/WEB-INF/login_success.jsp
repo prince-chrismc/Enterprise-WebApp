@@ -4,6 +4,7 @@
     Author     : cmcarthur
 --%>
 
+<%@page import="Models.UserAction"%>
 <%@page import="Views.LoginTypeViewable"%>
 <%@page import="Models.LoginType"%>
 <%@page import="Models.User"%>
@@ -38,7 +39,8 @@
                     </form>
                 </div>
                 <div class="col-xs-2">
-                    <form action="User" method="post">
+                    <form action="user" method="post">
+                        <input type="hidden" name="action" value="<%=UserAction.VIEW%>"/>
                         <input type="submit" value="Your Info" class="btn btn-block"/>
                     </form>
                 </div>
