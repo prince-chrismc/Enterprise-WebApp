@@ -4,6 +4,8 @@
     Author     : cmcarthur
 --%>
 
+<%@page import="Models.User"%>
+<%@page import="Models.UserAction"%>
 <%@page import="Models.CreditCardType"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,6 +19,10 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
+        <%
+            UserAction action = (UserAction)request.getAttribute("action");
+            User user = (User)request.getAttribute("user");
+        %>
         <div class="container">
             <div class="row">
                 <div class="col-xs-8">

@@ -47,8 +47,10 @@ public class UserServlet extends HttpServlet {
         switch(action)
         {
             case VIEW:
+                request.setAttribute("user", user);
                 request.setAttribute("action", UserAction.VIEW);
             case EDIT:
+                request.setAttribute("user", user);
                 request.setAttribute("action", UserAction.EDIT);
             case UPDATE:
                 // TO DO
