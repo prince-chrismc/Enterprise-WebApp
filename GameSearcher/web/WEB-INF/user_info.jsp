@@ -43,13 +43,13 @@
                         <div class="form-group">
                             <label class="col-xs-2 control-label">First Name</label>
                             <div class="col-xs-10">
-                                <input id="first" type="text" name="first" class="form-control"/>
+                                <input id="first" type="text" name="first" value="<%=user.getFirst_name()%>" class="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-2 control-label">Last Name</label>
                             <div class="col-xs-10">
-                                <input id="last" type="text" name="last" class="form-control"/>
+                                <input id="last" type="text" name="last" value="<%=user.getLast_name()%>" class="form-control"/>
                             </div>
                         </div>
                         
