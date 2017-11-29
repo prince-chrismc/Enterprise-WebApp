@@ -26,11 +26,6 @@
         <div class="container">
             <%= game.toHTML() %>
             <%= possible_button.toHTML() %>
-            <div class="col-xs-offset-10 col-xs-2">
-                <form action="index.jsp" method="GET">
-                    <input type="submit" class="btn" value="Home" style="margin: 2em 1em;"/>
-                </form>
-            </div>
         </div>
     </body>
 </html>
