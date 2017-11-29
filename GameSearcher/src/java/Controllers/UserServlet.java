@@ -43,6 +43,13 @@ public class UserServlet extends HttpServlet {
         User user = UserGateway.FindUserCompleteByEmail(CookieHandler.GetUserEmail(request));
         if (user == null) {
             response.sendRedirect("");
+            return;
+        }
+        
+        if(user.isAdmin())
+        {
+            response.sendRedirect("admin");
+            return;
         }
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/user_info.jsp");
@@ -65,7 +72,7 @@ public class UserServlet extends HttpServlet {
                 break;
             default:
                 response.sendRedirect("");
-                break;
+                return;
         }
         request.setAttribute("user", user);
         requestDispatcher.forward(request, response);
