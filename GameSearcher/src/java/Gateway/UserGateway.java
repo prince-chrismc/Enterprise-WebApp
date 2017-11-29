@@ -76,6 +76,9 @@ public class UserGateway {
                 user.setCredit_card_number(results.getString("userCreditCardNumber"));
                 user.setCredit_card_cvv(results.getString("userCreditCardCVV"));
                 user.setCredit_card_expiry(results.getString("userCreditCardExpiry"));
+                
+                user.setIsAdmin(results.getBoolean("userIsAdmin"));
+                user.setIsLocked(results.getBoolean("userIsLocked"));
             }
 
             statement.close();
@@ -162,7 +165,8 @@ public class UserGateway {
                     + "userCreditCardType = 'VISA',"
                     + "userCreditCardNumber = '" + user.getCredit_card_number() + "',"
                     + "userCreditCardCVV = '" + user.getCredit_card_cvv() + "',"
-                    + "userCreditCardExpiry = '" + user.getCredit_card_expiry() + "' "
+                    + "userCreditCardExpiry = '" + user.getCredit_card_expiry() + "',"
+                    + "userIsLocked = '" + (user.isLocked() ? "true" : "false") + "' "
                     + "WHERE userID = " + String.valueOf(user.getUser_id()) + " AND "
                     + "userEmail = '" + user.getEmail() + "';"
             );
