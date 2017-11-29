@@ -17,7 +17,8 @@ import java.util.ArrayList;
 public class UsersTableViewable implements WebViewable {
     public enum TableType {
         LOCK,
-        UNLOCK;
+        UNLOCK,
+        LOGGED;
     }
     
     private final ArrayList<User> users;
@@ -29,7 +30,19 @@ public class UsersTableViewable implements WebViewable {
     }
 
     @Override
-    public String toHTML() {        
+    public String toHTML() {
+        switch(type)
+        {
+            case LOCK:
+            case UNLOCK:
+                return GetLockChangeTable();
+            case LOGGED:
+                return GetLoggedTable();
+        }
+        return "";
+    }
+    
+    private String GetLockChangeTable() {
         String retval = "<table class=\"table table-hover\">\n"
                 + "<thead>\n"
                 + "<tr>\n"
@@ -62,6 +75,27 @@ public class UsersTableViewable implements WebViewable {
                 return "<a href='admin?email=" + user.getEmail() + "&action=" + AdminAction.UNLOCK + "'>Unock</a>";
         }
         return "";
+    }
+    
+    
+    private String GetLoggedTable() {
+        String retval =  "<table class=\"table table-hover\">\n"
+                + "<thead>\n"
+                + "<tr>\n"
+                + "<th>Email</th>\n"
+                + "<th>Time</th></tr></thead><tbody>\n";
+        
+                for (User user : users) {
+            retval += "<tr><td>";
+            retval += user.getEmail();
+            retval += "</td><td>";
+            retval += user.getLast_login();
+            retval += "</td></tr>";
+        }
+
+        retval += "</tbody></table>";
+
+        return retval;
     }
 
 }

@@ -56,7 +56,7 @@ public class OrderGateway {
             while (results.next()) {
                 DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
                 orders.add(new OrderViewable(new Order(results.getInt("orderID"), results.getString("userEmail"), results.getInt("gameID"),
-                        results.getInt("qty"), df.format(results.getDate("purchaseDate")))));
+                results.getInt("qty"), df.format(results.getDate("purchaseDate")))));
             }
 
             statement.close();

@@ -163,6 +163,42 @@ public class UserGateway {
         }
         return users;
     }
+    
+    public static ArrayList<User> FindRecentlyLoggedInUsersBasicInfoWithTime() {
+        ArrayList<User> users = new ArrayList<>();
+        try {
+            Connection conn = DatabaseConnection.getConnection();
+            Statement statement = conn.createStatement();
+
+            ResultSet results = statement.executeQuery("SELECT * FROM gamesearcher.users ORDER BY userLastLogin DESC LIMIT 5;");
+
+            while (results.next()) {
+                User user = new User();
+
+                user.setUser_id(results.getInt("userID"));
+                user.setPassword(results.getString("userPassword"));
+                user.setFirst_name(results.getString("userFirstName"));
+                user.setLast_name(results.getString("userLastName"));
+                user.setEmail(results.getString("userEmail"));
+
+                user.setIsAdmin(results.getBoolean("userIsAdmin"));
+                user.setIsLocked(results.getBoolean("userIsLocked"));
+                
+                user.setLast_login(results.getString("userLastLogin"));
+
+                users.add(user);
+            }
+
+            statement.close();
+            results.close();
+
+        } catch (SQLException e) {
+            System.out.println("SQL Error: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        return users;
+    }
 
     // Beginning of non static section
     private User user;

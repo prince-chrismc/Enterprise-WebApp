@@ -30,11 +30,12 @@
             }
             UsersTableViewable locked = (UsersTableViewable)request.getAttribute("locked");
             UsersTableViewable unlocked = (UsersTableViewable)request.getAttribute("unlocked");
+            UsersTableViewable logged = (UsersTableViewable)request.getAttribute("logged");
         %>
         <div class="container">
             <div class="row">
                 <div class="col-xs-8">
-                    <h1><%=admin.getFirst_name()%> Panel</h1>
+                    <h1><%=admin.getFirst_name()%>'s Panel</h1>
                 </div>
                 <div class="col-xs-offset-2 col-xs-2">
                     <form action="index.jsp" method="GET">
@@ -69,6 +70,10 @@
                         <h3>Unlocked User Accounts</h3>
                         <%= unlocked.toHTML()%>
                     </div>
+                </div>
+                <div class="col-xs-offset-1 col-xs-3">
+                    <h3>Recently Logged In Accounts</h3>
+                    <%= logged.toHTML()%>                    
                 </div>
             </div>
         </div>

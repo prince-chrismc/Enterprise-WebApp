@@ -73,6 +73,7 @@ public class AdminServlet extends HttpServlet {
         request.setAttribute("orders", OrderGateway.GetMostRecentOrders());
         request.setAttribute("locked", new UsersTableViewable(UserGateway.FindAllLockedUsersBasicInfo(), UsersTableViewable.TableType.UNLOCK));
         request.setAttribute("unlocked", new UsersTableViewable(UserGateway.FindAllUnlockedUsersBasicInfo(), UsersTableViewable.TableType.LOCK));
+        request.setAttribute("logged", new UsersTableViewable(UserGateway.FindRecentlyLoggedInUsersBasicInfoWithTime(), UsersTableViewable.TableType.LOGGED));
         request.setAttribute("user", user);
         requestDispatcher.forward(request, response);
     }
