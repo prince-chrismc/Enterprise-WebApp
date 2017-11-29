@@ -44,7 +44,7 @@
             <hr>
             <div class="row">
                 <div class="col-xs-7">
-                    <form id="signup" action="register" method="post" class="form-horizontal">
+                    <form id="user" action="user" method="post" class="form-horizontal">
                         <h1>Basic Information...</h1>
                         <div class="form-group">
                             <label class="col-xs-2 control-label">First Name</label>
@@ -134,17 +134,17 @@
             </div>
         </div>
         <script type="text/javascript">
-            $('form#signup').submit(function() {
+            $('form#user').submit(function() {
                             
                 if(jQuery.trim($("#first").val()) == '') {
-                    $("#email").parent().parent().prepend("<div class='alert alert-danger alert-dismissable fade in'>" + 
+                    $("#user").parent().parent().prepend("<div class='alert alert-danger alert-dismissable fade in'>" + 
                             "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
                             "<strong>Error!</strong> There was no first name provided.</div>");
                     return false;            
                 }
                 
                 if(jQuery.trim($("#last").val()) == '') {
-                    $("#email").parent().parent().prepend("<div class='alert alert-danger alert-dismissable fade in'>" + 
+                    $("#user").parent().parent().prepend("<div class='alert alert-danger alert-dismissable fade in'>" + 
                             "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
                             "<strong>Error!</strong> There was no last name provided.</div>");
                     return false;            
