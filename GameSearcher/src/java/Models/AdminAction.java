@@ -11,5 +11,7 @@ package Models;
  */
 public enum AdminAction {
     VIEW,
-    EDIT;
+    EDIT,
+    LOCK,
+    UNLOCK;
 }

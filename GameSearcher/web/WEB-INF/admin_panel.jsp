@@ -4,6 +4,7 @@
     Author     : cmcarthur
 --%>
 
+<%@page import="Models.User"%>
 <%@page import="Views.UsersTableViewable"%>
 <%@page import="Views.OrderViewable"%>
 <%@page import="java.util.ArrayList"%>
@@ -21,6 +22,7 @@
     </head>
     <body>
         <%
+            User admin = (User)request.getAttribute("user");
             String recent_orders_table = "";
             for(OrderViewable order : (ArrayList<OrderViewable>)request.getAttribute("orders"))
             {
@@ -32,7 +34,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-8">
-                    <h1>Administration Panel</h1>
+                    <h1><%=admin.getFirst_name()%> Panel</h1>
                 </div>
                 <div class="col-xs-offset-2 col-xs-2">
                     <form action="index.jsp" method="GET">

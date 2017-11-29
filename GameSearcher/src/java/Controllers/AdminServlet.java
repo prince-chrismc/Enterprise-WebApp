@@ -10,6 +10,7 @@ import Gateway.UserGateway;
 import Models.AdminAction;
 import Models.User;
 import Services.CookieHandler;
+import Services.LockingService;
 import Views.UsersTableViewable;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -37,34 +38,43 @@ public class AdminServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         User user = UserGateway.FindUserCompleteByEmail(CookieHandler.GetUserEmail(request));
-        
+
         if (user == null) {
             response.sendRedirect("");
             return;
         }
-        
-        if(!user.isAdmin())
-        {
+
+        if (!user.isAdmin()) {
             response.sendRedirect("");
             return;
         }
-        
+
         AdminAction action = AdminAction.valueOf(request.getParameter("action"));
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/admin_panel.jsp");
-        
-        switch(action)
-        {
+        String email;
+
+        switch (action) {
+            case LOCK:
+                email = request.getParameter("email");
+                LockingService locker = new LockingService(email);
+                locker.Lock();
+                break;
+            case UNLOCK:
+                email = request.getParameter("email");
+                LockingService unlocker = new LockingService(email);
+                unlocker.Unlock();
+                break;
             default:
-                request.setAttribute("orders", OrderGateway.GetMostRecentOrders());
-                request.setAttribute("locked", new UsersTableViewable(UserGateway.FindAllLockedUsersBasicInfo()));
-                request.setAttribute("unlocked", new UsersTableViewable(UserGateway.FindAllUnlockedUsersBasicInfo()));
                 break;
         }
         
+        request.setAttribute("orders", OrderGateway.GetMostRecentOrders());
+        request.setAttribute("locked", new UsersTableViewable(UserGateway.FindAllLockedUsersBasicInfo(), UsersTableViewable.TableType.UNLOCK));
+        request.setAttribute("unlocked", new UsersTableViewable(UserGateway.FindAllUnlockedUsersBasicInfo(), UsersTableViewable.TableType.LOCK));
         request.setAttribute("user", user);
-        requestDispatcher.forward(request, response);        
+        requestDispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

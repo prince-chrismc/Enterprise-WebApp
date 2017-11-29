@@ -136,7 +136,7 @@ public class UserGateway {
             Connection conn = DatabaseConnection.getConnection();
             Statement statement = conn.createStatement();
 
-            ResultSet results = statement.executeQuery("SELECT * FROM gamesearcher.users WHERE users.userIsLocked = false;");
+            ResultSet results = statement.executeQuery("SELECT * FROM gamesearcher.users WHERE users.userIsLocked = false AND users.userIsAdmin = false;");
 
             while (results.next()) {
                 User user = new User();
