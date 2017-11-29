@@ -36,7 +36,7 @@ public class UserGateway {
                 user.setFirst_name(results.getString("userFirstName"));
                 user.setLast_name(results.getString("userLastName"));
                 user.setEmail(email);
-                
+
                 user.setIsAdmin(results.getBoolean("userIsAdmin"));
                 user.setIsLocked(results.getBoolean("userIsLocked"));
             }
@@ -80,7 +80,7 @@ public class UserGateway {
                 user.setCredit_card_number(results.getString("userCreditCardNumber"));
                 user.setCredit_card_cvv(results.getString("userCreditCardCVV"));
                 user.setCredit_card_expiry(results.getString("userCreditCardExpiry"));
-                
+
                 user.setIsAdmin(results.getBoolean("userIsAdmin"));
                 user.setIsLocked(results.getBoolean("userIsLocked"));
             }
@@ -95,7 +95,7 @@ public class UserGateway {
         }
         return user;
     }
-    
+
     public static ArrayList<User> FindAllLockedUsersBasicInfo() {
         ArrayList<User> users = new ArrayList<>();
         try {
@@ -112,10 +112,10 @@ public class UserGateway {
                 user.setFirst_name(results.getString("userFirstName"));
                 user.setLast_name(results.getString("userLastName"));
                 user.setEmail(results.getString("userEmail"));
-                
+
                 user.setIsAdmin(results.getBoolean("userIsAdmin"));
                 user.setIsLocked(results.getBoolean("userIsLocked"));
-                
+
                 users.add(user);
             }
 
@@ -129,8 +129,8 @@ public class UserGateway {
         }
         return users;
     }
-    
-        public static ArrayList<User> FindAllUnlockedUsersBasicInfo() {
+
+    public static ArrayList<User> FindAllUnlockedUsersBasicInfo() {
         ArrayList<User> users = new ArrayList<>();
         try {
             Connection conn = DatabaseConnection.getConnection();
@@ -146,10 +146,10 @@ public class UserGateway {
                 user.setFirst_name(results.getString("userFirstName"));
                 user.setLast_name(results.getString("userLastName"));
                 user.setEmail(results.getString("userEmail"));
-                
+
                 user.setIsAdmin(results.getBoolean("userIsAdmin"));
                 user.setIsLocked(results.getBoolean("userIsLocked"));
-                
+
                 users.add(user);
             }
 
@@ -238,7 +238,34 @@ public class UserGateway {
                     + "userCreditCardNumber = '" + user.getCredit_card_number() + "',"
                     + "userCreditCardCVV = '" + user.getCredit_card_cvv() + "',"
                     + "userCreditCardExpiry = '" + user.getCredit_card_expiry() + "',"
-                    + "userIsLocked = " + (user.isLocked() ? "true" : "false") + " "
+                    + "userIsLocked = " + (user.isLocked() ? "true" : "false") + ","
+                    + "WHERE userID = " + String.valueOf(user.getUser_id()) + " AND "
+                    + "userEmail = '" + user.getEmail() + "';"
+            );
+
+            statement.close();
+
+            if (retval == 1) { // if only 1 row was affected
+                return true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("SQL Error: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        return false;
+    }
+    
+        public boolean UpdateLastLogin() {
+        try {
+            Connection conn = DatabaseConnection.getConnection();
+            Statement statement = conn.createStatement();
+
+            int retval = statement.executeUpdate("UPDATE gamesearcher.users"
+                    + " SET "                    
+                    + "userLastLogin = current_timestamp "
                     + "WHERE userID = " + String.valueOf(user.getUser_id()) + " AND "
                     + "userEmail = '" + user.getEmail() + "';"
             );

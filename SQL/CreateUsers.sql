@@ -16,7 +16,7 @@ CREATE TABLE gamesearcher.USERS(
     userCreditCardNumber varchar(255),
     userCreditCardCVV varchar(255),
     userCreditCardExpiry varchar(255),
-    userLastLogin varchar(255),
+    userLastLogin datetime default current_timestamp,
     userIsAdmin bool not null default false,
     userIsLocked bool not null default false,    
 	primary key (userID)

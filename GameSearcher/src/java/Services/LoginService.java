@@ -26,11 +26,9 @@ public class LoginService {
             if(user.isLocked()) return false;
             
             if (user.getPassword().equals(password) ) {
-                LoginFailedGateway logger = LoginFailedGateway.FindAttemptForUser(user.getEmail());
-                logger.Delete(); // delete any unsuccessful attempts
-                return true;
+                return HandleSuccess();
             } else {
-                HandleLogging();
+                HandleFail();
             }
         }
         return false;
@@ -40,7 +38,14 @@ public class LoginService {
         return user;
     }
 
-    private void HandleLogging() {
+    private boolean HandleSuccess() {
+        LoginFailedGateway logger = LoginFailedGateway.FindAttemptForUser(user.getEmail());
+        logger.Delete(); // delete any unsuccessful attempts
+        UserGateway gateway = new UserGateway(user);
+        return gateway.UpdateLastLogin();
+    }
+    
+    private void HandleFail() {
         LoginFailedGateway attempt = LoginFailedGateway.FindAttemptForUser(user.getEmail());
         attempt.Update();
         if (attempt.getQty() >= 3 && !user.isLocked()) {
