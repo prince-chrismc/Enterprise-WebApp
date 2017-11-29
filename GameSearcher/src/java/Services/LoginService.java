@@ -23,12 +23,12 @@ public class LoginService {
 
     public boolean isValidUser(String password) {
         if (user != null) {
-            if (user.getPassword().equals(password)) {
+            if (user.getPassword().equals(password) && !user.isLocked()) {
+                LoginFailedGateway logger = LoginFailedGateway.FindAttemptForUser(user.getEmail());
+                logger.Delete(); // delete any unsuccessful attempts
                 return true;
-            }
-            else {
-                LoginFailedGateway attempt = LoginFailedGateway.FindAttemptForUser(user.getEmail());
-                attempt.Update();
+            } else {
+                HandleLogging();
             }
         }
         return false;
@@ -36,5 +36,14 @@ public class LoginService {
 
     public User getUser() {
         return user;
+    }
+
+    private void HandleLogging() {
+        LoginFailedGateway attempt = LoginFailedGateway.FindAttemptForUser(user.getEmail());
+        if (attempt.getQty() > 3) {
+            LockingService locker = new LockingService(user.getEmail());
+            locker.Lock();
+        }
+        attempt.Update();
     }
 }

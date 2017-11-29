@@ -31,6 +31,10 @@ public class LoginFailedGateway {
         Fetch();
     }
 
+    public int getQty() {
+        return qty;
+    }
+
     public boolean Insert() {
         if (!Fetch()) { // make sure it doesnt exists
             try {
@@ -62,7 +66,7 @@ public class LoginFailedGateway {
                 Connection conn = DatabaseConnection.getConnection();
                 Statement statement = conn.createStatement();
 
-                int retval = statement.executeUpdate("UPDATE gamesearcher.loginfails SET qty = " + ++qty + "WHERE loginfails.userEmail = '" + user_email + "';");
+                int retval = statement.executeUpdate("UPDATE gamesearcher.loginfails SET qty = " + String.valueOf(++qty) + ", attemptDate = current_timestamp WHERE loginfails.userEmail = '" + user_email + "';");
                 statement.close();
 
                 if (retval == 1) { // if only 1 row was affected
