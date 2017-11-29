@@ -4,6 +4,7 @@
     Author     : cmcarthur
 --%>
 
+<%@page import="Views.UserActionButton"%>
 <%@page import="Views.UserActionFeildStatus"%>
 <%@page import="Views.UserActionTitle"%>
 <%@page import="Models.User"%>
@@ -25,6 +26,7 @@
             UserAction action = (UserAction)request.getAttribute("action");
             UserActionTitle title = new UserActionTitle(action);
             UserActionFeildStatus status = new UserActionFeildStatus(action);
+            UserActionButton button = new UserActionButton(action);
             User user = (User)request.getAttribute("user");
         %>
         <div class="container">
@@ -55,7 +57,8 @@
                             <div class="col-xs-10">
                                 <input id="last" type="text" name="last" value="<%=user.getLast_name()%>" class="form-control"<%=status.toHTML()%>/>
                             </div>
-                        </div>                        
+                        </div>
+                            <%=button.toHTML()%>
                         <h2>Additional Information...</h2>
                         <div class="form-group">
                             <label class="col-xs-2 control-label">Address Line 1</label>
@@ -121,6 +124,7 @@
                                 <input type="date" name="exp" min="2017-18-02" value="2019-18-07" class="form-control"<%=status.toHTML()%>/>
                             </div>
                         </div>
+                            <%=button.toHTML()%>
                     </form>
                     <br><br>
                 </div>

@@ -61,7 +61,7 @@
                         </div>
                         
                         <div class="col-xs-offset-2 col-xs-10">
-                            <div class="row"><input type="submit" value="Register" class="btn  btn-block"/></div>
+                            <div class="row"><input type="submit" value="Register" class="btn  btn-block" style='margin-bottom: 1em;'/></div>
                         </div>
                         
                         <h2>Additional Information...</h2>

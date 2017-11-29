@@ -18,6 +18,7 @@ public class UserActionTitle implements WebViewable {
         this.action = action;
     }
         
+    @Override
     public String toHTML() {
         switch(action)
         {
