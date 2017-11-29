@@ -11,6 +11,5 @@ package Models;
  */
 public enum RegistrationAction {
     REDIRECT,
-    REGISTAR,
-    UPDATE;
+    REGISTER;
 }

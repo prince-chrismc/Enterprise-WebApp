@@ -4,6 +4,7 @@
     Author     : cmcarthur
 --%>
 
+<%@page import="Models.RegistrationAction"%>
 <%@page import="Models.CreditCardType"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -33,6 +34,7 @@
             <div class="row">
                 <div class="col-xs-8">
                     <form id="signup" action="register" method="post" class="form-horizontal">
+                        <input type="hidden" name="action" value="<%=RegistrationAction.REGISTER%>"/>
                         <h1>Basic Information...</h1>
                         <input type="hidden" name="action" value="register"/>
                         <div class="form-group">
