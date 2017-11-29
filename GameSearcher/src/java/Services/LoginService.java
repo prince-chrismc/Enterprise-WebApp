@@ -5,6 +5,7 @@
  */
 package Services;
 
+import Gateway.LoginFailedGateway;
 import Gateway.UserGateway;
 import Models.User;
 
@@ -24,6 +25,10 @@ public class LoginService {
         if (user != null) {
             if (user.getPassword().equals(password)) {
                 return true;
+            }
+            else {
+                LoginFailedGateway attempt = LoginFailedGateway.FindAttemptForUser(user.getEmail());
+                attempt.Update();
             }
         }
         return false;
