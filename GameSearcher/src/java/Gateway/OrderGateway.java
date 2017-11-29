@@ -6,11 +6,15 @@
 package Gateway;
 
 import Models.CartEntry;
+import Models.Order;
 import Services.DatabaseConnection;
+import Views.OrderViewable;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -40,6 +44,31 @@ public class OrderGateway {
             System.out.println("Error: " + e.getMessage());
         }
         return cart;
+    }
+    
+    public static ArrayList<OrderViewable> GetMostRecentOrders() {
+        ArrayList<OrderViewable> orders = new ArrayList<>();
+        try {
+            Connection conn = DatabaseConnection.getConnection();
+            Statement statement = conn.createStatement();
+
+            ResultSet results = statement.executeQuery("SELECT * FROM gamesearcher.orders LIMIT 10;");
+
+            while (results.next()) {
+                DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+                orders.add(new OrderViewable(new Order(results.getInt("orderID"), results.getString("userEmail"), results.getInt("gameID"),
+                        results.getInt("qty"), df.format(results.getDate("purchaseDate")))));
+            }
+
+            statement.close();
+            results.close();
+
+        } catch (SQLException e) {
+            System.out.println("SQL Error: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        return orders;
     }
 
     // Beginning of non-static section
