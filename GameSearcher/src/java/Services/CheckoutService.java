@@ -9,8 +9,14 @@ import Gateway.OrderGateway;
 import Gateway.UserGateway;
 import Models.CartEntry;
 import Models.CheckoutResult;
+import Models.Order;
 import Models.ShoppingCart;
 import Models.User;
+import Views.OrderViewable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -19,9 +25,11 @@ import Models.User;
 public class CheckoutService {
 
     private final ShoppingCart cart;
+    private ArrayList<Order> orders;
 
     public CheckoutService(ShoppingCart cart) {
         this.cart = cart;
+        orders = new ArrayList<>();
     }
 
     public CheckoutResult performCheckout() {
@@ -33,8 +41,9 @@ public class CheckoutService {
         int counter = 0;
         for (CartEntry entry : cart.getEntries()) {
             OrderGateway new_order = new OrderGateway(entry);
-            new_order.Insert();
-            
+            new_order.Insert();            
+            DateFormat dateFormat = new SimpleDateFormat();
+            orders.add(new Order(0, cart.getUser_email(), entry.getGame_id(), entry.getQty(), dateFormat.format(new Date())));
             counter++;
         }
         
@@ -48,6 +57,16 @@ public class CheckoutService {
         return result;
     }
 
+    public ArrayList<OrderViewable> getOrdersViewable() {
+        ArrayList<OrderViewable> views = new ArrayList<>();
+        
+        for(Order order : orders) {
+            views.add(new OrderViewable(order));
+        }
+        
+        return views;
+    }
+    
     private boolean doesUserHaveValidCreditcard() {
         User user = UserGateway.FindUserCompleteByEmail(cart.getUser_email());
 

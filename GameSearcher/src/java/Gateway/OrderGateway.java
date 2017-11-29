@@ -22,7 +22,6 @@ import java.util.ArrayList;
  * @author cmcarthur
  */
 public class OrderGateway {
-
     public static ArrayList<CartEntry> FindEntriesToUser(String user_email) {
         ArrayList<CartEntry> cart = new ArrayList<>();
         try {
