@@ -23,7 +23,9 @@ public class LoginService {
 
     public boolean isValidUser(String password) {
         if (user != null) {
-            if (user.getPassword().equals(password) && !user.isLocked()) {
+            if(user.isLocked()) return false;
+            
+            if (user.getPassword().equals(password) ) {
                 LoginFailedGateway logger = LoginFailedGateway.FindAttemptForUser(user.getEmail());
                 logger.Delete(); // delete any unsuccessful attempts
                 return true;
@@ -40,10 +42,10 @@ public class LoginService {
 
     private void HandleLogging() {
         LoginFailedGateway attempt = LoginFailedGateway.FindAttemptForUser(user.getEmail());
-        if (attempt.getQty() > 3) {
+        attempt.Update();
+        if (attempt.getQty() >= 3 && !user.isLocked()) {
             LockingService locker = new LockingService(user.getEmail());
             locker.Lock();
         }
-        attempt.Update();
     }
 }

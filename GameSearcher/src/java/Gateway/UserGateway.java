@@ -35,6 +35,9 @@ public class UserGateway {
                 user.setFirst_name(results.getString("userFirstName"));
                 user.setLast_name(results.getString("userLastName"));
                 user.setEmail(email);
+                
+                user.setIsAdmin(results.getBoolean("userIsAdmin"));
+                user.setIsLocked(results.getBoolean("userIsLocked"));
             }
 
             statement.close();
@@ -166,7 +169,7 @@ public class UserGateway {
                     + "userCreditCardNumber = '" + user.getCredit_card_number() + "',"
                     + "userCreditCardCVV = '" + user.getCredit_card_cvv() + "',"
                     + "userCreditCardExpiry = '" + user.getCredit_card_expiry() + "',"
-                    + "userIsLocked = '" + (user.isLocked() ? "true" : "false") + "' "
+                    + "userIsLocked = " + (user.isLocked() ? "true" : "false") + " "
                     + "WHERE userID = " + String.valueOf(user.getUser_id()) + " AND "
                     + "userEmail = '" + user.getEmail() + "';"
             );
