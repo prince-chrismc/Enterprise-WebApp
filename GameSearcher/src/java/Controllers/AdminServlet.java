@@ -5,8 +5,13 @@
  */
 package Controllers;
 
+import Gateway.UserGateway;
+import Models.User;
+import Models.UserAction;
+import Services.CookieHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,19 +36,24 @@ public class AdminServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AdminServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AdminServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        
+        User user = UserGateway.FindUserCompleteByEmail(CookieHandler.GetUserEmail(request));
+        
+        if (user == null) {
+            response.sendRedirect("");
+            return;
         }
+        
+        if(!user.isAdmin())
+        {
+            request.setAttribute("action", UserAction.VIEW);
+            response.sendRedirect("user");
+            return;
+        }
+        
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/admin_panel.jsp");
+        request.setAttribute("user", user);
+        requestDispatcher.forward(request, response);        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

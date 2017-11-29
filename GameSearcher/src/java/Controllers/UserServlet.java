@@ -6,6 +6,7 @@
 package Controllers;
 
 import Gateway.UserGateway;
+import Models.AdminAction;
 import Models.LoginType;
 import Models.User;
 import Models.UserAction;
@@ -48,6 +49,7 @@ public class UserServlet extends HttpServlet {
         
         if(user.isAdmin())
         {
+            request.setAttribute("action", AdminAction.VIEW);
             response.sendRedirect("admin");
             return;
         }
