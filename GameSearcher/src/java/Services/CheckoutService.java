@@ -29,16 +29,21 @@ public class CheckoutService {
         if (!doesUserHaveValidCreditcard()) {
             return new CheckoutResult("Invalid credit card information");
         }
-
+        
+        int counter = 0;
         for (CartEntry entry : cart.getEntries()) {
             OrderGateway new_order = new OrderGateway(entry);
             new_order.Insert();
+            
+            counter++;
         }
-
-        MailMachine mailer = MailMachine.getInstance();
-        mailer.sendMessage(cart.getUser_email(), "Your purchase receipt", "this is the singleton test =)");
-
+        
         CheckoutResult result = new CheckoutResult(cart.getEntries(), 0.0);
+        
+        MailMachine mailer = MailMachine.getInstance();
+        mailer.sendMessage(cart.getUser_email(), "Your purchase receipt", "You bought " + String.valueOf(counter) + " games. Thank you very much for shopping at our E-Store! =)\n"
+                + "Your order will arrive on: " + result.getEta().toString() + ".\n");
+        
         cart.clearCart();
         return result;
     }

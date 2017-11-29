@@ -37,7 +37,7 @@ public class UserUpdateService {
         String cvv = request.getParameter("cvv");
         String exp = request.getParameter("exp");
 
-        User user = new User(uid, "", first, last, email, addr1, addr2, city, state, zip, country, CreditCardType.MASTERCARD, number, cvv, country, "");
+        User user = new User(uid, "", first, last, email, addr1, addr2, city, state, zip, country, CreditCardType.MASTERCARD, number, cvv, exp, "");
         UserGateway user_gateway = new UserGateway(user);
 
         return user_gateway.Update();

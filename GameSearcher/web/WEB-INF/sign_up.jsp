@@ -128,7 +128,7 @@
                         <div class="form-group">
                             <label class="col-xs-2 control-label">Expiration</label>
                             <div class="col-xs-10">
-                                <input type="date" name="exp" min="2017-18-02" class="form-control"/>
+                                <input type="text" name="exp" class="form-control"/>
                             </div>
                         </div>
                         

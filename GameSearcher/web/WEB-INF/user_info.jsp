@@ -122,7 +122,7 @@
                         <div class="form-group">
                             <label class="col-xs-2 control-label">Expiration</label>
                             <div class="col-xs-10">
-                                <input type="date" name="exp" min="2017-18-02" value="2019-18-07" class="form-control"<%=status.toHTML()%>/>
+                                <input type="text" name="exp" value="<%=user.getCredit_card_expiry()%>" class="form-control"<%=status.toHTML()%>/>
                             </div>
                         </div>
                             <%=button.toHTML()%>

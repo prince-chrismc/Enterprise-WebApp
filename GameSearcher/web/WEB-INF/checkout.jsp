@@ -21,7 +21,18 @@
             CheckoutView checkout_view = (CheckoutView)request.getAttribute("checkout");
         %>
         <div class="container">
-            <%= checkout_view.toHTML() %>
+            
+            <div class="row">
+                <div class="col-xs-8">
+                    <%= checkout_view.toHTML() %>
+                </div>
+                <div class="col-xs-offset-2 col-xs-2">
+                    <form action="index.jsp" method="GET">
+                        <input type="submit" class="btn" value="Back" style="margin: 2em 1em;"/>
+                    </form>
+                </div>
+                <hr>
+            </div>
         </div>
     </body>
 </html>
