@@ -4,6 +4,7 @@
     Author     : cmcarthur
 --%>
 
+<%@page import="Views.UsersTableViewable"%>
 <%@page import="Views.OrderViewable"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.ArrayList"%>
@@ -25,6 +26,8 @@
             {
                 recent_orders_table += order.toHTML();
             }
+            UsersTableViewable locked = (UsersTableViewable)request.getAttribute("locked");
+            UsersTableViewable unlocked = (UsersTableViewable)request.getAttribute("unlocked");
         %>
         <div class="container">
             <div class="row">
@@ -40,20 +43,30 @@
             <hr>
             <div class="row">
                 <div class="col-xs-8">
-                    <h3>Latest Orders</h3>
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Email</th>
-                                <th>Game Name</th>
-                                <th>Quantity</th>
-                                <th>Purchased On</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <%= recent_orders_table%>
-                        </tbody>
-                    </table>
+                    <div class="row">
+                        <h3>Latest Orders</h3>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Email</th>
+                                    <th>Game Name</th>
+                                    <th>Quantity</th>
+                                    <th>Purchased On</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%= recent_orders_table%>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <h3>Locked User Accounts</h3>
+                        <%= locked.toHTML()%>
+                    </div>
+                    <div class="row">
+                        <h3>Unlocked User Accounts</h3>
+                        <%= unlocked.toHTML()%>
+                    </div>
                 </div>
             </div>
         </div>

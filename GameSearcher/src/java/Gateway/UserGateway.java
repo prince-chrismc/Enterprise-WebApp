@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -93,6 +94,74 @@ public class UserGateway {
             System.out.println("Error: " + e.getMessage());
         }
         return user;
+    }
+    
+    public static ArrayList<User> FindAllLockedUsersBasicInfo() {
+        ArrayList<User> users = new ArrayList<>();
+        try {
+            Connection conn = DatabaseConnection.getConnection();
+            Statement statement = conn.createStatement();
+
+            ResultSet results = statement.executeQuery("SELECT * FROM gamesearcher.users WHERE users.userIsLocked = true;");
+
+            while (results.next()) {
+                User user = new User();
+
+                user.setUser_id(results.getInt("userID"));
+                user.setPassword(results.getString("userPassword"));
+                user.setFirst_name(results.getString("userFirstName"));
+                user.setLast_name(results.getString("userLastName"));
+                user.setEmail(results.getString("userEmail"));
+                
+                user.setIsAdmin(results.getBoolean("userIsAdmin"));
+                user.setIsLocked(results.getBoolean("userIsLocked"));
+                
+                users.add(user);
+            }
+
+            statement.close();
+            results.close();
+
+        } catch (SQLException e) {
+            System.out.println("SQL Error: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        return users;
+    }
+    
+        public static ArrayList<User> FindAllUnlockedUsersBasicInfo() {
+        ArrayList<User> users = new ArrayList<>();
+        try {
+            Connection conn = DatabaseConnection.getConnection();
+            Statement statement = conn.createStatement();
+
+            ResultSet results = statement.executeQuery("SELECT * FROM gamesearcher.users WHERE users.userIsLocked = false;");
+
+            while (results.next()) {
+                User user = new User();
+
+                user.setUser_id(results.getInt("userID"));
+                user.setPassword(results.getString("userPassword"));
+                user.setFirst_name(results.getString("userFirstName"));
+                user.setLast_name(results.getString("userLastName"));
+                user.setEmail(results.getString("userEmail"));
+                
+                user.setIsAdmin(results.getBoolean("userIsAdmin"));
+                user.setIsLocked(results.getBoolean("userIsLocked"));
+                
+                users.add(user);
+            }
+
+            statement.close();
+            results.close();
+
+        } catch (SQLException e) {
+            System.out.println("SQL Error: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        return users;
     }
 
     // Beginning of non static section

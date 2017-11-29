@@ -23,7 +23,7 @@ public class OrderViewable implements WebViewable{
     @Override
     public String toHTML() {
         Game game = GameGateway.FindGameByID(order.getGameID());
-        return "<tr'><td>" + order.getUser_email() + "<td>" + game.getName() + 
+        return "<tr><td>" + order.getUser_email() + "<td>" + game.getName() + 
                "</td><td>" + String.valueOf(order.getQty()) + "</td><td>" + order.getPurchaseDate() + "</td></tr>";
     }
     

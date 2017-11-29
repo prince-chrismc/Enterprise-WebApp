@@ -10,6 +10,7 @@ import Gateway.UserGateway;
 import Models.AdminAction;
 import Models.User;
 import Services.CookieHandler;
+import Views.UsersTableViewable;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -57,6 +58,8 @@ public class AdminServlet extends HttpServlet {
         {
             default:
                 request.setAttribute("orders", OrderGateway.GetMostRecentOrders());
+                request.setAttribute("locked", new UsersTableViewable(UserGateway.FindAllLockedUsersBasicInfo()));
+                request.setAttribute("unlocked", new UsersTableViewable(UserGateway.FindAllUnlockedUsersBasicInfo()));
                 break;
         }
         
