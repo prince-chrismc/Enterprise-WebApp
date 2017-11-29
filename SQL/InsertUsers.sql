@@ -1,5 +1,5 @@
-INSERT INTO gamesearcher.users(userPassword, userFirstName, userLastName, userEmail) VALUES
-('root', 'admin', 'root', 'admin@example.com');
+INSERT INTO gamesearcher.users(userPassword, userFirstName, userLastName, userEmail, userIsAdmin) VALUES
+('root', 'admin', 'root', 'admin@example.com', true);
 
 INSERT INTO gamesearcher.users
 (`userPassword`,`userFirstName`,`userLastName`,`userEmail`,

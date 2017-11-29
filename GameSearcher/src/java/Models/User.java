@@ -30,11 +30,14 @@ public class User {
     private String credit_card_expiry;
 
     private String last_login;
+    
+    private boolean isAdmin;
+    private boolean isLocked;
 
     public User() {
     }
 
-    public User(int user_id, String password, String first_name, String last_name, String email, String address1, String address2, String city, String state, String zip, String country, CreditCardType credit_card_type, String credit_card_number, String credit_card_cvv, String credit_card_expiry, String last_login) {
+    public User(int user_id, String password, String first_name, String last_name, String email, String address1, String address2, String city, String state, String zip, String country, CreditCardType credit_card_type, String credit_card_number, String credit_card_cvv, String credit_card_expiry, String last_login, boolean isAdmin, boolean isLocked) {
         this.user_id = user_id;
         this.password = password;
         this.first_name = first_name;
@@ -51,7 +54,10 @@ public class User {
         this.credit_card_cvv = credit_card_cvv;
         this.credit_card_expiry = credit_card_expiry;
         this.last_login = last_login;
+        this.isAdmin = isAdmin;
+        this.isLocked = isLocked;
     }
+
 
     /**
      * @return the user_id
@@ -276,4 +282,22 @@ public class User {
     public void setLast_login(String last_login) {
         this.last_login = last_login;
     }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public boolean isLocked() {
+        return isLocked;
+    }
+
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
+    public void setIsLocked(boolean isLocked) {
+        this.isLocked = isLocked;
+    }
+    
+    
 }

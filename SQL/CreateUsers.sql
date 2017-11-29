@@ -17,5 +17,7 @@ CREATE TABLE gamesearcher.USERS(
     userCreditCardCVV varchar(255),
     userCreditCardExpiry varchar(255),
     userLastLogin varchar(255),
+    userIsAdmin bool not null default false,
+    userIsLocked bool not null default false,    
 	primary key (userID)
 );
