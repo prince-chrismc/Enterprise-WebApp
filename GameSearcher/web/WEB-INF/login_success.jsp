@@ -21,8 +21,8 @@
     </head>
     <body>
         <%
-        User user = (User)request.getAttribute("user");
-        LoginTypeViewable status = new LoginTypeViewable((LoginType)request.getAttribute("type"));
+            User user = (User)request.getAttribute("user");
+            LoginTypeViewable status = new LoginTypeViewable((LoginType)request.getAttribute("type"));
         %>
         <div class="container">
             <div class="row">
@@ -41,7 +41,13 @@
                 <div class="col-xs-2">
                     <form action="user" method="post">
                         <input type="hidden" name="action" value="<%=UserAction.VIEW%>"/>
-                        <input type="submit" value="Your Info" class="btn btn-block"/>
+                        <input type="submit" value="View Your Info" class="btn btn-block"/>
+                    </form>
+                </div>
+                <div class="col-xs-2">
+                    <form action="user" method="post">
+                        <input type="hidden" name="action" value="<%=UserAction.EDIT%>"/>
+                        <input type="submit" value="Edit Your Info" class="btn btn-block"/>
                     </form>
                 </div>
             </div>

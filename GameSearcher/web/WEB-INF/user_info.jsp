@@ -4,6 +4,8 @@
     Author     : cmcarthur
 --%>
 
+<%@page import="Views.UserActionFeildStatus"%>
+<%@page import="Views.UserActionTitle"%>
 <%@page import="Models.User"%>
 <%@page import="Models.UserAction"%>
 <%@page import="Models.CreditCardType"%>
@@ -21,12 +23,14 @@
     <body>
         <%
             UserAction action = (UserAction)request.getAttribute("action");
+            UserActionTitle title = new UserActionTitle(action);
+            UserActionFeildStatus status = new UserActionFeildStatus(action);
             User user = (User)request.getAttribute("user");
         %>
         <div class="container">
             <div class="row">
                 <div class="col-xs-8">
-                    <h1>Fill in your information below!</h1>
+                    <h1><%=title.toHTML()%></h1>
                 </div>
                 <div class="col-xs-offset-2 col-xs-2">
                     <form action="index.jsp" method="GET">
@@ -37,63 +41,63 @@
             
             <hr>
             <div class="row">
-                <div class="col-xs-8">
+                <div class="col-xs-7">
                     <form id="signup" action="register" method="post" class="form-horizontal">
                         <h1>Basic Information...</h1>
                         <div class="form-group">
                             <label class="col-xs-2 control-label">First Name</label>
                             <div class="col-xs-10">
-                                <input id="first" type="text" name="first" value="<%=user.getFirst_name()%>" class="form-control"/>
+                                <input id="first" type="text" name="first" value="<%=user.getFirst_name()%>" class="form-control" <%=status.toHTML()%>/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-2 control-label">Last Name</label>
                             <div class="col-xs-10">
-                                <input id="last" type="text" name="last" value="<%=user.getLast_name()%>" class="form-control"/>
+                                <input id="last" type="text" name="last" value="<%=user.getLast_name()%>" class="form-control"<%=status.toHTML()%>/>
                             </div>
                         </div>                        
                         <h2>Additional Information...</h2>
                         <div class="form-group">
                             <label class="col-xs-2 control-label">Address Line 1</label>
                             <div class="col-xs-10">
-                                <input type="text" name="addr1" value="<%=user.getAddress1()%>" class="form-control"/>
+                                <input type="text" name="addr1" value="<%=user.getAddress1()%>" class="form-control"<%=status.toHTML()%>/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-2 control-label">Address Line 2</label>
                             <div class="col-xs-10">
-                                <input type="text" name="addr2" value="<%=user.getAddress2()%>" class="form-control"/>
+                                <input type="text" name="addr2" value="<%=user.getAddress2()%>" class="form-control"<%=status.toHTML()%>/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-2 control-label">City</label>
                             <div class="col-xs-10">
-                                <input type="text" name="city" value="<%=user.getCity()%>" class="form-control"/>
+                                <input type="text" name="city" value="<%=user.getCity()%>" class="form-control"<%=status.toHTML()%>/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-2 control-label">State</label>
                             <div class="col-xs-10">
-                                <input type="text" name="state" value="<%=user.getState()%>" class="form-control"/>
+                                <input type="text" name="state" value="<%=user.getState()%>" class="form-control"<%=status.toHTML()%>/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-2 control-label">Zipcode</label>
                             <div class="col-xs-10">
-                                <input type="text" name="zip" value="<%=user.getZip()%>" class="form-control"/>
+                                <input type="text" name="zip" value="<%=user.getZip()%>" class="form-control"<%=status.toHTML()%>/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-2 control-label">Country</label>
                             <div class="col-xs-10">
-                                <input type="text" name="country" value="<%=user.getCountry()%>" class="form-control"/>
+                                <input type="text" name="country" value="<%=user.getCountry()%>" class="form-control"<%=status.toHTML()%>/>
                             </div>
                         </div>
                         <h2>Card Information...</h2>
                         <div class="form-group">
                             <label class="col-xs-2 control-label">Card Type</label>
                             <div class="col-xs-10">
-                                <select name="type" class="form-control">
+                                <select name="type" class="form-control" <%=status.toHTML()%>>
                                     <option><%=CreditCardType.VISA%></option>
                                     <!--<option>MASTERCARD</option>-->
                                 </select>
@@ -102,23 +106,26 @@
                         <div class="form-group">
                             <label class="col-xs-2 control-label">Card Number</label>
                             <div class="col-xs-10">
-                                <input type="number" name="number" value="<%=user.getCredit_card_number()%>" class="form-control"/>
+                                <input type="number" name="number" value="<%=user.getCredit_card_number()%>" class="form-control"<%=status.toHTML()%>/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-2 control-label">CVV</label>
                             <div class="col-xs-10">
-                                <input type="number" name="cvv" value="<%=user.getCredit_card_cvv()%>" class="form-control"/>
+                                <input type="number" name="cvv" value="<%=user.getCredit_card_cvv()%>" class="form-control"<%=status.toHTML()%>/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-2 control-label">Expiration</label>
                             <div class="col-xs-10">
-                                <input type="date" name="exp" min="2017-18-02" class="form-control"/>
+                                <input type="date" name="exp" min="2017-18-02" value="2019-18-07" class="form-control"<%=status.toHTML()%>/>
                             </div>
                         </div>
                     </form>
                     <br><br>
+                </div>
+                <div class="col-xs-offset-1 col-xs-4">
+                    <h2>Recent Transactions...</h2>
                 </div>
             </div>
         </div>
