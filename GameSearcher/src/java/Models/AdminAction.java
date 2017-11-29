@@ -10,5 +10,6 @@ package Models;
  * @author cmcarthur
  */
 public enum AdminAction {
-    VIEW;
+    VIEW,
+    EDIT;
 }

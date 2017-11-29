@@ -50,7 +50,8 @@ public class UserServlet extends HttpServlet {
         if(user.isAdmin())
         {
             request.setAttribute("action", AdminAction.VIEW);
-            response.sendRedirect("admin");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("admin");
+            requestDispatcher.forward(request, response);
             return;
         }
 

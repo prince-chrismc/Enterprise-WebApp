@@ -52,7 +52,6 @@
                             <%= results_table%>
                         </tbody>
                     </table>
-                    
                 </div>
             </div>
         </div>

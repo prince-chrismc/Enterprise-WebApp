@@ -5,12 +5,12 @@
  */
 package Controllers;
 
+import Gateway.OrderGateway;
 import Gateway.UserGateway;
+import Models.AdminAction;
 import Models.User;
-import Models.UserAction;
 import Services.CookieHandler;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -46,12 +46,20 @@ public class AdminServlet extends HttpServlet {
         
         if(!user.isAdmin())
         {
-            request.setAttribute("action", UserAction.VIEW);
-            response.sendRedirect("user");
+            response.sendRedirect("");
             return;
         }
         
+        AdminAction action = AdminAction.valueOf(request.getParameter("action"));
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/admin_panel.jsp");
+        
+        switch(action)
+        {
+            default:
+                request.setAttribute("orders", OrderGateway.GetMostRecentOrders());
+                break;
+        }
+        
         request.setAttribute("user", user);
         requestDispatcher.forward(request, response);        
     }
