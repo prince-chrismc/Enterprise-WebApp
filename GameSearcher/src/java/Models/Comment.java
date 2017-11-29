@@ -10,10 +10,11 @@ package Models;
  * @author cmcarthur
  */
 public class Comment {
+
     private String comment_id;
     private String user_id;
     private String game_id;
-    
+
     private String data;
     private String details;
     private String rating;

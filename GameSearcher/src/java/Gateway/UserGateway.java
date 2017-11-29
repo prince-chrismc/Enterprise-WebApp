@@ -148,7 +148,7 @@ public class UserGateway {
         try {
             Connection conn = DatabaseConnection.getConnection();
             Statement statement = conn.createStatement();
-                        
+
             int retval = statement.executeUpdate("UPDATE gamesearcher.users"
                     + " SET "
                     + "userFirstName = '" + user.getFirst_name() + "',"

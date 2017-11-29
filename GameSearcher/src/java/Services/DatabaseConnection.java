@@ -15,11 +15,12 @@ import java.sql.SQLException;
  * @inspiration https://stackoverflow.com/a/10916633/8480874
  */
 public class DatabaseConnection {
-    private static final String urlstring = "jdbc:mysql://localhost:3306/gamesearcher";    
-    private static final String driverName = "com.mysql.jdbc.Driver";   
-    private static final String username = "root";   
+
+    private static final String urlstring = "jdbc:mysql://localhost:3306/gamesearcher";
+    private static final String driverName = "com.mysql.jdbc.Driver";
+    private static final String username = "root";
     private static final String password = "Acertuba";
-    
+
     private static Connection con;
 
     public static Connection getConnection() {
@@ -29,11 +30,11 @@ public class DatabaseConnection {
                 con = DriverManager.getConnection(urlstring, username, password);
             } catch (SQLException ex) {
                 // log an exception. fro example:
-                System.out.println("Failed to create the database connection."); 
+                System.out.println("Failed to create the database connection.");
             }
         } catch (ClassNotFoundException ex) {
             // log an exception. for example:
-            System.out.println("Driver not found."); 
+            System.out.println("Driver not found.");
         }
         return con;
     }

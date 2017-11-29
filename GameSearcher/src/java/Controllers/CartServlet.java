@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "CartServlet", urlPatterns = {"/cart"})
 public class CartServlet extends HttpServlet {
+
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -36,14 +37,13 @@ public class CartServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         ShoppingCart cart = new ShoppingCart(request.getParameter("user_email"));
-        
+
         CartAction action = CartAction.valueOf(request.getParameter("action")); // https://stackoverflow.com/a/7056979/8480874
         boolean retval = false;
-        
-        switch(action)
-        {
+
+        switch (action) {
             case ADD:
                 retval = cart.addToCart(Integer.parseInt(request.getParameter("game_id")), Integer.parseInt(request.getParameter("qty")));
                 break;
@@ -62,15 +62,15 @@ public class CartServlet extends HttpServlet {
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/checkout.jsp");
                 requestDispatcher.forward(request, response);
                 return;
-            default: break;
+            default:
+                break;
         }
-        
-        if(retval) {
+
+        if (retval) {
             request.setAttribute("cart", new ShoppingCartView(cart));
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/cart.jsp");
             requestDispatcher.forward(request, response);
-        }
-        else {
+        } else {
             response.sendRedirect("");
         }
     }

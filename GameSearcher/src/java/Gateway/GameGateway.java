@@ -20,24 +20,25 @@ import java.sql.Statement;
  * @author cmcarthur
  */
 public class GameGateway {
+
     private Game game;
-    
+
     static public GameDetailsViewable FindGameViewByID(int id_criteria) {
         return new GameDetailsViewable(FindGameByID(id_criteria));
     }
-    
+
     static public Game FindGameByID(int id_criteria) {
-               
+
         try {
             Connection conn = DatabaseConnection.getConnection();
             Statement statement = conn.createStatement();
-            
+
             ResultSet results = statement.executeQuery("SELECT * FROM gamesearcher.games WHERE gameID = " + id_criteria + ";");
-            
+
             Game game = null;
-            if(results.first()) {
+            if (results.first()) {
                 game = new Game();
-                
+
                 game.setGame_id(results.getInt("gameID"));
                 game.setName(results.getString("gameName"));
                 game.setDescription(results.getString("gameDesc"));
@@ -57,25 +58,24 @@ public class GameGateway {
                 game.setPrice(results.getDouble("gamePrice"));
                 game.setDiscount(results.getDouble("gameDiscount"));
             }
-            
+
             statement.close();
             results.close();
-            
+
             return game;
-            
+
         } catch (SQLException e) {
             System.out.println("SQL Error: " + e.getMessage());
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
         return null;
     }
-    
+
     public Game getGame() {
         return game;
     }
-    
+
     public GameDetailsViewable getViewableResults() {
         return new GameDetailsViewable(game);
     }

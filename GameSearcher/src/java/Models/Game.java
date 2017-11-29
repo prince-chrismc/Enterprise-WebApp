@@ -13,6 +13,7 @@ import java.sql.Date;
  * @author cmcarthur
  */
 public class Game {
+
     private int game_id;
     private String name;
     private String description;
@@ -34,7 +35,7 @@ public class Game {
         consoles = new Console[0];
         genres = new Genre[0];
     }
-    
+
     /**
      * @return the developer
      */
@@ -195,7 +196,7 @@ public class Game {
     public Console[] getConsoles() {
         return consoles;
     }
-    
+
     /**
      * @return the consoles as string
      */

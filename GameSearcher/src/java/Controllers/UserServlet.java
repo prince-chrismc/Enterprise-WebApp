@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "UserServlet", urlPatterns = {"/user"})
 public class UserServlet extends HttpServlet {
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -35,18 +36,17 @@ public class UserServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {        
-        
+            throws ServletException, IOException {
+
         UserAction action = UserAction.valueOf(request.getParameter("action"));
-        
+
         User user = UserGateway.FindUserCompleteByEmail(CookieHandler.GetUserEmail(request));
-        if(user == null) {
+        if (user == null) {
             response.sendRedirect("");
         }
-        
+
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/user_info.jsp");
-        switch(action)
-        {
+        switch (action) {
             case VIEW:
                 request.setAttribute("action", UserAction.VIEW);
                 break;
@@ -56,7 +56,7 @@ public class UserServlet extends HttpServlet {
             case UPDATE:
                 // TO DO
                 UserUpdateService updater = new UserUpdateService(request);
-                if(updater.UpdateAllFeilds()) {
+                if (updater.UpdateAllFeilds()) {
                     request.setAttribute("action", UserAction.VIEW);
                     user = UserGateway.FindUserCompleteByEmail(CookieHandler.GetUserEmail(request));
                     break;

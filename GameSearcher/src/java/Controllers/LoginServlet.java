@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  * @author cmcarthur
  */
 package Controllers;
-
 
 import Models.LoginType;
 import java.io.IOException;
@@ -24,27 +22,23 @@ import Services.CookieHandler;
 import Services.LoginService;
 
 @WebServlet("/login")
-public class LoginServlet extends HttpServlet 
-{
+public class LoginServlet extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
         LoginService loginService = new LoginService(email);
-        if(loginService.isValidUser(password))
-        {
+        if (loginService.isValidUser(password)) {
             User user = loginService.getUser();
             request.setAttribute("user", user);
             request.setAttribute("type", LoginType.LOGIN);
             CookieHandler.SetNewCookie(response, user.getEmail());
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/login_success.jsp");
             requestDispatcher.forward(request, response);
-        }
-        else
-        {
+        } else {
             response.sendRedirect("");
         }
     }

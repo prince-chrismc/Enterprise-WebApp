@@ -13,22 +13,23 @@ import Models.User;
  * @author cmcarthur
  */
 public class LoginService {
+
     private User user;
 
-    public LoginService(String email){
-        user = UserGateway.FindUserBasicInfoByEmail(email);        
+    public LoginService(String email) {
+        user = UserGateway.FindUserBasicInfoByEmail(email);
     }
 
     public boolean isValidUser(String password) {
-        if(user != null) {
-            if(user.getPassword().equals(password)) {
+        if (user != null) {
+            if (user.getPassword().equals(password)) {
                 return true;
             }
         }
         return false;
     }
 
-    public User getUser(){
+    public User getUser() {
         return user;
     }
 }

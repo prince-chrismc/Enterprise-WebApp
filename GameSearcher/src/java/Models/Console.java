@@ -17,20 +17,20 @@ public enum Console {
     XBOX("XBox"),
     XBOX360("XBox 360"),
     PC("PC");
-    
+
     private final String console;
-        
+
     Console(String console) {
         this.console = console;
     }
-    
+
     public String getConsole() {
         return this.console;
     }
-    
+
     /* Iteration Eample
         for (Console console : Console.values()) {
             System.out.println(console);
         }
-    */
+     */
 }

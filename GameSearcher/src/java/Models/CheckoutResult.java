@@ -14,11 +14,12 @@ import java.util.Date;
  * @author cmcarthur
  */
 public class CheckoutResult {
+
     public enum Outcome {
         SUCCESS,
         ERROR;
     }
-    
+
     private final Outcome result;
     private final String desc;
     private final ArrayList<CartEntry> entries;
@@ -33,16 +34,16 @@ public class CheckoutResult {
         final_price = 0.0;
         eta = null;
     }
-    
+
     // When successful
     public CheckoutResult(ArrayList<CartEntry> entries, double final_price) {
         result = Outcome.SUCCESS;
         desc = "Checkout Successful!";
         this.entries = entries;
         this.final_price = final_price;
-        eta = new Date(new Date().getTime() + 5*(1000*60*60*24));
-    }    
-    
+        eta = new Date(new Date().getTime() + 5 * (1000 * 60 * 60 * 24));
+    }
+
     public boolean isSuccess() {
         return result == Outcome.SUCCESS;
     }
@@ -58,5 +59,5 @@ public class CheckoutResult {
     public double getFinal_price() {
         return final_price;
     }
-    
+
 }

@@ -25,19 +25,17 @@ public class GameServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         int id = Integer.parseInt(request.getParameter("id"));
-        
+
         GameDetailsViewable game = GameGateway.FindGameViewByID(id);
-        
-        if(game != null) {
+
+        if (game != null) {
             request.setAttribute("game", game);
 
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/game_info.jsp");
             requestDispatcher.forward(request, response);
-        }
-        else
-        {
+        } else {
             response.sendRedirect("");
         }
     }
@@ -51,5 +49,5 @@ public class GameServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }
-    
+
 }

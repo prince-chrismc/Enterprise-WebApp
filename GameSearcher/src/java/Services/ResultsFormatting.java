@@ -14,13 +14,14 @@ import java.util.ArrayList;
  * @author cmcarthur
  */
 public class ResultsFormatting {
+
     static public ArrayList<GameResultViewable> CreateViewableGameResults(ArrayList<Game> games) {
         ArrayList<GameResultViewable> gameViews = new ArrayList<GameResultViewable>();
-        
+
         games.forEach((game) -> {
             gameViews.add(new GameResultViewable(game));
         });
-        
+
         return gameViews;
     }
 }

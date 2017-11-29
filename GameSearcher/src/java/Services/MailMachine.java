@@ -19,13 +19,14 @@ import javax.mail.internet.MimeMessage;
  * @author cmcarthur
  */
 public class MailMachine {
+
     private static final MailMachine mailer = new MailMachine();
-    
+
     private final String username = "soen387test2@gmail.com";
     private final String password = "testing1";
     private Properties props;
     private Session session;
-    
+
     private MailMachine() {
         props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -59,8 +60,8 @@ public class MailMachine {
             throw new RuntimeException(e);
         }
     }
-    
-    public static MailMachine getInstance() { 
-        return mailer; 
+
+    public static MailMachine getInstance() {
+        return mailer;
     }
 }

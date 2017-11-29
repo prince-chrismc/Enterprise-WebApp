@@ -10,31 +10,30 @@ package Models;
  * @author cmcarthur
  */
 public class User {
+
     private int user_id;
     private String password;
     private String first_name;
     private String last_name;
     private String email;
-    
+
     private String address1;
     private String address2;
     private String city;
     private String state;
     private String zip;
     private String country;
-    
+
     private CreditCardType credit_card_type;
     private String credit_card_number;
     private String credit_card_cvv;
     private String credit_card_expiry;
-    
+
     private String last_login;
 
     public User() {
     }
 
-    
-    
     public User(int user_id, String password, String first_name, String last_name, String email, String address1, String address2, String city, String state, String zip, String country, CreditCardType credit_card_type, String credit_card_number, String credit_card_cvv, String credit_card_expiry, String last_login) {
         this.user_id = user_id;
         this.password = password;
@@ -54,8 +53,6 @@ public class User {
         this.last_login = last_login;
     }
 
-    
-    
     /**
      * @return the user_id
      */

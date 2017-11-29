@@ -22,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author cmcarthur
  */
 @WebServlet(name = "SearchServlet", urlPatterns = {"/search"})
-public class SearchServlet extends HttpServlet
-{
+public class SearchServlet extends HttpServlet {
+
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -35,21 +35,18 @@ public class SearchServlet extends HttpServlet
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         SearchCriteria criteria = SearchCriteria.valueOf(request.getParameter("criteria"));
         String criteria_val = request.getParameter("criteria_val");
-        
+
         SearchByCriteriaService searcher = new SearchByCriteriaService(criteria, criteria_val);
         ArrayList<GameResultViewable> games = searcher.getViewableResults();
-        
-        if(games.size() > 0)
-        {
+
+        if (games.size() > 0) {
             request.setAttribute("games", games);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/results.jsp");
             requestDispatcher.forward(request, response);
-        }
-        else
-        {
+        } else {
             response.sendRedirect("");
         }
     }
