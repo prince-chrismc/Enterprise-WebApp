@@ -10,6 +10,7 @@ import Models.LoginType;
 import Models.User;
 import Models.UserAction;
 import Services.CookieHandler;
+import Services.UserUpdateService;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -54,8 +55,13 @@ public class UserServlet extends HttpServlet {
                 break;
             case UPDATE:
                 // TO DO
-                // UserUpdate Service (request)
-                request.setAttribute("action", UserAction.VIEW);
+                UserUpdateService updater = new UserUpdateService(request);
+                if(updater.UpdateAllFeilds()) {
+                    request.setAttribute("action", UserAction.VIEW);
+                    user = UserGateway.FindUserCompleteByEmail(CookieHandler.GetUserEmail(request));
+                    break;
+                }
+                request.setAttribute("action", UserAction.EDIT);
                 break;
             default:
                 response.sendRedirect("");

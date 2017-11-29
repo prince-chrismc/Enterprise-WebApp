@@ -18,6 +18,7 @@ import java.sql.Statement;
  * @author cmcarthur
  */
 public class UserGateway {
+
     public static User FindUserBasicInfoByEmail(String email) {
         User user = null;
         try {
@@ -46,7 +47,7 @@ public class UserGateway {
         }
         return user;
     }
-    
+
     public static User FindUserCompleteByEmail(String email) {
         User user = null;
         try {
@@ -63,14 +64,14 @@ public class UserGateway {
                 user.setFirst_name(results.getString("userFirstName"));
                 user.setLast_name(results.getString("userLastName"));
                 user.setEmail(email);
-                
+
                 user.setAddress1(results.getString("userAddress1"));
                 user.setAddress2(results.getString("userAddress2"));
                 user.setCity(results.getString("userCity"));
                 user.setState(results.getString("userState"));
                 user.setZip(results.getString("userZip"));
                 user.setCountry(results.getString("userCountry"));
-                
+
                 user.setCredit_card_type(CreditCardType.VISA);
                 user.setCredit_card_number(results.getString("userCreditCardNumber"));
                 user.setCredit_card_cvv(results.getString("userCreditCardCVV"));
@@ -87,69 +88,97 @@ public class UserGateway {
         }
         return user;
     }
-    
+
     // Beginning of non static section
-    
     private User user;
+
     public UserGateway(User user) {
         this.user = user;
     }
-    
+
     public boolean InsertBasic() {
-        try
-        {
+        try {
             Connection conn = DatabaseConnection.getConnection();
             Statement statement = conn.createStatement();
-            
-            int retval = statement.executeUpdate("INSERT INTO gamesearcher.users(userPassword, userFirstName, userLastName, userEmail) VALUES" +
-            " ('" + user.getPassword() + "', '" + user.getFirst_name() + "', '" + user.getLast_name() + "', '" + user.getEmail() +"');");
-            
-            if(retval == 1) { // if only 1 raw was affected
-                if(FindUserBasicInfoByEmail(user.getEmail()) != null) { // make sure its really there and valid
+
+            int retval = statement.executeUpdate("INSERT INTO gamesearcher.users(userPassword, userFirstName, userLastName, userEmail) VALUES"
+                    + " ('" + user.getPassword() + "', '" + user.getFirst_name() + "', '" + user.getLast_name() + "', '" + user.getEmail() + "');");
+
+            if (retval == 1) { // if only 1 raw was affected
+                if (FindUserBasicInfoByEmail(user.getEmail()) != null) { // make sure its really there and valid
                     return true;
                 }
-            }            
-                       
+            }
+
             statement.close();
-        }
-        catch(SQLException e) {
+        } catch (SQLException e) {
             System.out.println("SQL Error: " + e.getMessage()); // https://docs.oracle.com/javase/7/docs/api/java/sql/Statement.html#executeQuery(java.lang.String)
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
         return false;
     }
-    
+
     public boolean InsertComplete() {
-        try
-        {
+        try {
             Connection conn = DatabaseConnection.getConnection();
             Statement statement = conn.createStatement();
-            
+
             int retval = statement.executeUpdate("INSERT INTO gamesearcher.users(userPassword,userFirstName,userLastName,userEmail,userAddress1,userAddress2,userCity,userState,userZip,userCountry,userCreditCardType,userCreditCardNumber,userCreditCardCVV,userCreditCardExpiry)VALUES"
-                +"('" + user.getPassword() + "', '" + user.getFirst_name() + "', '" + user.getLast_name() + "', '" + user.getEmail() + "', '" + 
-                user.getAddress1()  + "', '" + user.getAddress2() + "', '" + user.getCity() + "', '" + user.getState() + "', '" +  user.getZip() + "', '" + user.getCountry() + "', '" + 
-                user.getCredit_card_type() + "', '" + user.getCredit_card_number() + "', '" + user.getCredit_card_cvv() + "', '" + user.getCredit_card_expiry() +"');");
-            
-            if(retval == 1) { // if only 1 raw was affected
-                if(FindUserBasicInfoByEmail(user.getEmail()) != null) { // make sure its really there and valid
+                    + "('" + user.getPassword() + "', '" + user.getFirst_name() + "', '" + user.getLast_name() + "', '" + user.getEmail() + "', '"
+                    + user.getAddress1() + "', '" + user.getAddress2() + "', '" + user.getCity() + "', '" + user.getState() + "', '" + user.getZip() + "', '" + user.getCountry() + "', '"
+                    + user.getCredit_card_type() + "', '" + user.getCredit_card_number() + "', '" + user.getCredit_card_cvv() + "', '" + user.getCredit_card_expiry() + "');");
+
+            if (retval == 1) { // if only 1 raw was affected
+                if (FindUserBasicInfoByEmail(user.getEmail()) != null) { // make sure its really there and valid
                     return true;
                 }
-            }            
-                       
+            }
+
             statement.close();
-        }
-        catch(SQLException e) {
+        } catch (SQLException e) {
             System.out.println("SQL Error: " + e.getMessage()); // https://docs.oracle.com/javase/7/docs/api/java/sql/Statement.html#executeQuery(java.lang.String)
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
+        return false;
+    }
+
+    public boolean Update() {
+        try {
+            Connection conn = DatabaseConnection.getConnection();
+            Statement statement = conn.createStatement();
+                        
+            int retval = statement.executeUpdate("UPDATE gamesearcher.users"
+                    + " SET "
+                    + "userFirstName = '" + user.getFirst_name() + "',"
+                    + "userLastName = '" + user.getLast_name() + "',"
+                    + "userAddress1 = '" + user.getAddress1() + "',"
+                    + "userAddress2 = '" + user.getAddress2() + "',"
+                    + "userCity = '" + user.getCity() + "',"
+                    + "userState = '" + user.getState() + "',"
+                    + "userZip = '" + user.getZip() + "',"
+                    + "userCountry = '" + user.getCountry() + "',"
+                    + "userCreditCardType = 'VISA',"
+                    + "userCreditCardNumber = '" + user.getCredit_card_number() + "',"
+                    + "userCreditCardCVV = '" + user.getCredit_card_cvv() + "',"
+                    + "userCreditCardExpiry = '" + user.getCredit_card_expiry() + "' "
+                    + "WHERE userID = " + String.valueOf(user.getUser_id()) + " AND "
+                    + "userEmail = '" + user.getEmail() + "';"
+            );
+
+            statement.close();
+
+            if (retval == 1) { // if only 1 row was affected
+                return true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("SQL Error: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
         return false;
     }
 }
-
-
-
-

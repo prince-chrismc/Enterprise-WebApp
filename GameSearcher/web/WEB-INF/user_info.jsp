@@ -40,11 +40,12 @@
                     </form>
                 </div>
             </div>
-            
             <hr>
             <div class="row">
                 <div class="col-xs-7">
                     <form id="user" action="user" method="post" class="form-horizontal">
+                        <input type="hidden" name="uid" value="<%=String.valueOf(user.getUser_id())%>"/>
+                        <input type="hidden" name="email" value="<%=user.getEmail()%>"/>
                         <h1>Basic Information...</h1>
                         <div class="form-group">
                             <label class="col-xs-2 control-label">First Name</label>
