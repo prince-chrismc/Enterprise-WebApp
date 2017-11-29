@@ -4,6 +4,7 @@
     Author     : cmcarthur
 --%>
 
+<%@page import="Models.UserAction"%>
 <%@page import="Models.RegistrationAction"%>
 <%@page import="Services.CookieHandler"%>
 <%@page import="Models.CartAction"%>
@@ -135,17 +136,32 @@
                         
                 <div id="active_user" class="col-xs-offset-2 col-xs-4">
                     <div class="row">
-                        <h2>Logout...</h2>
-                        <form id="logout" action="index.jsp" method="post" class="form-horizontal">
-                            <input type="submit" value="Logout" class="btn btn-block"/>
-                        </form>
-                    </div>
-                    <div class="row">
                         <h2>View Cart...</h2>
                         <form action="cart" method="post" class="form-horizontal">
                             <input type='hidden' name='user_email' value="<%= CookieHandler.GetUserEmail(request) %>"/>
                             <input type="hidden" name="action" value="<%= CartAction.VIEW %>"/>
                             <input type="submit" value="Checkout" class="btn btn-block"/>
+                        </form>
+                    </div>
+                    <div class="row">
+                        <h2>Your information...</h2>
+                        <div class="col-xs-12"><div class="row">
+                            <form action="user" method="post">
+                                <input type="hidden" name="action" value="<%=UserAction.VIEW%>"/>
+                                <input type="submit" value="View" class="btn btn-block"  style='margin-bottom: 1em;'/>
+                            </form>
+                        </div></div>
+                        <div class="col-xs-12"><div class="row">
+                            <form action="user" method="post">
+                                <input type="hidden" name="action" value="<%=UserAction.EDIT%>"/>
+                                <input type="submit" value="Edit" class="btn btn-block"/>
+                            </form>
+                        </div></div>
+                    </div>
+                    <div class="row">
+                        <h3>Logout...</h3>
+                        <form id="logout" action="index.jsp" method="post" class="form-horizontal">
+                            <input type="submit" value="Logout" class="btn btn-block"/>
                         </form>
                     </div>
                 </div>
