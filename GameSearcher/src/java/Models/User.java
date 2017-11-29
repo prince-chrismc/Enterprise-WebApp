@@ -111,7 +111,7 @@ public class User {
      * @param address1 the address1 to set
      */
     public void setAddress1(String address1) {
-        this.address1 = address1;
+        this.address1 = (address1 != null) ? address1 : "";
     }
 
     /**
@@ -125,7 +125,7 @@ public class User {
      * @param address2 the address2 to set
      */
     public void setAddress2(String address2) {
-        this.address2 = address2;
+        this.address2 = (address2 != null) ? address2 : "";
     }
 
     /**
@@ -139,7 +139,7 @@ public class User {
      * @param city the city to set
      */
     public void setCity(String city) {
-        this.city = city;
+        this.city = (city != null) ? city : "";
     }
 
     /**
@@ -153,7 +153,7 @@ public class User {
      * @param state the state to set
      */
     public void setState(String state) {
-        this.state = state;
+        this.state = (state != null) ? state : "";
     }
 
     /**
@@ -167,7 +167,7 @@ public class User {
      * @param zip the zip to set
      */
     public void setZip(String zip) {
-        this.zip = zip;
+        this.zip = (zip != null) ? zip : "";
     }
 
     /**
@@ -181,7 +181,7 @@ public class User {
      * @param country the country to set
      */
     public void setCountry(String country) {
-        this.country = country;
+        this.country = (country != null) ? country : "";
     }
 
     /**
