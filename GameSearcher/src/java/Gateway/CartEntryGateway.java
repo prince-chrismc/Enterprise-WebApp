@@ -118,8 +118,9 @@ public class CartEntryGateway {
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());
             }
+            return false;
         }
-        return false;
+        return true;
     }
 
     /// @return true if it exists
