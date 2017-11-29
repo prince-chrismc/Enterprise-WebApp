@@ -274,7 +274,7 @@ public class UserGateway {
                     + "userCreditCardNumber = '" + user.getCredit_card_number() + "',"
                     + "userCreditCardCVV = '" + user.getCredit_card_cvv() + "',"
                     + "userCreditCardExpiry = '" + user.getCredit_card_expiry() + "',"
-                    + "userIsLocked = " + (user.isLocked() ? "true" : "false") + ","
+                    + "userIsLocked = " + (user.isLocked() ? "true" : "false") + " "
                     + "WHERE userID = " + String.valueOf(user.getUser_id()) + " AND "
                     + "userEmail = '" + user.getEmail() + "';"
             );
