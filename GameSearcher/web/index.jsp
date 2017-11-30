@@ -4,10 +4,7 @@
     Author     : cmcarthur
 --%>
 
-<%@page import="Models.UserAction"%>
-<%@page import="Models.RegistrationAction"%>
-<%@page import="Services.CookieHandler"%>
-<%@page import="Models.CartAction"%>
+<%@page import="Views.LandingPageUserSection"%>
 <%@page import="Views.GenreOptionsViewable"%>
 <%@page import="Models.SearchCriteria"%>
 <%@page import="Views.ConsoleOptionsViewable"%>
@@ -34,7 +31,7 @@
             </div>
             
             <div class="row">
-                <div class="col-xs-6">
+                <div class="col-xs-8">
                     <h2>Search for a game...</h2>
                     <div class="row" style="margin: 1em 0em;">
                         <form action="search" method="post" class="form-horizontal">
@@ -58,8 +55,7 @@
                             </div>
                             <div class="col-xs-8">
                                 <select name="criteria_val" class="form-control">
-                                    <% ConsoleOptionsViewable console_options = new ConsoleOptionsViewable(); %>
-                                    <%= console_options.toHTML() %>
+                                    <%= new ConsoleOptionsViewable().toHTML() %>
                                 </select>
                             </div>
                             <div class="col-xs-2">
@@ -75,8 +71,7 @@
                             </div>
                             <div class="col-xs-8">
                                 <select name="criteria_val" class="form-control">
-                                    <% GenreOptionsViewable genre_options = new GenreOptionsViewable(); %>
-                                    <%= genre_options.toHTML() %>
+                                    <%= new GenreOptionsViewable().toHTML() %>
                                 </select>
                             </div>
                             <div class="col-xs-2">
@@ -106,87 +101,16 @@
                     </form>
                 </div>
                 
-                <div id="no_user" class="col-xs-offset-2 col-xs-4">
-                    <div id="login_box"class="row">
-                        <h2>Please login...</h2>
-                        <form id="login" action="login" method="post" class="form-horizontal">
-                            <div class="form-group">
-                                <label class="col-xs-2 control-label">Email</label>
-                                <div class="col-xs-10">
-                                    <input id="email" type="text" name="email" class="form-control"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-xs-2 control-label">Password</label>
-                                <div class="col-xs-10">
-                                    <input id="pw" type="password" name="password" class="form-control"/>
-                                </div>
-                            </div>
-                            <input type="submit" value="Login" class="btn btn-block"/>
-                        </form>
-                    </div>
-                    <div class="row">                
-                        <h2>...Or sign up</h2>
-                        <form action="register" method="post">
-                            <input type="hidden" name="action" value="<%= RegistrationAction.REDIRECT %>"/>
-                            <input type="submit" value="Register" class="btn  btn-block"/>
-                        </form>
-                    </div>
-                </div>
-                        
-                <div id="active_user" class="col-xs-offset-2 col-xs-4">
-                    <div class="row">
-                        <h2>View Cart...</h2>
-                        <form action="cart" method="post" class="form-horizontal">
-                            <input type='hidden' name='user_email' value="<%= CookieHandler.GetUserEmail(request) %>"/>
-                            <input type="hidden" name="action" value="<%= CartAction.VIEW %>"/>
-                            <input type="submit" value="Checkout" class="btn btn-block"/>
-                        </form>
-                    </div>
-                    <div class="row">
-                        <h2>Your information...</h2>
-                        <div class="col-xs-12"><div class="row">
-                            <form action="user" method="post">
-                                <input type="hidden" name="action" value="<%=UserAction.VIEW%>"/>
-                                <input type="submit" value="View" class="btn btn-block"  style='margin-bottom: 1em;'/>
-                            </form>
-                        </div></div>
-                        <div class="col-xs-12"><div class="row">
-                            <form action="user" method="post">
-                                <input type="hidden" name="action" value="<%=UserAction.EDIT%>"/>
-                                <input type="submit" value="Edit" class="btn btn-block"/>
-                            </form>
-                        </div></div>
-                    </div>
-                    <div class="row">
-                        <h3>Logout...</h3>
-                        <form id="logout" action="index.jsp" method="post" class="form-horizontal">
-                            <input type="submit" value="Logout" class="btn btn-block"/>
-                        </form>
-                    </div>
+                <div id="no_user" class="col-xs-offset-1 col-xs-3">
+                    <%= new LandingPageUserSection(request).toHTML() %>
                 </div>
             </div>
         </div>
         <script type="text/javascript">
-            $(document).ready(function(){
-                var email = getCookie('gamesearcher_user');
-                if(null == email)
-                {
-                    $('#no_user').show();
-                    $('#active_user').hide();
-                }
-                else
-                {
-                    $('#no_user').hide();
-                    $('#active_user').show();                
-                }
-            });
-
             $('form#logout').submit(function() {
                 delete_cookie('gamesearcher_user');
                 return true;
             });
-            
         </script>
         <script type="text/javascript">
             $('form#login').submit(function() {
