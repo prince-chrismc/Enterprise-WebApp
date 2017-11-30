@@ -14,6 +14,7 @@ import Models.User;
 import Services.CookieHandler;
 import Services.LockingService;
 import Services.Search.SearchByDiscountService;
+import Services.UpdateGameService;
 import Views.DiscountedGameResultView;
 import Views.UsersTableViewable;
 import java.io.IOException;
@@ -73,6 +74,17 @@ public class AdminServlet extends HttpServlet {
                 unlocker.Unlock();
                 break;
             case EDIT_GAME:
+                UpdateGameService updater = new UpdateGameService(request);
+                if(updater.UpdateAllFeilds()) {
+                    response.sendRedirect("game?id=" + request.getParameter("game_id"));
+                    return;
+                }
+                else {
+                    game_id = Integer.parseInt(request.getParameter("game_id"));
+                    requestDispatcher = request.getRequestDispatcher("WEB-INF/edit_game.jsp");
+                    request.setAttribute("game", GameGateway.FindGameByID(game_id));
+                    requestDispatcher.forward(request, response);
+                }
                 break;
             case GAME_DETAILS:
                 game_id = Integer.parseInt(request.getParameter("game_id"));
