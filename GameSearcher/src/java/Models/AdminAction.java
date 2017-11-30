@@ -13,5 +13,7 @@ public enum AdminAction {
     VIEW,
     EDIT,
     LOCK,
-    UNLOCK;
+    UNLOCK,
+    GAME_EDIT,
+    GAME_TOGGLE_DISC;
 }

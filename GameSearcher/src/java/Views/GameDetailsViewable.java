@@ -100,7 +100,7 @@ public class GameDetailsViewable implements WebViewable {
         if (game.getDiscount() == 0) {
             return "$" + String.valueOf(formatter.format(game.getPrice()));
         } else {
-            return "$" + String.valueOf(formatter.format(game.getPrice() - game.getDiscount())) + " <i>SAVINGS: $" + String.valueOf(formatter.format(game.getDiscount())) + "</i>";
+            return "$" + String.valueOf(formatter.format(game.getPrice() - Math.abs(game.getDiscount()))) + " <i>SAVINGS: $" + String.valueOf(formatter.format(Math.abs(game.getDiscount()))) + "</i>";
         }
     }
 }

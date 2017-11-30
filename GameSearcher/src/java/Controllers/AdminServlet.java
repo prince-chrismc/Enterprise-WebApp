@@ -8,11 +8,15 @@ package Controllers;
 import Gateway.OrderGateway;
 import Gateway.UserGateway;
 import Models.AdminAction;
+import Models.Game;
 import Models.User;
 import Services.CookieHandler;
 import Services.LockingService;
+import Services.Search.SearchByDiscountService;
+import Views.DiscountedGameResultView;
 import Views.UsersTableViewable;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -66,10 +70,22 @@ public class AdminServlet extends HttpServlet {
                 LockingService unlocker = new LockingService(email);
                 unlocker.Unlock();
                 break;
+                
+            case GAME_TOGGLE_DISC:
+                
+                break;
             default:
                 break;
         }
         
+        SearchByDiscountService by_discount = new SearchByDiscountService(true);
+        ArrayList<Game> games = by_discount.getGames();
+        ArrayList<DiscountedGameResultView> disc_views = new ArrayList<>();
+        for(Game game : games) {
+            disc_views.add(new DiscountedGameResultView(game));
+        }
+        
+        request.setAttribute("disc_views", disc_views);
         request.setAttribute("orders", OrderGateway.GetMostRecentOrders());
         request.setAttribute("locked", new UsersTableViewable(UserGateway.FindAllLockedUsersBasicInfo(), UsersTableViewable.TableType.UNLOCK));
         request.setAttribute("unlocked", new UsersTableViewable(UserGateway.FindAllUnlockedUsersBasicInfo(), UsersTableViewable.TableType.LOCK));

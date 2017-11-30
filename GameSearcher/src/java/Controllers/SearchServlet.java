@@ -6,6 +6,7 @@
 package Controllers;
 
 import Models.SearchCriteria;
+import Services.CookieHandler;
 import Services.Search.SearchByCriteriaService;
 import Views.GameResultViewable;
 import java.io.IOException;
@@ -39,7 +40,7 @@ public class SearchServlet extends HttpServlet {
         SearchCriteria criteria = SearchCriteria.valueOf(request.getParameter("criteria"));
         String criteria_val = request.getParameter("criteria_val");
 
-        SearchByCriteriaService searcher = new SearchByCriteriaService(criteria, criteria_val);
+        SearchByCriteriaService searcher = new SearchByCriteriaService(criteria, criteria_val, CookieHandler.IsUserSignedIn(request));
         ArrayList<GameResultViewable> games = searcher.getViewableResults();
 
         if (games.size() > 0) {
@@ -50,15 +51,4 @@ public class SearchServlet extends HttpServlet {
             response.sendRedirect("");
         }
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }
-
 }

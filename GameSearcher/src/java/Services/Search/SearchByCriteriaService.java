@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class SearchByCriteriaService {
     private final ArrayList<Game> games;
     
-    public SearchByCriteriaService(SearchCriteria criteria, String criteria_val) {
+    public SearchByCriteriaService(SearchCriteria criteria, String criteria_val, boolean signed_in) {
         if(null == criteria) criteria = SearchCriteria.INVALID;
         switch(criteria) {
             case NAME: 
@@ -32,7 +32,7 @@ public class SearchByCriteriaService {
                 break;
                 
             case DISCOUNT:
-                SearchByDiscountService by_discount = new SearchByDiscountService();
+                SearchByDiscountService by_discount = new SearchByDiscountService(signed_in);
                 games = by_discount.getGames();
                 break;
             case GENRE:

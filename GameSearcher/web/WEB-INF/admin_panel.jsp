@@ -4,6 +4,7 @@
     Author     : cmcarthur
 --%>
 
+<%@page import="Views.DiscountedGameResultView"%>
 <%@page import="Models.User"%>
 <%@page import="Views.UsersTableViewable"%>
 <%@page import="Views.OrderViewable"%>
@@ -28,6 +29,12 @@
             {
                 recent_orders_table += order.toHTML();
             }
+            
+            String disc_games_table = "";
+            for(DiscountedGameResultView disc_view : (ArrayList<DiscountedGameResultView>)request.getAttribute("disc_views")) {
+                disc_games_table += disc_view.toHTML();
+            }
+            
             UsersTableViewable locked = (UsersTableViewable)request.getAttribute("locked");
             UsersTableViewable unlocked = (UsersTableViewable)request.getAttribute("unlocked");
             UsersTableViewable logged = (UsersTableViewable)request.getAttribute("logged");
@@ -69,6 +76,22 @@
                     <div class="row">
                         <h3>Unlocked User Accounts</h3>
                         <%= unlocked.toHTML()%>
+                    </div>
+                    <div class="row">
+                        <h3>Games On Sale</h3>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Consoles</th>
+                                    <th>Toggle To</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%= disc_games_table%>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <div class="col-xs-offset-1 col-xs-3">

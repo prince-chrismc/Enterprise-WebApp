@@ -12,7 +12,6 @@ import Services.CheckoutService;
 import Views.CheckoutView;
 import Views.ShoppingCartView;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

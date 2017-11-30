@@ -30,6 +30,10 @@ public class CookieHandler {
         }
         return "";
     }
+    
+    static public boolean IsUserSignedIn(HttpServletRequest request) {
+        return !GetUserEmail(request).isEmpty();
+    }
 
     static public void SetNewCookie(HttpServletResponse response, String email) {
         Cookie cookie = new Cookie("gamesearcher_user", email);
