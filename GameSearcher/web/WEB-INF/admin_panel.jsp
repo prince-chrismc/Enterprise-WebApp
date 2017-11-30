@@ -4,6 +4,7 @@
     Author     : cmcarthur
 --%>
 
+<%@page import="Models.AdminAction"%>
 <%@page import="Views.DiscountedGameResultView"%>
 <%@page import="Models.User"%>
 <%@page import="Views.UsersTableViewable"%>
@@ -95,10 +96,36 @@
                     </div>
                 </div>
                 <div class="col-xs-offset-1 col-xs-3">
-                    <h3>Recently Logged In Accounts</h3>
-                    <%= logged.toHTML()%>                    
+                    <div class="row">
+                        <h3>Recently Logged In Accounts</h3>
+                        <%= logged.toHTML()%>
+                    </div>
+                    <div class="row">
+                        <h3>Edit A Game</h3>
+                        <form action="admin" method="POST" id="gameedit">
+                            <input type="hidden" name="action" value="<%=AdminAction.GAME_DETAILS%>"/>
+                            <div class="input-group">
+                                <input type="number" id="game_id" name="game_id" min="1" max="48" class="form-control" placeholder="Game ID">
+                                <span class="input-group-btn">
+                                    <input type="submit" class="btn btn-default" value="Go!"/>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+        <script type="text/javascript">
+            $('form#gameedit').submit(function() {
+                            
+                if(jQuery.trim($("#game_id").val()) == '') {
+                    $("#game_id").parent().parent().prepend("<div class='alert alert-danger alert-dismissable fade in'>" + 
+                            "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
+                            "<strong>Error!</strong> There was no game ID provided.</div>");
+                    return false;            
+                }         
+                return true; // https://stackoverflow.com/a/8053433/8480874
+            })
+        </script>
     </body>
 </html>

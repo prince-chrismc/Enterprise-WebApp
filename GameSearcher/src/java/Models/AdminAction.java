@@ -15,5 +15,6 @@ public enum AdminAction {
     LOCK,
     UNLOCK,
     GAME_EDIT,
+    GAME_DETAILS,
     GAME_TOGGLE_DISC;
 }
