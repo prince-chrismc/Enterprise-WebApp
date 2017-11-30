@@ -4,7 +4,7 @@
     Author     : cmcarthur
 --%>
 
-<%@page import="Models.UserAction"%>
+<%@page import="Views.LoginForwardButtons"%>
 <%@page import="Views.LoginTypeViewable"%>
 <%@page import="Models.LoginType"%>
 <%@page import="Models.User"%>
@@ -23,6 +23,7 @@
         <%
             User user = (User)request.getAttribute("user");
             LoginTypeViewable status = new LoginTypeViewable((LoginType)request.getAttribute("type"));
+            LoginForwardButtons buttons = new LoginForwardButtons(user.isAdmin());
         %>
         <div class="container">
             <div class="row">
@@ -38,18 +39,7 @@
                         <input type="submit" value="Home" class="btn btn-block"/>
                     </form>
                 </div>
-                <div class="col-xs-2">
-                    <form action="user" method="post">
-                        <input type="hidden" name="action" value="<%=UserAction.VIEW%>"/>
-                        <input type="submit" value="View Your Info" class="btn btn-block"/>
-                    </form>
-                </div>
-                <div class="col-xs-2">
-                    <form action="user" method="post">
-                        <input type="hidden" name="action" value="<%=UserAction.EDIT%>"/>
-                        <input type="submit" value="Edit Your Info" class="btn btn-block"/>
-                    </form>
-                </div>
+                <%= buttons.toHTML() %>
             </div>
         </div>
     </body>
