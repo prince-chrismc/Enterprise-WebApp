@@ -25,13 +25,14 @@ public class LandingPageUserSection implements WebViewable {
 
     public LandingPageUserSection(HttpServletRequest request) {
         this.is_signedin = CookieHandler.IsUserSignedIn(request);
-        user_email = CookieHandler.GetUserEmail(request);        
         if(is_signedin) {
+            user_email = CookieHandler.GetUserEmail(request);
             User user = UserGateway.FindUserBasicInfoByEmail(user_email);
             is_admin = user.isAdmin();
         }
         else {
             is_admin = false;
+            user_email = "";
         }
     }
 
@@ -98,14 +99,14 @@ public class LandingPageUserSection implements WebViewable {
 "                        <h2>Please login...</h2>\n" +
 "                        <form id='login' action='login' method='post' class='form-horizontal'>\n" +
 "                            <div class='form-group'>\n" +
-"                                <label class='col-xs-2 control-label'>Email</label>\n" +
-"                                <div class='col-xs-10'>\n" +
+"                                <label class='col-xs-3 control-label'>Email</label>\n" +
+"                                <div class='col-xs-9'>\n" +
 "                                    <input id='email' type='text' name='email' class='form-control'/>\n" +
 "                                </div>\n" +
 "                            </div>\n" +
 "                            <div class='form-group'>\n" +
-"                                <label class='col-xs-2 control-label'>Password</label>\n" +
-"                                <div class='col-xs-10'>\n" +
+"                                <label class='col-xs-3 control-label'>Password</label>\n" +
+"                                <div class='col-xs-9'>\n" +
 "                                    <input id='pw' type='password' name='password' class='form-control'/>\n" +
 "                                </div>\n" +
 "                            </div>\n" +
