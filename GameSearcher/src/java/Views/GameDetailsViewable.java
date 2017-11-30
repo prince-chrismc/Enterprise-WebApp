@@ -20,9 +20,11 @@ import java.text.SimpleDateFormat;
 public class GameDetailsViewable implements WebViewable {
 
     private final Game game;
+    private final boolean signed_in;
 
-    public GameDetailsViewable(Game game) {
+    public GameDetailsViewable(Game game, boolean signed_in) {
         this.game = (game != null) ? game : new Game();
+        this.signed_in = signed_in;
     }
 
     @Override
@@ -97,10 +99,13 @@ public class GameDetailsViewable implements WebViewable {
 
     private String getPrice() {
         NumberFormat formatter = new DecimalFormat("#0.00");
-        if (game.getDiscount() == 0) {
-            return "$" + String.valueOf(formatter.format(game.getPrice()));
-        } else {
+        if(game.getDiscount() < 0.0 && signed_in) {
             return "$" + String.valueOf(formatter.format(game.getPrice() - Math.abs(game.getDiscount()))) + " <i>SAVINGS: $" + String.valueOf(formatter.format(Math.abs(game.getDiscount()))) + "</i>";
+        }
+        else if (game.getDiscount() > 0) {
+            return "$" + String.valueOf(formatter.format(game.getPrice() - Math.abs(game.getDiscount()))) + " <i>SAVINGS: $" + String.valueOf(formatter.format(Math.abs(game.getDiscount()))) + "</i>";
+        } else {
+            return "$" + String.valueOf(formatter.format(game.getPrice()));
         }
     }
 }

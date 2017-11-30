@@ -20,13 +20,6 @@ import java.sql.Statement;
  * @author cmcarthur
  */
 public class GameGateway {
-
-    private Game game;
-
-    static public GameDetailsViewable FindGameViewByID(int id_criteria) {
-        return new GameDetailsViewable(FindGameByID(id_criteria));
-    }
-
     static public Game FindGameByID(int id_criteria) {
 
         try {

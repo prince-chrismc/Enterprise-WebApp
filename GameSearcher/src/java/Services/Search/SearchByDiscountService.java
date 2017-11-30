@@ -8,6 +8,7 @@ package Services.Search;
 import Models.Game;
 import Services.DatabaseConnection;
 import Services.DatabaseConsoleConverter;
+import Services.DatabaseGenreConverter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,12 +34,25 @@ public class SearchByDiscountService {
             
             while(results.next()) {
                 Game game = new Game();
-                
+
                 game.setGame_id(results.getInt("gameID"));
                 game.setName(results.getString("gameName"));
-                
+                game.setDescription(results.getString("gameDesc"));
                 DatabaseConsoleConverter console_converter = new DatabaseConsoleConverter(results.getString("gameConsoles"));
                 game.setConsoles(console_converter.getConsoles());
+                game.setNum_players(results.getInt("gamePlayers"));
+                game.setCoop(results.getBoolean("gameCoop"));
+                DatabaseGenreConverter genre_converter = new DatabaseGenreConverter(results.getString("gameGenres"));
+                game.setGenres(genre_converter.getGenres());
+                game.setRelease_date(results.getDate("gameReleaseDate")); // https://stackoverflow.com/a/24737131/8480874
+                game.setDeveloper(results.getString("gameDeveloper"));
+                game.setPublisher(results.getString("gamePublisher"));
+                game.setFront_box_art(results.getString("gameFrontArtUrl"));
+                game.setBack_box_art(results.getString("gameBackArtUrl"));
+                game.setLogo(results.getString("gameLogoArtUrl"));
+                game.setDeveloper_logo(results.getString("gameDevLogoArtUrl"));
+                game.setPrice(results.getDouble("gamePrice"));
+                game.setDiscount(results.getDouble("gameDiscount"));
                 
                 games.add(game);
             }

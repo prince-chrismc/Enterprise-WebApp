@@ -6,6 +6,8 @@
 package Controllers;
 
 import Gateway.GameGateway;
+import Models.Game;
+import Services.CookieHandler;
 import Views.GameDetailsViewable;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -28,10 +30,11 @@ public class GameServlet extends HttpServlet {
 
         int id = Integer.parseInt(request.getParameter("id"));
 
-        GameDetailsViewable game = GameGateway.FindGameViewByID(id);
-
+        Game game = GameGateway.FindGameByID(id);
+        
         if (game != null) {
-            request.setAttribute("game", game);
+            GameDetailsViewable view = new GameDetailsViewable(game, CookieHandler.IsUserSignedIn(request));
+            request.setAttribute("game", view);
 
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/game_info.jsp");
             requestDispatcher.forward(request, response);

@@ -82,6 +82,6 @@ public class CartItemViewable implements WebViewable {
     }
     
     public double getDiscount() {
-        return entry.getQty() * game.getDiscount();
+        return entry.getQty() * Math.abs(game.getDiscount());
     }
 }
