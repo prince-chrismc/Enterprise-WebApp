@@ -9,7 +9,6 @@ import Models.Game;
 import Services.DatabaseConnection;
 import Services.DatabaseConsoleConverter;
 import Services.DatabaseGenreConverter;
-import Views.GameDetailsViewable;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,6 +19,7 @@ import java.sql.Statement;
  * @author cmcarthur
  */
 public class GameGateway {
+
     static public Game FindGameByID(int id_criteria) {
 
         try {
@@ -78,40 +78,35 @@ public class GameGateway {
     }
 
     public boolean Update() {
-        if (Fetch()) { // make sure it exists            
-            try {
-                Connection conn = DatabaseConnection.getConnection();
-                Statement statement = conn.createStatement();
+        try {
+            Connection conn = DatabaseConnection.getConnection();
+            Statement statement = conn.createStatement();
 
-                String query = "UPDATE gamesearcher.games "
-                        + "SET "
-                        + "gameName = '" + game.getName() + "', "
-                        + "gameDesc = \"" + game.getDescription() + "\", "
-                        + "gamePlayers = " + String.valueOf(game.getNum_players()) + ", "
-                        + "gameCoop = " + String.valueOf(game.isCoop()) + ", "
-                        + "gameDeveloper = \"" + game.getDeveloper() + "\", "
-                        + "gamePublisher = '" + game.getPublisher() + "', "
-                        + "gamePrice = " + String.valueOf(game.getPrice()) + ", "
-                        + "gameDiscount = " + String.valueOf(game.getDiscount()) + " "
-                        + "WHERE gameID = " + String.valueOf(game.getGame_id()) + ";";
-                
-                
-                int retval = statement.executeUpdate(query
-                );
+            int retval = statement.executeUpdate("UPDATE gamesearcher.games "
+                    + "SET "
+                    + "gameName = '" + game.getName() + "', "
+                    + "gameDesc = \"" + game.getDescription() + "\", "
+                    + "gamePlayers = " + String.valueOf(game.getNum_players()) + ", "
+                    + "gameCoop = " + String.valueOf(game.isCoop()) + ", "
+                    + "gameDeveloper = \"" + game.getDeveloper() + "\", "
+                    + "gamePublisher = '" + game.getPublisher() + "', "
+                    + "gamePrice = " + String.valueOf(game.getPrice()) + ", "
+                    + "gameDiscount = " + String.valueOf(game.getDiscount()) + " "
+                    + "WHERE gameID = " + String.valueOf(game.getGame_id()) + ";"
+            );
 
-                statement.close();
+            statement.close();
 
-                if (retval == 1) { // if only 1 row was affected
-                    return true;
-                }
-
-            } catch (SQLException e) {
-                System.out.println("SQL Error: " + e.getMessage());
-            } catch (Exception e) {
-                System.out.println("Error: " + e.getMessage());
+            if (retval == 1) { // if only 1 row was affected
+                return true;
             }
 
+        } catch (SQLException e) {
+            System.out.println("SQL Error: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
+
         return false;
     }
 
@@ -137,7 +132,7 @@ public class GameGateway {
         }
         return false;
     }
-    
+
     public boolean ToogleDiscount() {
         game.setDiscount(game.getDiscount() * -1);
         return Update();

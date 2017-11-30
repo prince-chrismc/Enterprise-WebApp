@@ -59,6 +59,7 @@ public class AdminServlet extends HttpServlet {
         AdminAction action = AdminAction.valueOf(request.getParameter("action"));
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/admin_panel.jsp");
         String email;
+        int game_id;
 
         switch (action) {
             case LOCK:
@@ -71,9 +72,16 @@ public class AdminServlet extends HttpServlet {
                 LockingService unlocker = new LockingService(email);
                 unlocker.Unlock();
                 break;
-                
+            case EDIT_GAME:
+                break;
+            case GAME_DETAILS:
+                game_id = Integer.parseInt(request.getParameter("game_id"));
+                requestDispatcher = request.getRequestDispatcher("WEB-INF/edit_game.jsp");
+                request.setAttribute("game", GameGateway.FindGameByID(game_id));
+                requestDispatcher.forward(request, response);
+                break;
             case GAME_TOGGLE_DISC:
-                int game_id = Integer.parseInt(request.getParameter("id"));
+                game_id = Integer.parseInt(request.getParameter("id"));
                 GameGateway game_entry = new GameGateway(game_id);
                 game_entry.ToogleDiscount();
                 break;
