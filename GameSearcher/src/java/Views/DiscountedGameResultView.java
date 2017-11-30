@@ -27,9 +27,9 @@ public class DiscountedGameResultView implements WebViewable{
     }
     
     private String GetToggleTo() {
-        if(game.getDiscount() != 0.0)
-            return "To Non-Users";
+        if(game.getDiscount() < 0.0)
+            return "Public";
         else
-            return "To Users Only";
+            return "Users Only";
     }
 }

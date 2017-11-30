@@ -5,6 +5,7 @@
  */
 package Controllers;
 
+import Gateway.GameGateway;
 import Gateway.OrderGateway;
 import Gateway.UserGateway;
 import Models.AdminAction;
@@ -72,7 +73,9 @@ public class AdminServlet extends HttpServlet {
                 break;
                 
             case GAME_TOGGLE_DISC:
-                
+                int game_id = Integer.parseInt(request.getParameter("id"));
+                GameGateway game_entry = new GameGateway(game_id);
+                game_entry.ToogleDiscount();
                 break;
             default:
                 break;

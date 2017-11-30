@@ -50,7 +50,7 @@
                     </form>
                 </div>
             </div>
-            <hr>
+                <div class="row"><hr></div>
             <div class="row">
                 <div class="col-xs-8">
                     <div class="row">

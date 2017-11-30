@@ -65,11 +65,82 @@ public class GameGateway {
         return null;
     }
 
-    public Game getGame() {
-        return game;
+    // beginning of none static section
+    private Game game;
+
+    public GameGateway(Game game) {
+        this.game = game;
+        Fetch();
     }
 
-    public GameDetailsViewable getViewableResults() {
-        return new GameDetailsViewable(game);
+    public GameGateway(int id) {
+        this.game = FindGameByID(id);
     }
+
+    public boolean Update() {
+        if (Fetch()) { // make sure it exists            
+            try {
+                Connection conn = DatabaseConnection.getConnection();
+                Statement statement = conn.createStatement();
+
+                String query = "UPDATE gamesearcher.games "
+                        + "SET "
+                        + "gameName = '" + game.getName() + "', "
+                        + "gameDesc = '" + game.getDescription() + "', "
+                        + "gamePlayers = " + String.valueOf(game.getNum_players()) + ", "
+                        + "gameCoop = " + String.valueOf(game.isCoop()) + ", "
+                        + "gameDeveloper = '" + game.getDeveloper() + "', "
+                        + "gamePublisher = '" + game.getPublisher() + "', "
+                        + "gamePrice = " + String.valueOf(game.getPrice()) + ", "
+                        + "gameDiscount = " + String.valueOf(game.getDiscount()) + " "
+                        + "WHERE gameID = " + String.valueOf(game.getGame_id()) + ";";
+                
+                
+                int retval = statement.executeUpdate(query
+                );
+
+                statement.close();
+
+                if (retval == 1) { // if only 1 row was affected
+                    return true;
+                }
+
+            } catch (SQLException e) {
+                System.out.println("SQL Error: " + e.getMessage());
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+
+        }
+        return false;
+    }
+
+    // @return ture is the game exists
+    private boolean Fetch() {
+        try {
+            Connection conn = DatabaseConnection.getConnection();
+            Statement statement = conn.createStatement();
+
+            ResultSet results = statement.executeQuery("SELECT * FROM gamesearcher.games WHERE gameID = " + String.valueOf(game.getGame_id()) + ";");
+
+            if (results.first()) {
+                return true;
+            }
+
+            statement.close();
+            results.close();
+
+        } catch (SQLException e) {
+            System.out.println("SQL Error: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        return false;
+    }
+    
+    public boolean ToogleDiscount() {
+        game.setDiscount(game.getDiscount() * -1);
+        return Update();
+    }
+
 }
