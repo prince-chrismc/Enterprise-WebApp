@@ -7,11 +7,13 @@ package Controllers;
 
 import Gateway.UserGateway;
 import Models.AdminAction;
-import Models.LoginType;
+import Models.RecoveryResult;
 import Models.User;
 import Models.UserAction;
 import Services.CookieHandler;
+import Services.MailMachine;
 import Services.UserUpdateService;
+import Views.RecoveryResultViewable;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -42,17 +44,20 @@ public class UserServlet extends HttpServlet {
         UserAction action = UserAction.valueOf(request.getParameter("action"));
 
         User user = UserGateway.FindUserCompleteByEmail(CookieHandler.GetUserEmail(request));
-        if (user == null) {
-            response.sendRedirect("");
-            return;
+        if(action != UserAction.RECOVER) {
+            if (user == null) {
+                response.sendRedirect("");
+                return;
+            }
         }
-        
-        if(user.isAdmin())
-        {
-            request.setAttribute("action", AdminAction.VIEW);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("admin");
-            requestDispatcher.forward(request, response);
-            return;
+        if(action != UserAction.RECOVER) {
+            if(user.isAdmin())
+            {
+                request.setAttribute("action", AdminAction.VIEW);
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("admin");
+                requestDispatcher.forward(request, response);
+                return;
+            }
         }
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/user_info.jsp");
@@ -64,7 +69,6 @@ public class UserServlet extends HttpServlet {
                 request.setAttribute("action", UserAction.EDIT);
                 break;
             case UPDATE:
-                // TO DO
                 UserUpdateService updater = new UserUpdateService(request);
                 if (updater.UpdateAllFeilds()) {
                     request.setAttribute("action", UserAction.VIEW);
@@ -73,6 +77,26 @@ public class UserServlet extends HttpServlet {
                 }
                 request.setAttribute("action", UserAction.EDIT);
                 break;
+            case RECOVER:
+                requestDispatcher = request.getRequestDispatcher("WEB-INF/recovery.jsp");
+                user = UserGateway.FindUserCompleteByEmail(request.getParameter("email"));
+                if(user != null) {
+                    user.setPassword("321pmet");
+                    UserGateway user_gateway = new UserGateway(user);
+                    if(user_gateway.Update()) {
+                        MailMachine mailer = MailMachine.getInstance();
+                        mailer.sendMessage(user.getEmail(), "Your temp password", "321pmet");
+                        request.setAttribute("action", new RecoveryResultViewable(RecoveryResult.SUCCESS));
+                    }
+                    else {
+                        request.setAttribute("action", new RecoveryResultViewable(RecoveryResult.SYS_ERR));
+                    }
+                }
+                else {
+                    request.setAttribute("action", new RecoveryResultViewable(RecoveryResult.USER_DNE));
+                }
+                requestDispatcher.forward(request, response);
+                return;
             default:
                 response.sendRedirect("");
                 return;

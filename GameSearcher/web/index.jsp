@@ -138,5 +138,44 @@
                 return true;
             });
         </script>
+        <script type="text/javascript">
+            function recover() {
+                //alert('button clicked');
+                if(jQuery.trim($("#email").val()) == '') {
+                    $("#login_box").prepend("<div class='alert alert-danger alert-dismissable fade in'>" + 
+                            "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
+                            "<strong>Error!</strong> There was no email provided.</div>");
+                    return false;            
+                }
+                
+                var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+                if(!emailReg.test(jQuery.trim($("#email").val()))) {
+                    $("#login_box").prepend("<div class='alert alert-danger alert-dismissable fade in'>" + 
+                            "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
+                            "<strong>Error!</strong> Your so called email does not match the support email format.</div>");
+                    return false;
+                }
+                
+                var form = document.createElement("form");
+                form.setAttribute("method", "post");
+                form.setAttribute("action", "user");
+                
+                var email = document.createElement("input");
+                email.setAttribute("type", "hidden");
+                email.setAttribute("name", "email");
+                email.setAttribute("value", $("#email").val());
+                form.appendChild(email);
+                
+                var action = document.createElement("input");
+                action.setAttribute("type", "hidden");
+                action.setAttribute("name", "action");
+                action.setAttribute("value", "RECOVER");
+                form.appendChild(action);
+                
+                document.body.appendChild(form);
+                form.submit();
+                
+            }
+        </script>
     </body>
 </html>

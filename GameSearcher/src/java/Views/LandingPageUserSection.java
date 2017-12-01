@@ -114,6 +114,9 @@ public class LandingPageUserSection implements WebViewable {
 "                        </form>\n" +
 "                    </div>\n" +
 "                    <div class='row'>                \n" +
+"                    <button onclick='recover()' class='btn btn-block'  style='margin-top: 1em;'>Recover Password</button>\n" +
+"                    </div>\n" +
+"                    <div class='row'>                \n" +
 "                        <h2>...Or sign up</h2>\n" +
 "                        <form action='register' method='post'>\n" +
 "                            <input type='hidden' name='action' value='" + RegistrationAction.REDIRECT + "'/>\n" +

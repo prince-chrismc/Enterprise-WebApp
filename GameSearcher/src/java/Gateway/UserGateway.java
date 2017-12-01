@@ -262,6 +262,7 @@ public class UserGateway {
 
             int retval = statement.executeUpdate("UPDATE gamesearcher.users"
                     + " SET "
+                    + "userPassword = '" + user.getPassword() + "', "
                     + "userFirstName = '" + user.getFirst_name() + "',"
                     + "userLastName = '" + user.getLast_name() + "',"
                     + "userAddress1 = '" + user.getAddress1() + "',"

@@ -9,9 +9,8 @@ package Models;
  *
  * @author cmcarthur
  */
-public enum UserAction {
-    VIEW,
-    EDIT,
-    UPDATE,
-    RECOVER;
+public enum RecoveryResult {
+    SUCCESS,
+    USER_DNE,
+    SYS_ERR;
 }
