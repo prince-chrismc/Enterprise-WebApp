@@ -26,7 +26,7 @@ package Controllers;
 import Gateway.GameGateway;
 import Models.Game;
 import Services.CookieHandler;
-import Views.GameDetailsViewable;
+import Views.GameDetailsView;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -51,7 +51,7 @@ public class GameServlet extends HttpServlet {
         Game game = GameGateway.FindGameByID(id);
 
         if (game != null) {
-            GameDetailsViewable view = new GameDetailsViewable(game, CookieHandler.IsUserSignedIn(request));
+            GameDetailsView view = new GameDetailsView(game, CookieHandler.IsUserSignedIn(request));
             request.setAttribute("game", view);
 
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/game_info.jsp");

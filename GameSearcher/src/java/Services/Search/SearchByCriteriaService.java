@@ -26,7 +26,7 @@ package Services.Search;
 import Models.Game;
 import Models.SearchCriteria;
 import Services.ResultsFormatting;
-import Views.GameResultViewable;
+import Views.GameResultView;
 import java.util.ArrayList;
 
 /**
@@ -69,7 +69,7 @@ public class SearchByCriteriaService {
         }
     }
 
-    public ArrayList<GameResultViewable> getViewableResults() {
+    public ArrayList<GameResultView> getViewableResults() {
         return ResultsFormatting.CreateViewableGameResults(games);
     }
 

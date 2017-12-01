@@ -23,22 +23,19 @@
  */
 package Views;
 
-import Models.Genre;
+import Models.Console;
 
 /**
  *
  * @author cmcarthur
  */
-public class GenreOptionsViewable implements WebViewable {
+public class ConsoleOptionView implements WebViewable {
 
     @Override
     public String toHTML() {
         String output = "";
-        for (Genre genre : Genre.values()) {
-            if (genre == Genre.UNKNOWN) {
-                continue;
-            }
-            output += "<option>" + genre.getGenre() + "</option>";
+        for (Console console : Console.values()) {
+            output += "<option>" + console.getConsole() + "</option>";
         }
         return output;
     }

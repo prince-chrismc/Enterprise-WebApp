@@ -26,7 +26,7 @@ package Gateway;
 import Models.CartEntry;
 import Models.Order;
 import Services.DatabaseConnection;
-import Views.OrderViewable;
+import Views.OrderView;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -64,8 +64,8 @@ public class OrderGateway {
         return cart;
     }
 
-    public static ArrayList<OrderViewable> GetMostRecentOrders() {
-        ArrayList<OrderViewable> orders = new ArrayList<>();
+    public static ArrayList<OrderView> GetMostRecentOrders() {
+        ArrayList<OrderView> orders = new ArrayList<>();
         try {
             Connection conn = DatabaseConnection.getConnection();
             Statement statement = conn.createStatement();
@@ -74,7 +74,7 @@ public class OrderGateway {
 
             while (results.next()) {
                 DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-                orders.add(new OrderViewable(new Order(results.getInt("orderID"), results.getString("userEmail"), results.getInt("gameID"),
+                orders.add(new OrderView(new Order(results.getInt("orderID"), results.getString("userEmail"), results.getInt("gameID"),
                         results.getInt("qty"), df.format(results.getDate("purchaseDate")))));
             }
 

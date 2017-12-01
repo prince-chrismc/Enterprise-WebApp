@@ -23,20 +23,27 @@
  */
 package Views;
 
-import Models.Console;
+import Gateway.GameGateway;
+import Models.Game;
+import Models.Order;
 
 /**
  *
  * @author cmcarthur
  */
-public class ConsoleOptionsViewable implements WebViewable {
+public class OrderView implements WebViewable {
+
+    private final Order order;
+
+    public OrderView(Order order) {
+        this.order = order;
+    }
 
     @Override
     public String toHTML() {
-        String output = "";
-        for (Console console : Console.values()) {
-            output += "<option>" + console.getConsole() + "</option>";
-        }
-        return output;
+        Game game = GameGateway.FindGameByID(order.getGameID());
+        return "<tr><td>" + order.getUser_email() + "<td>" + game.getName()
+                + "</td><td>" + String.valueOf(order.getQty()) + "</td><td>" + order.getPurchaseDate() + "</td></tr>";
     }
+
 }

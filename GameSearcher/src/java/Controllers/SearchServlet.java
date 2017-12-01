@@ -26,7 +26,7 @@ package Controllers;
 import Models.SearchCriteria;
 import Services.CookieHandler;
 import Services.Search.SearchByCriteriaService;
-import Views.GameResultViewable;
+import Views.GameResultView;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -59,7 +59,7 @@ public class SearchServlet extends HttpServlet {
         String criteria_val = request.getParameter("criteria_val");
 
         SearchByCriteriaService searcher = new SearchByCriteriaService(criteria, criteria_val, CookieHandler.IsUserSignedIn(request));
-        ArrayList<GameResultViewable> games = searcher.getViewableResults();
+        ArrayList<GameResultView> games = searcher.getViewableResults();
 
         if (games.size() > 0) {
             request.setAttribute("games", games);

@@ -23,27 +23,32 @@
  */
 package Views;
 
-import Gateway.GameGateway;
-import Models.Game;
-import Models.Order;
+import Models.RecoveryResult;
 
 /**
  *
  * @author cmcarthur
  */
-public class OrderViewable implements WebViewable {
+public class RecoveryResultView implements WebViewable {
 
-    private final Order order;
+    private final RecoveryResult result;
 
-    public OrderViewable(Order order) {
-        this.order = order;
+    public RecoveryResultView(RecoveryResult result) {
+        this.result = result;
     }
 
     @Override
     public String toHTML() {
-        Game game = GameGateway.FindGameByID(order.getGameID());
-        return "<tr><td>" + order.getUser_email() + "<td>" + game.getName()
-                + "</td><td>" + String.valueOf(order.getQty()) + "</td><td>" + order.getPurchaseDate() + "</td></tr>";
+        switch (result) {
+            case SUCCESS:
+                return "<h1>Check you emails for a temp password</h1>";
+            case USER_DNE:
+                return "<h1>The email specified does not belong to a user, try registering</h1>";
+            case SYS_ERR:
+                return "<h1>there was a system error, try contating the admin for help</h1>";
+            default:
+                return "";
+        }
     }
 
 }

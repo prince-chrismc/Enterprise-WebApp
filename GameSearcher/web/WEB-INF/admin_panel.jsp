@@ -29,8 +29,8 @@
 <%@page import="Models.AdminAction"%>
 <%@page import="Views.DiscountedGameResultView"%>
 <%@page import="Models.User"%>
-<%@page import="Views.UsersTableViewable"%>
-<%@page import="Views.OrderViewable"%>
+<%@page import="Views.UsersTableView"%>
+<%@page import="Views.OrderView"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -48,7 +48,7 @@
         <%
             User admin = (User) request.getAttribute("user");
             String recent_orders_table = "";
-            for (OrderViewable order : (ArrayList<OrderViewable>) request.getAttribute("orders")) {
+            for (OrderView order : (ArrayList<OrderView>) request.getAttribute("orders")) {
                 recent_orders_table += order.toHTML();
             }
 
@@ -57,9 +57,9 @@
                 disc_games_table += disc_view.toHTML();
             }
 
-            UsersTableViewable locked = (UsersTableViewable) request.getAttribute("locked");
-            UsersTableViewable unlocked = (UsersTableViewable) request.getAttribute("unlocked");
-            UsersTableViewable logged = (UsersTableViewable) request.getAttribute("logged");
+            UsersTableView locked = (UsersTableView) request.getAttribute("locked");
+            UsersTableView unlocked = (UsersTableView) request.getAttribute("unlocked");
+            UsersTableView logged = (UsersTableView) request.getAttribute("logged");
         %>
         <div class="container">
             <div class="row">

@@ -52,7 +52,7 @@ public class ShoppingCartView implements WebViewable {
         double sum_discount = 0.0;
         double num = 0.0;
         for (CartEntry item : cart.getEntries()) {
-            CartItemViewable item_view = new CartItemViewable(item);
+            CartItemView item_view = new CartItemView(item);
             output += item_view.toHTML();
             sum_price += item_view.getPrice();
             sum_discount += item_view.getDiscount();

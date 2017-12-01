@@ -35,12 +35,12 @@ import java.text.SimpleDateFormat;
  *
  * @author cmcarthur
  */
-public class GameDetailsViewable implements WebViewable {
+public class GameDetailsView implements WebViewable {
 
     private final Game game;
     private final boolean signed_in;
 
-    public GameDetailsViewable(Game game, boolean signed_in) {
+    public GameDetailsView(Game game, boolean signed_in) {
         this.game = (game != null) ? game : new Game();
         this.signed_in = signed_in;
     }

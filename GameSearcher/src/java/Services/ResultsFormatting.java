@@ -24,7 +24,7 @@
 package Services;
 
 import Models.Game;
-import Views.GameResultViewable;
+import Views.GameResultView;
 import java.util.ArrayList;
 
 /**
@@ -33,11 +33,11 @@ import java.util.ArrayList;
  */
 public class ResultsFormatting {
 
-    static public ArrayList<GameResultViewable> CreateViewableGameResults(ArrayList<Game> games) {
-        ArrayList<GameResultViewable> gameViews = new ArrayList<>();
+    static public ArrayList<GameResultView> CreateViewableGameResults(ArrayList<Game> games) {
+        ArrayList<GameResultView> gameViews = new ArrayList<>();
 
         games.forEach((game) -> {
-            gameViews.add(new GameResultViewable(game));
+            gameViews.add(new GameResultView(game));
         });
 
         return gameViews;

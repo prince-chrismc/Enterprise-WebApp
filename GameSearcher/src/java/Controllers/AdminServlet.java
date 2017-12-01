@@ -34,7 +34,7 @@ import Services.LockingService;
 import Services.Search.SearchByDiscountService;
 import Services.UpdateGameService;
 import Views.DiscountedGameResultView;
-import Views.UsersTableViewable;
+import Views.UsersTableView;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -127,9 +127,9 @@ public class AdminServlet extends HttpServlet {
 
         request.setAttribute("disc_views", disc_views);
         request.setAttribute("orders", OrderGateway.GetMostRecentOrders());
-        request.setAttribute("locked", new UsersTableViewable(UserGateway.FindAllLockedUsersBasicInfo(), UsersTableViewable.TableType.UNLOCK));
-        request.setAttribute("unlocked", new UsersTableViewable(UserGateway.FindAllUnlockedUsersBasicInfo(), UsersTableViewable.TableType.LOCK));
-        request.setAttribute("logged", new UsersTableViewable(UserGateway.FindRecentlyLoggedInUsersBasicInfoWithTime(), UsersTableViewable.TableType.LOGGED));
+        request.setAttribute("locked", new UsersTableView(UserGateway.FindAllLockedUsersBasicInfo(), UsersTableView.TableType.UNLOCK));
+        request.setAttribute("unlocked", new UsersTableView(UserGateway.FindAllUnlockedUsersBasicInfo(), UsersTableView.TableType.LOCK));
+        request.setAttribute("logged", new UsersTableView(UserGateway.FindRecentlyLoggedInUsersBasicInfoWithTime(), UsersTableView.TableType.LOGGED));
         request.setAttribute("user", user);
         requestDispatcher.forward(request, response);
     }

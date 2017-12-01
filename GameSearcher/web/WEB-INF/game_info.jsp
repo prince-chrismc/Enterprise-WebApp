@@ -28,7 +28,7 @@
 
 <%@page import="Views.AddToCartButton"%>
 <%@page import="Services.CookieHandler"%>
-<%@page import="Views.GameDetailsViewable"%>
+<%@page import="Views.GameDetailsView"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -42,7 +42,7 @@
     </head>
     <body>
         <%
-            GameDetailsViewable game = (GameDetailsViewable) request.getAttribute("game");
+            GameDetailsView game = (GameDetailsView) request.getAttribute("game");
             AddToCartButton possible_button = new AddToCartButton(CookieHandler.GetUserEmail(request), Integer.parseInt(request.getParameter("id")));
         %>
         <div class="container">

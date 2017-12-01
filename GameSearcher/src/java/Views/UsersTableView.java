@@ -31,7 +31,7 @@ import java.util.ArrayList;
  *
  * @author cmcarthur
  */
-public class UsersTableViewable implements WebViewable {
+public class UsersTableView implements WebViewable {
 
     public enum TableType {
         LOCK,
@@ -42,7 +42,7 @@ public class UsersTableViewable implements WebViewable {
     private final ArrayList<User> users;
     private final TableType type;
 
-    public UsersTableViewable(ArrayList<User> users, TableType type) {
+    public UsersTableView(ArrayList<User> users, TableType type) {
         this.users = users;
         this.type = type;
     }

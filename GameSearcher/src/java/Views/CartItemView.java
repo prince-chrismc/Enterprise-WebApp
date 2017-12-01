@@ -36,12 +36,12 @@ import java.text.SimpleDateFormat;
  *
  * @author cmcarthur
  */
-public class CartItemViewable implements WebViewable {
+public class CartItemView implements WebViewable {
 
     private final CartEntry entry;
     private final Game game;
 
-    public CartItemViewable(CartEntry entry) {
+    public CartItemView(CartEntry entry) {
         this.entry = entry;
         game = GameGateway.FindGameByID(entry.getGame_id());
     }

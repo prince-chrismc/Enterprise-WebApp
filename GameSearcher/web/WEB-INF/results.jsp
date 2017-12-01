@@ -27,7 +27,7 @@
 
 --%>
 
-<%@page import="Views.GameResultViewable"%>
+<%@page import="Views.GameResultView"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -42,9 +42,9 @@
     </head>
     <body>
         <%
-            ArrayList<GameResultViewable> games = (ArrayList<GameResultViewable>) request.getAttribute("games");
+            ArrayList<GameResultView> games = (ArrayList<GameResultView>) request.getAttribute("games");
             String results_table = "";
-            for (GameResultViewable game : games) { // https://knowm.org/iterating-through-a-collection-in-java/
+            for (GameResultView game : games) { // https://knowm.org/iterating-through-a-collection-in-java/
                 results_table += game.toHTML();
             }
         %>

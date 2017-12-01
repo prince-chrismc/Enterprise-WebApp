@@ -23,30 +23,24 @@
  */
 package Views;
 
-import Models.LoginType;
+import Models.Game;
 
 /**
  *
  * @author cmcarthur
  */
-public class LoginTypeViewable implements WebViewable {
+public class GameResultView implements WebViewable {
 
-    private LoginType type;
+    private final Game game;
 
-    public LoginTypeViewable(LoginType type) {
-        this.type = type;
+    public GameResultView(Game game) {
+        this.game = game;
     }
 
     @Override
     public String toHTML() {
-        switch (type) {
-            case LOGIN:
-                return "<h2>You have successfully logged in!</h2>";
-            case REGISTER:
-                return "<h2>You have successfully registered!</h2>";
-            case ERROR:
-            default:
-                return "<h2>Oh no! There was an error.</h2>";
-        }
+        return "<tr'><td>" + game.getGame_id() + "</td><td>" + game.getName()
+                + "</td><td>" + game.getConsolesArrayAsString() + "</td><td><a href='game?id=" + game.getGame_id()
+                + "'>Details</a></td></tr>";
     }
 }

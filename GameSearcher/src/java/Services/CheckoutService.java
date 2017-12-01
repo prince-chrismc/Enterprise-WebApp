@@ -30,7 +30,7 @@ import Models.CheckoutResult;
 import Models.Order;
 import Models.ShoppingCart;
 import Models.User;
-import Views.OrderViewable;
+import Views.OrderView;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -75,11 +75,11 @@ public class CheckoutService {
         return result;
     }
 
-    public ArrayList<OrderViewable> getOrdersViewable() {
-        ArrayList<OrderViewable> views = new ArrayList<>();
+    public ArrayList<OrderView> getOrdersViewable() {
+        ArrayList<OrderView> views = new ArrayList<>();
 
         for (Order order : orders) {
-            views.add(new OrderViewable(order));
+            views.add(new OrderView(order));
         }
 
         return views;

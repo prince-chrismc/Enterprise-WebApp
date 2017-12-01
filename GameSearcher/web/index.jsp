@@ -27,9 +27,9 @@
 --%>
 
 <%@page import="Views.LandingPageUserSection"%>
-<%@page import="Views.GenreOptionsViewable"%>
+<%@page import="Views.GenreOptionView"%>
 <%@page import="Models.SearchCriteria"%>
-<%@page import="Views.ConsoleOptionsViewable"%>
+<%@page import="Views.ConsoleOptionView"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -77,7 +77,7 @@
                             </div>
                             <div class="col-xs-8">
                                 <select name="criteria_val" class="form-control">
-                                    <%= new ConsoleOptionsViewable().toHTML()%>
+                                    <%= new ConsoleOptionView().toHTML()%>
                                 </select>
                             </div>
                             <div class="col-xs-2">
@@ -93,7 +93,7 @@
                             </div>
                             <div class="col-xs-8">
                                 <select name="criteria_val" class="form-control">
-                                    <%= new GenreOptionsViewable().toHTML()%>
+                                    <%= new GenreOptionView().toHTML()%>
                                 </select>
                             </div>
                             <div class="col-xs-2">

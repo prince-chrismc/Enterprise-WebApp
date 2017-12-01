@@ -26,7 +26,7 @@
     SOFTWARE.
 --%>
 
-<%@page import="Views.RecoveryResultViewable"%>
+<%@page import="Views.RecoveryResultView"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -40,7 +40,7 @@
     </head>
     <body>
         <%
-            RecoveryResultViewable title = (RecoveryResultViewable) request.getAttribute("action");
+            RecoveryResultView title = (RecoveryResultView) request.getAttribute("action");
         %>
         <div class="container">
             <div class="row">

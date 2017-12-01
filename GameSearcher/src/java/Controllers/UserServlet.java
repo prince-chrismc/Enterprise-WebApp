@@ -31,7 +31,7 @@ import Models.UserAction;
 import Services.CookieHandler;
 import Services.MailMachine;
 import Services.UserUpdateService;
-import Views.RecoveryResultViewable;
+import Views.RecoveryResultView;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -111,12 +111,12 @@ public class UserServlet extends HttpServlet {
             if (user_gateway.Update()) {
                 MailMachine mailer = MailMachine.getInstance();
                 mailer.sendMessage(user.getEmail(), "Your temp password", "321pmet");
-                request.setAttribute("action", new RecoveryResultViewable(RecoveryResult.SUCCESS));
+                request.setAttribute("action", new RecoveryResultView(RecoveryResult.SUCCESS));
             } else {
-                request.setAttribute("action", new RecoveryResultViewable(RecoveryResult.SYS_ERR));
+                request.setAttribute("action", new RecoveryResultView(RecoveryResult.SYS_ERR));
             }
         } else {
-            request.setAttribute("action", new RecoveryResultViewable(RecoveryResult.USER_DNE));
+            request.setAttribute("action", new RecoveryResultView(RecoveryResult.USER_DNE));
         }
         requestDispatcher.forward(request, response);
     }

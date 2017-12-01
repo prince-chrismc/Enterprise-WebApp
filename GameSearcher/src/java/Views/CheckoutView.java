@@ -33,9 +33,9 @@ import java.util.ArrayList;
 public class CheckoutView implements WebViewable {
 
     private final CheckoutResult result;
-    private final ArrayList<OrderViewable> orders;
+    private final ArrayList<OrderView> orders;
 
-    public CheckoutView(CheckoutResult result, ArrayList<OrderViewable> orders) {
+    public CheckoutView(CheckoutResult result, ArrayList<OrderView> orders) {
         this.result = result;
         this.orders = orders;
     }
@@ -47,7 +47,7 @@ public class CheckoutView implements WebViewable {
                     + "<table class='table table-hover'><thead><tr><th>Email</th><th>Game Name</th><th>Quantity</th><th>Purchased On</th>"
                     + "</tr></thead><tbody>";
 
-            for (OrderViewable order : orders) {
+            for (OrderView order : orders) {
                 retval += order.toHTML();
             }
             retval += "</tbody></table></div></div>";

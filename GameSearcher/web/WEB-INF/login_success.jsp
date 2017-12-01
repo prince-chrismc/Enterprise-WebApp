@@ -27,7 +27,7 @@
 --%>
 
 <%@page import="Views.LoginForwardButtons"%>
-<%@page import="Views.LoginTypeViewable"%>
+<%@page import="Views.LoginTypeView"%>
 <%@page import="Models.LoginType"%>
 <%@page import="Models.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -44,7 +44,7 @@
     <body>
         <%
             User user = (User) request.getAttribute("user");
-            LoginTypeViewable status = new LoginTypeViewable((LoginType) request.getAttribute("type"));
+            LoginTypeView status = new LoginTypeView((LoginType) request.getAttribute("type"));
             LoginForwardButtons buttons = new LoginForwardButtons(user.isAdmin());
         %>
         <div class="container">

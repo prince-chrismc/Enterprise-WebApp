@@ -23,32 +23,23 @@
  */
 package Views;
 
-import Models.RecoveryResult;
+import Models.Genre;
 
 /**
  *
  * @author cmcarthur
  */
-public class RecoveryResultViewable implements WebViewable {
-
-    private final RecoveryResult result;
-
-    public RecoveryResultViewable(RecoveryResult result) {
-        this.result = result;
-    }
+public class GenreOptionView implements WebViewable {
 
     @Override
     public String toHTML() {
-        switch (result) {
-            case SUCCESS:
-                return "<h1>Check you emails for a temp password</h1>";
-            case USER_DNE:
-                return "<h1>The email specified does not belong to a user, try registering</h1>";
-            case SYS_ERR:
-                return "<h1>there was a system error, try contating the admin for help</h1>";
-            default:
-                return "";
+        String output = "";
+        for (Genre genre : Genre.values()) {
+            if (genre == Genre.UNKNOWN) {
+                continue;
+            }
+            output += "<option>" + genre.getGenre() + "</option>";
         }
+        return output;
     }
-
 }
