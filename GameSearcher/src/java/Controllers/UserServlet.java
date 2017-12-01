@@ -42,22 +42,21 @@ public class UserServlet extends HttpServlet {
             throws ServletException, IOException {
 
         UserAction action = UserAction.valueOf(request.getParameter("action"));
+        if (action == UserAction.RECOVER) {
+            HandlePasswordRecovery(request, response);
+            return;
+        }
 
         User user = UserGateway.FindUserCompleteByEmail(CookieHandler.GetUserEmail(request));
-        if(action != UserAction.RECOVER) {
-            if (user == null) {
-                response.sendRedirect("");
-                return;
-            }
+        if (user == null) {
+            response.sendRedirect("");
+            return;
         }
-        if(action != UserAction.RECOVER) {
-            if(user.isAdmin())
-            {
-                request.setAttribute("action", AdminAction.VIEW);
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("admin");
-                requestDispatcher.forward(request, response);
-                return;
-            }
+        if (user.isAdmin()) {
+            request.setAttribute("action", AdminAction.VIEW);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("admin");
+            requestDispatcher.forward(request, response);
+            return;
         }
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/user_info.jsp");
@@ -77,26 +76,6 @@ public class UserServlet extends HttpServlet {
                 }
                 request.setAttribute("action", UserAction.EDIT);
                 break;
-            case RECOVER:
-                requestDispatcher = request.getRequestDispatcher("WEB-INF/recovery.jsp");
-                user = UserGateway.FindUserCompleteByEmail(request.getParameter("email"));
-                if(user != null) {
-                    user.setPassword("321pmet");
-                    UserGateway user_gateway = new UserGateway(user);
-                    if(user_gateway.Update()) {
-                        MailMachine mailer = MailMachine.getInstance();
-                        mailer.sendMessage(user.getEmail(), "Your temp password", "321pmet");
-                        request.setAttribute("action", new RecoveryResultViewable(RecoveryResult.SUCCESS));
-                    }
-                    else {
-                        request.setAttribute("action", new RecoveryResultViewable(RecoveryResult.SYS_ERR));
-                    }
-                }
-                else {
-                    request.setAttribute("action", new RecoveryResultViewable(RecoveryResult.USER_DNE));
-                }
-                requestDispatcher.forward(request, response);
-                return;
             default:
                 response.sendRedirect("");
                 return;
@@ -105,4 +84,22 @@ public class UserServlet extends HttpServlet {
         requestDispatcher.forward(request, response);
     }
 
+    private void HandlePasswordRecovery(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/recovery.jsp");
+        User user = UserGateway.FindUserCompleteByEmail(request.getParameter("email"));
+        if (user != null) {
+            user.setPassword("321pmet");
+            UserGateway user_gateway = new UserGateway(user);
+            if (user_gateway.Update()) {
+                MailMachine mailer = MailMachine.getInstance();
+                mailer.sendMessage(user.getEmail(), "Your temp password", "321pmet");
+                request.setAttribute("action", new RecoveryResultViewable(RecoveryResult.SUCCESS));
+            } else {
+                request.setAttribute("action", new RecoveryResultViewable(RecoveryResult.SYS_ERR));
+            }
+        } else {
+            request.setAttribute("action", new RecoveryResultViewable(RecoveryResult.USER_DNE));
+        }
+        requestDispatcher.forward(request, response);
+    }
 }
