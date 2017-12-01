@@ -2,6 +2,28 @@
     Document   : user_info
     Created on : 28-Nov-2017, 6:26:20 PM
     Author     : cmcarthur
+
+    MIT License
+
+    Copyright (c) 2017 Chris Mc, prince.chrismc(at)gmail(dot)com
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
 --%>
 
 <%@page import="Views.UserActionButton"%>
@@ -23,11 +45,11 @@
     </head>
     <body>
         <%
-            UserAction action = (UserAction)request.getAttribute("action");
+            UserAction action = (UserAction) request.getAttribute("action");
             UserActionTitle title = new UserActionTitle(action);
             UserActionFeildStatus status = new UserActionFeildStatus(action);
             UserActionButton button = new UserActionButton(action);
-            User user = (User)request.getAttribute("user");
+            User user = (User) request.getAttribute("user");
         %>
         <div class="container">
             <div class="row">
@@ -59,7 +81,7 @@
                                 <input id="last" type="text" name="last" value="<%=user.getLast_name()%>" class="form-control"<%=status.toHTML()%>/>
                             </div>
                         </div>
-                            <%=button.toHTML()%>
+                        <%=button.toHTML()%>
                         <h2>Additional Information...</h2>
                         <div class="form-group">
                             <label class="col-xs-2 control-label">Address Line 1</label>
@@ -125,7 +147,7 @@
                                 <input type="text" name="exp" value="<%=user.getCredit_card_expiry()%>" class="form-control"<%=status.toHTML()%>/>
                             </div>
                         </div>
-                            <%=button.toHTML()%>
+                        <%=button.toHTML()%>
                     </form>
                     <br><br>
                 </div>
@@ -135,22 +157,22 @@
             </div>
         </div>
         <script type="text/javascript">
-            $('form#user').submit(function() {
-                            
-                if(jQuery.trim($("#first").val()) == '') {
-                    $("#user").parent().parent().prepend("<div class='alert alert-danger alert-dismissable fade in'>" + 
+            $('form#user').submit(function () {
+
+                if (jQuery.trim($("#first").val()) == '') {
+                    $("#user").parent().parent().prepend("<div class='alert alert-danger alert-dismissable fade in'>" +
                             "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
                             "<strong>Error!</strong> There was no first name provided.</div>");
-                    return false;            
+                    return false;
                 }
-                
-                if(jQuery.trim($("#last").val()) == '') {
-                    $("#user").parent().parent().prepend("<div class='alert alert-danger alert-dismissable fade in'>" + 
+
+                if (jQuery.trim($("#last").val()) == '') {
+                    $("#user").parent().parent().prepend("<div class='alert alert-danger alert-dismissable fade in'>" +
                             "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
                             "<strong>Error!</strong> There was no last name provided.</div>");
-                    return false;            
+                    return false;
                 }
-                
+
                 return true; // https://stackoverflow.com/a/8053433/8480874
             })
         </script>

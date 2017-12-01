@@ -2,6 +2,28 @@
     Document   : admin_panel
     Created on : 29-Nov-2017, 11:50:26 AM
     Author     : cmcarthur
+
+    MIT License
+
+    Copyright (c) 2017 Chris Mc, prince.chrismc(at)gmail(dot)com
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
 --%>
 
 <%@page import="Models.AdminAction"%>
@@ -24,21 +46,20 @@
     </head>
     <body>
         <%
-            User admin = (User)request.getAttribute("user");
+            User admin = (User) request.getAttribute("user");
             String recent_orders_table = "";
-            for(OrderViewable order : (ArrayList<OrderViewable>)request.getAttribute("orders"))
-            {
+            for (OrderViewable order : (ArrayList<OrderViewable>) request.getAttribute("orders")) {
                 recent_orders_table += order.toHTML();
             }
-            
+
             String disc_games_table = "";
-            for(DiscountedGameResultView disc_view : (ArrayList<DiscountedGameResultView>)request.getAttribute("disc_views")) {
+            for (DiscountedGameResultView disc_view : (ArrayList<DiscountedGameResultView>) request.getAttribute("disc_views")) {
                 disc_games_table += disc_view.toHTML();
             }
-            
-            UsersTableViewable locked = (UsersTableViewable)request.getAttribute("locked");
-            UsersTableViewable unlocked = (UsersTableViewable)request.getAttribute("unlocked");
-            UsersTableViewable logged = (UsersTableViewable)request.getAttribute("logged");
+
+            UsersTableViewable locked = (UsersTableViewable) request.getAttribute("locked");
+            UsersTableViewable unlocked = (UsersTableViewable) request.getAttribute("unlocked");
+            UsersTableViewable logged = (UsersTableViewable) request.getAttribute("logged");
         %>
         <div class="container">
             <div class="row">
@@ -51,7 +72,7 @@
                     </form>
                 </div>
             </div>
-                <div class="row"><hr></div>
+            <div class="row"><hr></div>
             <div class="row">
                 <div class="col-xs-8">
                     <div class="row">
@@ -116,14 +137,14 @@
             </div>
         </div>
         <script type="text/javascript">
-            $('form#gameedit').submit(function() {
-                            
-                if(jQuery.trim($("#game_id").val()) == '') {
-                    $("#game_id").parent().parent().prepend("<div class='alert alert-danger alert-dismissable fade in'>" + 
+            $('form#gameedit').submit(function () {
+
+                if (jQuery.trim($("#game_id").val()) == '') {
+                    $("#game_id").parent().parent().prepend("<div class='alert alert-danger alert-dismissable fade in'>" +
                             "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
                             "<strong>Error!</strong> There was no game ID provided.</div>");
-                    return false;            
-                }         
+                    return false;
+                }
                 return true; // https://stackoverflow.com/a/8053433/8480874
             })
         </script>

@@ -2,6 +2,28 @@
     Document   : sign_up
     Created on : 29-Oct-2017, 8:18:40 PM
     Author     : cmcarthur
+
+    MIT License
+
+    Copyright (c) 2017 Chris Mc, prince.chrismc(at)gmail(dot)com
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
 --%>
 
 <%@page import="Models.RegistrationAction"%>
@@ -29,7 +51,7 @@
                     </form>
                 </div>
             </div>
-            
+
             <hr>
             <div class="row">
                 <div class="col-xs-8">
@@ -61,11 +83,11 @@
                                 <input id="last" type="text" name="last" class="form-control"/>
                             </div>
                         </div>
-                        
+
                         <div class="col-xs-offset-2 col-xs-10">
                             <div class="row"><input type="submit" value="Register" class="btn  btn-block" style='margin-bottom: 1em;'/></div>
                         </div>
-                        
+
                         <h2>Additional Information...</h2>
                         <div class="form-group">
                             <label class="col-xs-2 control-label">Address Line 1</label>
@@ -131,7 +153,7 @@
                                 <input type="text" name="exp" class="form-control"/>
                             </div>
                         </div>
-                        
+
                         <div class="col-xs-offset-2 col-xs-10">
                             <div class="row"><input type="submit" value="Register" class="btn  btn-block"/></div>
                         </div>
@@ -141,43 +163,43 @@
             </div>
         </div>
         <script type="text/javascript">
-            $('form#signup').submit(function() {
-                if(jQuery.trim($("#email").val()) == '') {
-                    $("#email").parent().parent().prepend("<div class='alert alert-danger alert-dismissable fade in'>" + 
+            $('form#signup').submit(function () {
+                if (jQuery.trim($("#email").val()) == '') {
+                    $("#email").parent().parent().prepend("<div class='alert alert-danger alert-dismissable fade in'>" +
                             "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
                             "<strong>Error!</strong> There was no email provided.</div>");
-                    return false;            
+                    return false;
                 }
-                
+
                 var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-                if(!emailReg.test(jQuery.trim($("#email").val()))) {
-                    $("#email").parent().parent().prepend("<div class='alert alert-danger alert-dismissable fade in'>" + 
+                if (!emailReg.test(jQuery.trim($("#email").val()))) {
+                    $("#email").parent().parent().prepend("<div class='alert alert-danger alert-dismissable fade in'>" +
                             "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
                             "<strong>Error!</strong> Your so called email does not match the support email format.</div>");
                     return false;
                 }
-                
-                if(jQuery.trim($("#pw").val()) == '') {
-                    $("#email").parent().parent().prepend("<div class='alert alert-danger alert-dismissable fade in'>" + 
+
+                if (jQuery.trim($("#pw").val()) == '') {
+                    $("#email").parent().parent().prepend("<div class='alert alert-danger alert-dismissable fade in'>" +
                             "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
                             "<strong>Error!</strong> There was no password provided.</div>");
-                    return false;            
+                    return false;
                 }
-                
-                if(jQuery.trim($("#first").val()) == '') {
-                    $("#email").parent().parent().prepend("<div class='alert alert-danger alert-dismissable fade in'>" + 
+
+                if (jQuery.trim($("#first").val()) == '') {
+                    $("#email").parent().parent().prepend("<div class='alert alert-danger alert-dismissable fade in'>" +
                             "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
                             "<strong>Error!</strong> There was no first name provided.</div>");
-                    return false;            
+                    return false;
                 }
-                
-                if(jQuery.trim($("#last").val()) == '') {
-                    $("#email").parent().parent().prepend("<div class='alert alert-danger alert-dismissable fade in'>" + 
+
+                if (jQuery.trim($("#last").val()) == '') {
+                    $("#email").parent().parent().prepend("<div class='alert alert-danger alert-dismissable fade in'>" +
                             "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
                             "<strong>Error!</strong> There was no last name provided.</div>");
-                    return false;            
+                    return false;
                 }
-                
+
                 return true; // https://stackoverflow.com/a/8053433/8480874
             })
         </script>
